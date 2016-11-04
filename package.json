@@ -1,0 +1,67 @@
+{
+  "name": "FCC_BPR_2016",
+  "version": "0.9.0",
+  "description": "FCC BPR 2016",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha ./test/**/test-*.js || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FCC/bpr-mapping-node"
+  },
+  "keywords": [
+    "fcc",
+    "contour",
+    "API",
+    "node"
+  ],
+  "author": "FCC",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/FCC/bpr-mapping-node"
+  },
+  "homepage": "",
+  "dependencies": {
+    "async": "^2.0.1",
+    "body-parser": "^1.13.2",
+    "bootstrap": "^3.3.7",
+    "chart.js": "^2.3.0",
+    "cors": "^2.7.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.1",
+    "express-ssi": "^2.0.3",
+    "font-awesome": "^4.7.0",
+    "geojson": "0.3.0",
+    "handlebars": "^4.0.5",
+    "helmet": "^2.3.0",
+    "http": "0.0.0",
+    "istanbul": "0.4.0",
+    "jquery": "~1.11.0",
+    "moment": "^2.10.3",
+    "morgan": "^1.6.1",
+    "ssi": "^0.3.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-banner": "^0.6.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.8.0",
+    "jshint-stylish": "^2.2.1",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.0.0",
+    "nodemon": "^1.10.0",
+    "sinon": "^1.17.6",
+    "supertest": "^2.0.0",
+    "time-grunt": "^1.4.0"
+  }
+}
