@@ -33,7 +33,7 @@ var dataDemog = {
     }]
 };
 
-if (window.location.pathname === '/index.html') {
+if ($('#chartPop').length > 0) {
     var ctxPop = $('#chartPop');
 
     var popChart = new Chart(ctxPop, {
@@ -70,8 +70,8 @@ if (window.location.pathname === '/index.html') {
 }
 
 
-if (window.location.pathname === '/demographics.html') {
-    console.log('demo');
+if ($('#chartDemog').length > 0) {
+    
     var ctxDemog = $('#chartDemog');
 
     var demogDonut = new Chart(ctxDemog, {
