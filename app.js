@@ -9,7 +9,7 @@ var http = require("http");
 var https = require("https");
 var url = require('url');
 var express = require('express');
-var ssi = require('ssi');
+var exphbs  = require('express-handlebars');
 
 var path = require('path');
 // var fsr = require('file-stream-rotator');
@@ -56,6 +56,13 @@ var app = express();
 app.use(cors());
 app.use(helmet());
 
+// **********************************************************
+// Handlebars templates
+
+app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main', layoutsDir: './src/views/layouts', partialsDir: './src/views/partials'}));
+app.set('view engine', '.hbs');
+app.set('views', './src/views');
+
 /*var memcached = new Memcached(process.env.ELASTICACHE_ENDPOINT);
 var memcached_lifetime = Number(process.env.ELASTICACHE_LIFETIME);
 var cached_param = 'outputcache';
@@ -81,21 +88,16 @@ app.use(morgan('combined', {stream: accessLogStream}))*/
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-// **********************************************************
-// SSI
-
-var inputDirectory = '/src';
-var outputDirectory = '/public';
-var matcher = '/**/*.html';
-
-var includes = new ssi(inputDirectory, outputDirectory, matcher);
-includes.compile();
-
 
 // **********************************************************
 // route
 
 app.use('/', express.static(__dirname + '/public'));
+app.get(['/', '/deployment'], function (req, res) {
+    res.render('deployment', {
+        title: 'Deployment'
+    });
+});
 
 
 // **********************************************************

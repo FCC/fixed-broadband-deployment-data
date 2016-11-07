@@ -1,0 +1,69 @@
+<main class="container">
+    <a id="main-content" tabindex="-1"></a>
+    <div class="row">
+        <div class="col-sm-12">
+            {{> page-titleBlock}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {{> map}}
+        </div>
+        <div class="map-sidebar col-md-4">
+            <div id="tab-div-nav" class="tab-nav">
+                <ul class="layer-switch nav nav-pills" role="navigation">
+                    <li class="active"><a href="index.html">Fixed</a></li>
+                    <li><a href="provider.html">Provider</a></li>
+                    <li><a href="demographics.html">Demographics</a></li>
+                </ul>
+            </div>
+            <section class="sect-census">
+                <h3 class="h4">Census Block</h3>
+                <dl class="dl-horizontal">
+                    <dt>FIPS Code:</dt>
+                    <dd>190799601001019</dd>
+                    <dt>Designation:</dt>
+                    <dd>Rural</dd>
+                </dl>
+                <table class="table table-condensed" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>Tech</th>
+                            <th>Down</th>
+                            <th>Up</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span title="VSAT_Systems">VSAT_Syste</span></td>
+                            <td>Satellite</td>
+                            <td class="td-right">2</td>
+                            <td class="td-right">1.3</td>
+                        </tr>
+                        <tr>
+                            <td><span title="Prairieinet">Prairieine</span></td>
+                            <td>Fixed wireless</td>
+                            <td class="td-right">5</td>
+                            <td class="td-right">1</td>
+                        </tr>
+                        <tr>
+                            <td><span title="HughesNet">HughesNet</span></td>
+                            <td>Satellite</td>
+                            <td class="td-right">15</td>
+                            <td class="td-right">2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="sect-fixed">
+                <h3 class="h4">Fixed</h3>
+                <canvas id="chartFixed" width="300" height="220"></canvas>
+            </section>
+            <section class="sect-population">
+                <h3 class="h4">Population</h3>
+                <canvas id="chartPop" class="chart-canvas" width="300" height="220" style="width: 300px; height: 200px;"></canvas>
+            </section>
+        </div>
+    </div>
+</main>

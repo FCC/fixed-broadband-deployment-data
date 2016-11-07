@@ -1,4 +1,4 @@
-
+<section id="map">
     <div id="search-field-holder">
         <div class="search-field input-group">
             <div class="search__group">
@@ -7,8 +7,11 @@
                         <div class="input-group-btn">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span id="btn-label">Address</span> <span class="caret"></span></button>
                             <ul id="input-search-switch" role="menu" class="dropdown-menu">
-                                <li><a href="#" data-value="loc">Street</a></li>
+                                <li><a href="#" data-value="loc">Address</a></li>
+                                <li><a href="#" data-value="censusPlace">Census Place</a></li>
+                                <li><a href="#" data-value="congressional">Congressional District</a></li>
                                 <li><a href="#" data-value="latlon-decimal">Coordinates</a></li>
+                                <li><a href="#" data-value="county">County</a></li>
                             </ul>
                         </div>
                         <input id="location-search" class="form-control ui-autocomplete-input ui-corner-all" type="search" placeholder="Enter Address" style="display: block" autocomplete="off" aria-label="Enter Address">
@@ -29,17 +32,17 @@
                             </table>
                         </div>
                         <span class="input-group-btn" id="btn-locSearch">                        
-                                    <button class="btn__search btn btn-default" type="submit" title="Location Search" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Location Search</span></button>
+                                                            <button class="btn__search btn btn-default" type="submit" title="Location Search" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Location Search</span></button>
                         </span>
                         <span class="input-group-btn hide" id="btn-coordSearch">                        
-                                    <button class="btn-search btn btn-default" title="Search by coordinates" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Search by coordinates</span></button>
+                                                            <button class="btn-search btn btn-default" title="Search by coordinates" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Search by coordinates</span></button>
                         </span>
                     </div>
                 </div>
                 <div class="btn__groupLoc">
                     <span class="input-group-btn">  
-                                <button class="btn__geoLocation btn btn-default st" title="Get Current Location" data-toggle="tooltip" data-placement="top" id="btn-geoLocation" type="button" data-original-title="Get Current Location">
-                                <span class="icon icon-location-arrow"></span><span class="sr-only">Get Current Location</span></button>
+                                                        <button class="btn__geoLocation btn btn-default st" title="Get Current Location" data-toggle="tooltip" data-placement="top" id="btn-geoLocation" type="button" data-original-title="Get Current Location">
+                                                        <span class="icon icon-location-arrow"></span><span class="sr-only">Get Current Location</span></button>
                     <button class="btn__nationLocation btn btn-default st" title="Nationwide" data-toggle="tooltip" data-placement="top" id="btn-nationLocation" type="button" data-original-title="Nationwide"><span class="icon icon-globe"></span><span class="sr-only">Nationwide</span></button>
                     </span>
                 </div>
@@ -72,4 +75,4 @@
         <button id="btn-openLegend" class="btn legend__icon" title="Map Legend"><span class="icon icon-list"></span></button>
         {{/if}}
     </div>
-
+</section>
