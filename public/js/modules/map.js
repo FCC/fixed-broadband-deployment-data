@@ -8,6 +8,16 @@ var Map = {
 
         Map.createMap();
 
+        // toggle map container width
+        $('#map-container').on('click', '.control-full a', function() {
+            $('header .container, header .container-fluid, main')
+                .toggleClass('container container-fluid')
+                .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+                    function(e) {
+                        Map.map.invalidateSize();
+                    });
+        });
+
         //legend
         /*if (!mapOpts.legend) {
             $('.map-legend, .legend__icon').toggleClass('hide');
@@ -128,7 +138,6 @@ var Map = {
             }*/
 
             //layer control
-
             layerControl = new L.Control.Layers(
                 baseLayer, mapLayer, {
                     position: 'topleft'
