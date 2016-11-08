@@ -1,0 +1,78 @@
+<section id="map">
+    <div id="search-field-holder">
+        <div class="search-field input-group">
+            <div class="search__group">
+                <div class="search__input">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span id="btn-label">Address</span> <span class="caret"></span></button>
+                            <ul id="input-search-switch" role="menu" class="dropdown-menu">
+                                <li><a href="#" data-value="loc">Address</a></li>
+                                <li><a href="#" data-value="censusPlace">Census Place</a></li>
+                                <li><a href="#" data-value="congressional">Congressional District</a></li>
+                                <li><a href="#" data-value="latlon-decimal">Coordinates</a></li>
+                                <li><a href="#" data-value="county">County</a></li>
+                            </ul>
+                        </div>
+                        <input id="location-search" class="form-control ui-autocomplete-input ui-corner-all" type="search" placeholder="Enter Address" style="display: block" autocomplete="off" aria-label="Enter Address">
+                        <div id="coord-search" class="form-control hide" type="search" placeholder="Enter Latlon decimal">
+                            <table id="table-latlon-decimal" class="table-srchCoords">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="latitude">Latitude:</label>
+                                            <input id="latitude" class="form-control" placeholder="41.234567">
+                                        </td>
+                                        <td>
+                                            <label for="longitude">Longitude:</label>
+                                            <input id="longitude" class="form-control" placeholder="-91.234567">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <span class="input-group-btn" id="btn-locSearch">                        
+                                                            <button class="btn__search btn btn-default" type="submit" title="Location Search" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Location Search</span></button>
+                        </span>
+                        <span class="input-group-btn hide" id="btn-coordSearch">                        
+                                                            <button class="btn-search btn btn-default" title="Search by coordinates" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Search by coordinates</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="btn__groupLoc">
+                    <span class="input-group-btn">  
+                                                        <button class="btn__geoLocation btn btn-default st" title="Get Current Location" data-toggle="tooltip" data-placement="top" id="btn-geoLocation" type="button" data-original-title="Get Current Location">
+                                                        <span class="icon icon-location-arrow"></span><span class="sr-only">Get Current Location</span></button>
+                    <button class="btn__nationLocation btn btn-default st" title="Nationwide" data-toggle="tooltip" data-placement="top" id="btn-nationLocation" type="button" data-original-title="Nationwide"><span class="icon icon-globe"></span><span class="sr-only">Nationwide</span></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map-container" class="map-wrapper">
+        {{#if legends}}
+        <div class="map-legend">
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="3"><span class="icon icon-list"></span> <span class="map-legend-name">Map Legend</span>
+                            <button id="btn-closeLegend" class="btn btn-xs pull-right"><span class="icon icon-close"></span> <span class="sr-only">Hide legend</span></button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#legends}}
+                    <tr>
+                        <td>
+                            <div class="key-symbol" style="{{legendType text color}}"></div>
+                        </td>
+                        <td>{{text}}</td>
+                    </tr>
+                    {{/legends}}
+                </tbody>
+            </table>
+        </div>
+        <button id="btn-openLegend" class="btn legend__icon" title="Map Legend"><span class="icon icon-list"></span></button>
+        {{/if}}
+    </div>
+</section>
