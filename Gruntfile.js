@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                     // 'node_modules/bootstrap/js/carousel.js',
                     // 'node_modules/bootstrap/js/scrollspy.js',
                     // 'node_modules/bootstrap/js/collapse.js'
-                    // 'node_modules/bootstrap/js/tab.js',
+                    'node_modules/bootstrap/js/tab.js',
                 ],
                 dest: './public/js/vendor/bootstrap.min.js'
             }
