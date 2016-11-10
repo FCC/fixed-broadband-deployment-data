@@ -1,9 +1,6 @@
 'use strict';
 
 var Map = {
-    data: {},
-    map: undefined,
-    geocoder: undefined,
     init: function() {
 
         Map.createMap();
@@ -36,20 +33,18 @@ var Map = {
     },
     createMap: function() {
             var map;
-            var mapData = Map.data;
+            // var mapData = Map.data;
             var initialzoom = 4;
             var maxzoom = 15;
             var minzoom = 3;
             var center_lat = 38.82;
             var center_lon = -94.96;
             var baseLayer = {};
+            var mapLayer = {};
+            var zindex = 11;
             var layerControl;
 
-            // initialzoom = mapData.init.zoom;
-            // maxzoom = mapData.config.zoom.max || maxzoom;
-            // minzoom = mapData.config.zoom.min || minzoom;
-            // center_lat = mapData.init.lat || center_lat;
-            // center_lon = mapData.init.lon || center_lon;
+            var geoURL = '/gwc/service/wms?tiled=true';
 
             L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
             map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
@@ -62,80 +57,31 @@ var Map = {
 
             var hash = L.hash(map);
 
-            var baseStreet = L.mapbox.tileLayer('fcc.k74ed5ge');
-            var baseSatellite = L.mapbox.tileLayer('fcc.k74d7n0g');
-            var baseTerrain = L.mapbox.tileLayer('fcc.k74cm3ol');
-
             //base layers
-            baseLayer.Street = baseStreet.addTo(map);
-            baseLayer.Satellite = baseSatellite;
-            baseLayer.Terrain = baseTerrain;
-
-            // if (mapData.map_basemap && mapData.map_basemap[0].toLowerCase() == "street") {
-            //     baseLayer["Street"] = baseStreet.addTo(map);
-            //     baseLayer["Satellite"] = baseSatellite;
-            //     baseLayer["Terrain"] = baseTerrain;
-            // } else if (mapData.map_basemap && mapData.map_basemap[0].toLowerCase() == "satellite") {
-            //     baseLayer["Street"] = baseStreet;
-            //     baseLayer["Satellite"] = baseSatellite.addTo(map);
-            //     baseLayer["Terrain"] = baseTerrain;
-            // } else if (mapData.map_basemap && mapData.map_basemap[0].toLowerCase() == "terrain") {
-            //     baseLayer["Street"] = baseStreet;
-            //     baseLayer["Satellite"] = baseSatellite;
-            //     baseLayer["Terrain"] = baseTerrain.addTo(map);
-            // }
+            baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
+            baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
+            baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');           
 
             //map layers
-            var mapLayer = {};
-            var zindex1 = 10;
+            mapLayer['County'] = L.tileLayer.wms(geoURL, {
+                format: 'image/png',
+                transparent: true,
+                layers: geo_space + ':bpr_dec2016_county'                
+            }).setZIndex(zindex).addTo(map);
 
-            /*if (mapData.layers.length > 0) {
-                for (var i = 0; i < mapData.layers.length; i++) {
-                    zindex1++;
+            mapLayer['Fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
+                format: 'image/png',
+                transparent: true,
+                layers: 'bpr_dec2016_county_layer_fixed',
+                styles: 'bpr_layer_fixed_0'
+            }).setZIndex(zindex).addTo(map);
 
-                    if (mapData.layers[i].type == 'XYZ') {
-
-                        var title = mapData.layers[i].title;
-                        if (title == '') {
-                            title = '' + i;
-                        }
-
-                        var query = mapData.layers[i].query;
-                        if (query === '') {
-                            query = 'access_token=pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
-                        }
-
-                        var url = '//' + mapData.layers[i].domain + '/{z}/{x}/{y}.png?' + query;
-
-                        mapLayer[title] = L.tileLayer(url, {
-                            opacity: mapData.layers[i].opacity,
-                            zIndex: zindex1
-                        });
-
-                        if (mapData.layers[i].visibile === true) {
-                            mapLayer[title].addTo(map);
-                        }
-                    } else if (mapData.layers[i].type === 'WMS') {
-                        var titleWMS = mapData.layers[i].title;
-                        if (titleWMS === '') {
-                            titleWMS = '' + i;
-                        }
-
-                        mapLayer[titleWMS] = L.tileLayer.wms(mapData.layers[i].protocol + '://' + mapData.layers[i].domain + '/wms', {
-                            format: 'image/' + mapData.layers[i].format,
-                            transparent: true,
-                            opacity: mapData.layers[i].opacity,
-                            layers: mapData.layers[i].name,
-                            styles: mapData.layers[i].style,
-                            zIndex: zindex1
-                        });
-
-                        if (mapData.layers[i].visible === 'on') {
-                            mapLayer[titleWMS].addTo(map);
-                        }
-                    }
-                }
-            }*/
+            mapLayer['No fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
+                format: 'image/png',
+                transparent: true,
+                layers: 'bpr_dec2016_county_layer_nonfixed',
+                styles: 'bpr_layer_fixed_1'
+            }).setZIndex(zindex).addTo(map);
 
             //layer control
             layerControl = new L.Control.Layers(
@@ -143,7 +89,6 @@ var Map = {
                     position: 'topleft'
                 }
             ).addTo(map);
-
 
             Map.map = map;
 
