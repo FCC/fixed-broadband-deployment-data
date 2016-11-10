@@ -40,7 +40,8 @@
     "istanbul": "0.4.0",
     "jquery": "~1.11.0",
     "moment": "^2.10.3",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "request": "^2.78.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
@@ -55,9 +56,11 @@
     "grunt-contrib-less": "^1.4.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
+    "jsdom": "^9.8.3",
     "jshint-stylish": "^2.2.1",
     "load-grunt-tasks": "^3.5.2",
     "mocha": "^3.0.0",
+    "mocha-jsdom": "^1.1.0",
     "mochawesome": "^1.5.3",
     "nodemon": "^1.10.0",
     "sinon": "^1.17.6",
