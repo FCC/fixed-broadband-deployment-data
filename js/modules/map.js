@@ -45,6 +45,7 @@ var Map = {
             var layerControl;
 
             var geoURL = '/gwc/service/wms?tiled=true';
+            var geo_space = 'fcc';
 
             L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
             map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
@@ -66,7 +67,7 @@ var Map = {
             mapLayer['County'] = L.tileLayer.wms(geoURL, {
                 format: 'image/png',
                 transparent: true,
-                layers: geo_space + ':bpr_dec2016_county'                
+                layers: 'bpr_dec2016_county'                
             }).setZIndex(zindex).addTo(map);
 
             mapLayer['Fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
