@@ -41,7 +41,6 @@ var Map = {
             var center_lon = -94.96;
             var baseLayer = {};
             var mapLayer = {};
-            var zindex = 11;
             var layerControl;
 
             var geoURL = '/gwc/service/wms?tiled=true';
@@ -64,25 +63,19 @@ var Map = {
             baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');           
 
             //map layers
-            mapLayer['County'] = L.tileLayer.wms(geoURL, {
-                format: 'image/png',
-                transparent: true,
-                layers: 'bpr_dec2016_county'                
-            }).setZIndex(zindex).addTo(map);
-
             mapLayer['Fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
                 format: 'image/png',
                 transparent: true,
                 layers: 'bpr_dec2016_county_layer_fixed',
                 styles: 'bpr_layer_fixed_0'
-            }).setZIndex(zindex).addTo(map);
+            }).setZIndex(11).addTo(map);
 
             mapLayer['No fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
                 format: 'image/png',
                 transparent: true,
                 layers: 'bpr_dec2016_county_layer_nonfixed',
                 styles: 'bpr_layer_fixed_1'
-            }).setZIndex(zindex).addTo(map);
+            }).setZIndex(12).addTo(map);
 
             //layer control
             layerControl = new L.Control.Layers(
