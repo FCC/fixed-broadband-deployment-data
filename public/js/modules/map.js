@@ -46,8 +46,8 @@ var Map = {
             var center_lon = -94.96;
             var baseLayer = {};
             var layerControl;
-            var layerPath = window.location.pathname.split('/')[1];
-            var mapLayer = layers[layerPath];
+            var layerPath = window.location.pathname.split('/')[1];            
+            var mapLayer = {};
 
             Map.geoURL = '/gwc/service/wms?tiled=true';
             Map.geo_space = 'fcc';
@@ -67,12 +67,10 @@ var Map = {
             baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
             baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
             baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
-
-            Map.map = map;
-
+        
             //get tile layers based on location pathname
             for (var layer in layers[layerPath]) {
-                L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(Map.map);
+               mapLayer[layer] = L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(map);
             }
 
             //layer control
@@ -80,7 +78,9 @@ var Map = {
                 baseLayer, mapLayer, {
                     position: 'topleft'
                 }
-            ).addTo(Map.map);
+            ).addTo(map);
+
+            Map.map = map;
 
             Map.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
