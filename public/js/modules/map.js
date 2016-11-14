@@ -1,5 +1,10 @@
 'use strict';
 
+var layers = {
+    deployment: require('./layers-deployment.js'),
+    speed: require('./layers-speed.js'),
+};
+
 var Map = {
     init: function() {
 
@@ -40,11 +45,12 @@ var Map = {
             var center_lat = 38.82;
             var center_lon = -94.96;
             var baseLayer = {};
-            var mapLayer = {};
             var layerControl;
+            var layerPath = window.location.pathname.split('/')[1];
+            var mapLayer = layers[layerPath];
 
-            var geoURL = '/gwc/service/wms?tiled=true';
-            var geo_space = 'fcc';
+            Map.geoURL = '/gwc/service/wms?tiled=true';
+            Map.geo_space = 'fcc';
 
             L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
             map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
@@ -60,36 +66,25 @@ var Map = {
             //base layers
             baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
             baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
-            baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');           
+            baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
 
-            //map layers
-            mapLayer['Fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
-                format: 'image/png',
-                transparent: true,
-                layers: 'bpr_dec2016_county_layer_fixed',
-                styles: 'bpr_layer_fixed_0'
-            }).setZIndex(11).addTo(map);
+            Map.map = map;
 
-            mapLayer['No fixed broadband 25/3 (Mbps)'] = L.tileLayer.wms(geoURL, {
-                format: 'image/png',
-                transparent: true,
-                layers: 'bpr_dec2016_county_layer_nonfixed',
-                styles: 'bpr_layer_fixed_1'
-            }).setZIndex(12).addTo(map);
+            //get tile layers based on location pathname
+            for (var layer in layers[layerPath]) {
+                L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(Map.map);
+            }
 
             //layer control
-            layerControl = new L.Control.Layers(
+            layerControl = L.control.layers(
                 baseLayer, mapLayer, {
                     position: 'topleft'
                 }
-            ).addTo(map);
-
-            Map.map = map;
+            ).addTo(Map.map);
 
             Map.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
         } //end createMap
 }; //end MapLayers
-
 
 module.exports = Map;
