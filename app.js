@@ -121,6 +121,13 @@ app.get(['/speed'], function(req, res) {
     });
 });
 
+app.get(['/technology'], function(req, res) {
+    res.render('mainView', {
+        title: 'Technology',
+        activeTech: 'active'
+    });
+});
+
 app.get(['/providers'], function(req, res) {
     res.render('mainView', {
         title: 'Providers',
