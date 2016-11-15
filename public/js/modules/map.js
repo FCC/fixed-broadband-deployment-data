@@ -3,6 +3,7 @@
 var layers = {
     deployment: require('./layers-deployment.js'),
     speed: require('./layers-speed.js'),
+    providers: require('./layers-providers.js')
 };
 
 var Map = {
@@ -46,7 +47,7 @@ var Map = {
             var center_lon = -94.96;
             var baseLayer = {};
             var layerControl;
-            var layerPath = window.location.pathname.split('/')[1];            
+            var layerPath = window.location.pathname.split('/')[1];
             var mapLayer = {};
 
             Map.geoURL = '/gwc/service/wms?tiled=true';
@@ -67,10 +68,10 @@ var Map = {
             baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
             baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
             baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
-        
+
             //get tile layers based on location pathname
             for (var layer in layers[layerPath]) {
-               mapLayer[layer] = L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(map);
+                mapLayer[layer] = L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(map);
             }
 
             //layer control

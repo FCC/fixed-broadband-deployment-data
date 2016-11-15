@@ -108,16 +108,23 @@ app.use('/', function(req, res, next) {
 });
 
 app.get(['/', '/deployment'], function(req, res) {
-    res.render('deployment', {
+    res.render('mainView', {
         title: 'Deployment',
         activeDeploy: 'active'
     });
 });
 
 app.get(['/speed'], function(req, res) {
-    res.render('speed', {
+    res.render('mainView', {
         title: 'Speed',
         activeSpeed: 'active'
+    });
+});
+
+app.get(['/providers'], function(req, res) {
+    res.render('mainView', {
+        title: 'Providers',
+        activeProv: 'active'
     });
 });
 
