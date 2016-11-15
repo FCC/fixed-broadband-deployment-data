@@ -39,6 +39,7 @@ var Map = {
     },
     createMap: function() {
             var map;
+            var hash;
             // var mapData = Map.data;
             var initialzoom = 4;
             var maxzoom = 15;
@@ -62,7 +63,7 @@ var Map = {
                 })
                 .setView([center_lat, center_lon], initialzoom);
 
-            var hash = L.hash(map);
+            map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');            
 
             //base layers
             baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
@@ -80,6 +81,8 @@ var Map = {
                     position: 'topleft'
                 }
             ).addTo(map);
+
+            hash = L.hash(map);
 
             Map.map = map;
 
