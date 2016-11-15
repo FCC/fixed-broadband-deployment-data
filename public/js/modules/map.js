@@ -3,7 +3,19 @@
 var layers = {
     deployment: require('./layers-deployment.js'),
     speed: require('./layers-speed.js'),
-    providers: require('./layers-providers.js')
+    providers: require('./layers-providers.js'),
+    tribal: {
+        format: 'image/png',
+        transparent: true,
+        layers: 'bpr_tribal',
+        styles: 'bpr_tribal'
+    },
+    urban: {
+        format: 'image/png',
+        transparent: true,
+        layers: 'fcc:bpr_county_layer_urban_only',
+        styles: 'bpr_layer_urban'
+    }
 };
 
 var Map = {
@@ -63,7 +75,7 @@ var Map = {
                 })
                 .setView([center_lat, center_lon], initialzoom);
 
-            map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');            
+            map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');
 
             //base layers
             baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
@@ -74,6 +86,10 @@ var Map = {
             for (var layer in layers[layerPath]) {
                 mapLayer[layer] = L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(map);
             }
+
+            //add Tribal and Urban layers
+            mapLayer['Tribal'] = L.tileLayer.wms(Map.geoURL, layers.tribal);
+            mapLayer['Urban'] = L.tileLayer.wms(Map.geoURL, layers.urban);
 
             //layer control
             layerControl = L.control.layers(
