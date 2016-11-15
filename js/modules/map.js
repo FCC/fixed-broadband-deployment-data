@@ -4,6 +4,7 @@ var layers = {
     deployment: require('./layers-deployment.js'),
     speed: require('./layers-speed.js'),
     providers: require('./layers-providers.js'),
+    technology: require('./layers-tech.js'),
     tribal: {
         format: 'image/png',
         transparent: true,
