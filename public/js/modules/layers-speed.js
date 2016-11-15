@@ -1,7 +1,5 @@
 'use strict';
 
-var Map = require('./map.js');
-
 var layersSpeed = {};
 
 //Speed map layers

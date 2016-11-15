@@ -1,7 +1,5 @@
 'use strict';
 
-var Map = require('./map.js');
-
 var layersDeployment = {};
 
 //Deployment map layers
