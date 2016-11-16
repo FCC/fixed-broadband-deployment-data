@@ -30,10 +30,10 @@ var clickedBlockLayer;
 var clickedBlockStyle = { color: '#000', opacity: 0.5, fillOpacity: 0.1, fillColor: '#fff', weight: 3 };
 var clickedBlockLayerData;
 
-var Map = {
+var BPRMap = {
     init: function() {
 
-        Map.createMap();
+        BPRMap.createMap();
 
         // toggle map container width
         $('#map-container').on('click', '.control-full a', function() {
@@ -41,11 +41,11 @@ var Map = {
                 .toggleClass('container container-fluid')
                 .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
                     function(e) {
-                        Map.map.invalidateSize();
+                        BPRMap.map.invalidateSize();
                     });
         });
 
-        Map.map.on('click', Map.update);
+        BPRMap.map.on('click', BPRMap.update);
 
         //legend
         /*if (!mapOpts.legend) {
@@ -64,7 +64,7 @@ var Map = {
 
     },
     createMap: function() {
-        var map;
+        //var map;
         var hash;
         // var mapData = Map.data;
         var initialzoom = 4;
@@ -77,11 +77,11 @@ var Map = {
         var layerPath = window.location.pathname.split('/')[1];
         var mapLayer = {};
 
-        Map.geoURL = '/gwc/service/wms?tiled=true';
-        Map.geo_space = 'fcc';
+        BPRMap.geoURL = '/gwc/service/wms?tiled=true';
+        BPRMap.geo_space = 'fcc';
 
         L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
-        map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
+        BPRMap.map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
                 attributionControl: true,
                 maxZoom: maxzoom,
                 minZoom: minzoom,
@@ -89,45 +89,45 @@ var Map = {
             })
             .setView([center_lat, center_lon], initialzoom);
 
-        map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');
+        BPRMap.map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');
 
         //base layers
-        baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(map);
+        baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(BPRMap.map);
         baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
         baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
 
         //get tile layers based on location pathname
         for (var layer in layers[layerPath]) {
-            mapLayer[layer] = L.tileLayer.wms(Map.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(map);
+            mapLayer[layer] = L.tileLayer.wms(BPRMap.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(BPRMap.map);
         }
 
         //add Tribal and Urban layers
-        mapLayer['Tribal'] = L.tileLayer.wms(Map.geoURL, layers.tribal);
-        mapLayer['Urban'] = L.tileLayer.wms(Map.geoURL, layers.urban);
+        mapLayer['Tribal'] = L.tileLayer.wms(BPRMap.geoURL, layers.tribal);
+        mapLayer['Urban'] = L.tileLayer.wms(BPRMap.geoURL, layers.urban);
 
         //layer control
         layerControl = L.control.layers(
             baseLayer, mapLayer, {
                 position: 'topleft'
             }
-        ).addTo(map);
+        ).addTo(BPRMap.map);
 
-        hash = L.hash(map);
+        hash = L.hash(BPRMap.map);
 
-        Map.map = map;
+        // Map.map = map;
 
-        Map.geocoder = L.mapbox.geocoder('mapbox.places-v1');
+        BPRMap.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
     }, //end createMap
     update: function(e) {
-        var cursorX;
+        /* var cursorX;
         var cursorY;
         var clickX = 0;
         var clickY = 0;
 
         var lastTimestamp = 0;
 
-        var timestamp = Date.now();
+       var timestamp = Date.now();
 
         if (lastTimestamp > 0 && timestamp - lastTimestamp < 1000) {
             lastTimestamp = timestamp;
@@ -136,7 +136,7 @@ var Map = {
 
         lastTimestamp = timestamp;
         clickX = cursorX;
-        clickY = cursorY;
+        clickY = cursorY;*/
         var lat = Math.round(1000000 * e.latlng.lat) / 1000000.0;
         var lon = Math.round(1000000 * e.latlng.lng) / 1000000.0;
         locationLat = lat;
@@ -144,22 +144,20 @@ var Map = {
 
         // removeBlockCountyLayers();
 
-        Map.getCounty(lat, lon);
-        setTimeout(function() { Map.getBlock(lat, lon); }, 200);
+        BPRMap.getCounty(lat, lon);
+        setTimeout(function() { BPRMap.getBlock(lat, lon); }, 200);
 
     }, //end update
     getCounty: function(lat, lon) {
-        var geoURL = 'https://geo.fcc.gov/fcc/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = 'http://gisp-geosrv-tc-dev.us-west-2.elasticbeanstalk.com/fcc/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
         
         $.ajax({
             type: 'GET',
             url: geoURL,
-            success: Map.showCounty
+            success: BPRMap.showCounty
         });
     }, //end getCounty
     showCounty: function(data) {
-        console.log(data);
-
         if (data.features.length === 0) {
             var county_text = 'No county data found at your searched/clicked location.';
             $('#display-county').html(county_text);
@@ -168,65 +166,61 @@ var Map = {
 
         var id = data.features[0].id.replace(/\..*$/, '');
 
-        if (id !== 'bpr_county') {
+        if (id !== 'bpr_dec2016_county') {
             return;
         }
 
-        if (Map.map.hasLayer(clickedCountyLayer)) {
-            Map.map.removeLayer(clickedCountyLayer);
+        if (BPRMap.map.hasLayer(clickedCountyLayer)) {
+            BPRMap.map.removeLayer(clickedCountyLayer);
         }
 
-        clickedCountyLayer = L.mapbox.featureLayer(data).setStyle(clickedCountyStyle).addTo(Map.map);
+        clickedCountyLayer = L.mapbox.featureLayer(data).setStyle(clickedCountyStyle).addTo(BPRMap.map);
 
         if (countyLayerData.features.length === 0 || countyLayerData.features[0].properties.county_fips !== data.features[0].properties.county_fips) {
-            Map.map.fitBounds(clickedCountyLayer.getBounds());
+            BPRMap.map.fitBounds(clickedCountyLayer.getBounds());
         }
 
         clickedCountyLayer.on('click', function(e) {
-            Map.update(e);
+            BPRMap.update(e);
         });
 
         countyLayerData = data;
     }, //end showCounty
     getBlock: function(lat, lon) {
-        var geoURL = 'https://geo.fcc.gov/fcc/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_block_layer&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
-
-        console.log('getBlock');
-        console.log(lat);
-        console.log(lon);
+        var geoURL = 'http://gisp-geosrv-tc-dev.us-west-2.elasticbeanstalk.com/fcc/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',
             url: geoURL,
-            success: Map.showBlock
+            success: BPRMap.showBlock
         });
     },
-    showBlock: function(data) { console.log(data);
+    showBlock: function(data) { 
         clickedBlockLayerData = data;
 
-        if (Map.map.hasLayer(clickedBlockLayer)) {
-            Map.map.removeLayer(clickedBlockLayer);
+        if (BPRMap.map.hasLayer(clickedBlockLayer)) {
+            BPRMap.map.removeLayer(clickedBlockLayer);
         }
 
-        clickedBlockLayer = L.mapbox.featureLayer(clickedBlockLayerData).setStyle(clickedBlockStyle).addTo(Map.map);
+        clickedBlockLayer = L.mapbox.featureLayer(clickedBlockLayerData).setStyle(clickedBlockStyle).addTo(BPRMap.map);
 
-        Map.setLocationMarker(locationLat, locationLon);
+        BPRMap.setLocationMarker(locationLat, locationLon);
     },
     setLocationMarker: function(lat, lon) {
-        if (Map.map.hasLayer(locationMarker)) {
-            Map.map.removeLayer(locationMarker);
+        if (BPRMap.map.hasLayer(locationMarker)) {
+            BPRMap.map.removeLayer(locationMarker);
         }
-        locationMarker = L.marker([lat, lon], { title: '' }).addTo(Map.map);
+        locationMarker = L.marker([lat, lon], { title: '' }).addTo(BPRMap.map);
 
         locationMarker.on('click', function(e) {
-            Map.zoomToBlock();
+            BPRMap.zoomToBlock();
         });
     },
     zoomToBlock: function() {
-        if (Map.map.hasLayer(clickedBlockLayer)) {
-            Map.map.fitBounds(clickedBlockLayer.getBounds());
+        if (BPRMap.map.hasLayer(clickedBlockLayer)) {
+            BPRMap.map.fitBounds(clickedBlockLayer.getBounds());
         }
     }
 }; //end MapLayers
 
-module.exports = Map;
+module.exports = BPRMap;
