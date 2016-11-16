@@ -99,8 +99,9 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/', function(req, res, next) {
     var geoURL = process.env.GEO_HOST + '/' + process.env.GEO_SPACE;
     var reqURL = geoURL + req.url;
+    var pathname = req.url.split('/')[1].slice(0, 3);
 
-    if (req.url.split('/gwc').length > 1) {
+    if (pathname === 'gwc' || pathname === 'ows') {
         req.pipe(request(reqURL)).pipe(res);
     } else {
        next(); 
