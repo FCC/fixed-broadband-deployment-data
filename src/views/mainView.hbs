@@ -20,12 +20,27 @@
             <div class="tab-content">
                 <section id="fixed" class="tab-pane active" role="tabpanel">
                     <section class="sect-census">
-                        <h3 class="h4">[county, state] Census Block</h3>
+                        <h3 class="h4"><span data-county></span>, <span data-state></span> Census Block</h3>
                         <dl class="dl-horizontal">
                             <dt>FIPS Code:</dt>
-                            <dd>190799601001019</dd>
+                            <dd data-fips></dd>
                             <dt>Designation:</dt>
-                            <dd>Rural</dd>
+                            <dd data-rural></dd>
+                        </dl>
+
+                        <dl class="dl-horizontal">
+                            <dt>Total Population:</dt>
+                            <dd data-totalPop></dd>
+                            <dt>Pop Density (pop/mi<sup>2</sup>):</dt>
+                            <dd data-popDensity></dd>
+                            <dt>Per Capita Income:</dt>
+                            <dd>$<span data-incomeCapita></span></dd>
+                            <dt>Total Pop w/o Access:</dt>
+                            <dd data-totalPopNoAccess></dd>
+                            <dt>% Urban Pop w/o Access:</dt>
+                            <dd data-urbanPop></dd>
+                            <dt>% Rural Pop w/o Access:</dt>
+                            <dd data-ruralPop></dd>
                         </dl>
                         <table class="table table-condensed" style="display: none;">
                             <thead>

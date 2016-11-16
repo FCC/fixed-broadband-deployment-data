@@ -1,5 +1,7 @@
 'use strict';
 
+var tablePopulation = require('./table-population.js');
+
 var layers = {
     deployment: require('./layers-deployment.js'),
     speed: require('./layers-speed.js'),
@@ -149,7 +151,7 @@ var BPRMap = {
 
     }, //end update
     getCounty: function(lat, lon) {
-        var geoURL = 'http://gisp-geosrv-tc-dev.us-west-2.elasticbeanstalk.com/fcc/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
         
         $.ajax({
             type: 'GET',
@@ -158,6 +160,8 @@ var BPRMap = {
         });
     }, //end getCounty
     showCounty: function(data) {
+        var countyData = data.features[0].properties;
+
         if (data.features.length === 0) {
             var county_text = 'No county data found at your searched/clicked location.';
             $('#display-county').html(county_text);
@@ -185,9 +189,12 @@ var BPRMap = {
         });
 
         countyLayerData = data;
+
+        tablePopulation.create(countyData);        
+        
     }, //end showCounty
     getBlock: function(lat, lon) {
-        var geoURL = 'http://gisp-geosrv-tc-dev.us-west-2.elasticbeanstalk.com/fcc/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',
@@ -195,7 +202,9 @@ var BPRMap = {
             success: BPRMap.showBlock
         });
     },
-    showBlock: function(data) { 
+    showBlock: function(data) {
+        var blockData = data.features[0].properties;
+
         clickedBlockLayerData = data;
 
         if (BPRMap.map.hasLayer(clickedBlockLayer)) {
@@ -205,6 +214,9 @@ var BPRMap = {
         clickedBlockLayer = L.mapbox.featureLayer(clickedBlockLayerData).setStyle(clickedBlockStyle).addTo(BPRMap.map);
 
         BPRMap.setLocationMarker(locationLat, locationLon);
+
+        $('[data-fips]').text(blockData.block_fips);
+        $('[data-rural]').text(blockData.urban_rural === 'R' ? 'Rural':'Urban');
     },
     setLocationMarker: function(lat, lon) {
         if (BPRMap.map.hasLayer(locationMarker)) {
