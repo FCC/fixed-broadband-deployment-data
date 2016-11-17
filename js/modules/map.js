@@ -2,6 +2,9 @@
 
 var tablePopulation = require('./table-population.js');
 var tableProviders = require('./table-providers.js');
+var tableDemog = require('./table-demographics.js');
+var chartDemog = require('./chart-demographics.js');
+var chartFixed = require('./chart-fixed.js');
 
 var layers = {
     deployment: require('./layers-deployment.js'),
@@ -117,8 +120,6 @@ var BPRMap = {
 
         hash = L.hash(BPRMap.map);
 
-        // Map.map = map;
-
         BPRMap.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
     }, //end createMap
@@ -191,8 +192,10 @@ var BPRMap = {
 
         countyLayerData = data;
 
-        tablePopulation.create(countyData);        
-        
+        tablePopulation.create(countyData);
+        tableDemog.create(countyData);
+        chartDemog.create(countyData);
+        chartFixed.create(countyData);
         
     }, //end showCounty
     getBlock: function(lat, lon) {
