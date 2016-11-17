@@ -111,28 +111,32 @@ app.use('/', function(req, res, next) {
 app.get(['/', '/deployment'], function(req, res) {
     res.render('mainView', {
         title: 'Deployment',
-        activeDeploy: 'active'
+        activeDeploy: 'active',
+        partialName: 'deployment'
     });
 });
 
 app.get(['/speed'], function(req, res) {
     res.render('mainView', {
         title: 'Speed',
-        activeSpeed: 'active'
+        activeSpeed: 'active',
+        partialName: 'speed'
     });
 });
 
 app.get(['/technology'], function(req, res) {
     res.render('mainView', {
         title: 'Technology',
-        activeTech: 'active'
+        activeTech: 'active',
+        partialName: 'technology'
     });
 });
 
 app.get(['/providers'], function(req, res) {
     res.render('mainView', {
         title: 'Providers',
-        activeProv: 'active'
+        activeProv: 'active',
+        partialName: 'providers'
     });
 });
 
