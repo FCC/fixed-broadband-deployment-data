@@ -1,6 +1,7 @@
 'use strict';
 
 var tablePopulation = require('./table-population.js');
+var tableProviders = require('./table-providers.js');
 
 var layers = {
     deployment: require('./layers-deployment.js'),
@@ -192,6 +193,7 @@ var BPRMap = {
 
         tablePopulation.create(countyData);        
         
+        
     }, //end showCounty
     getBlock: function(lat, lon) {
         var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
@@ -217,6 +219,9 @@ var BPRMap = {
 
         $('[data-fips]').text(blockData.block_fips);
         $('[data-rural]').text(blockData.urban_rural === 'R' ? 'Rural':'Urban');
+
+        //update Providers table
+        tableProviders.getData(blockData.block_fips);
     },
     setLocationMarker: function(lat, lon) {
         if (BPRMap.map.hasLayer(locationMarker)) {
