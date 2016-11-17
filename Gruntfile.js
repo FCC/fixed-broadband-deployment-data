@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             less: {
-                files: ['./src/bootstrap-gisp/less/**/*.less'],
+                files: ['./src/less/**/*.less'],
                 tasks: ['less', 'usebanner', 'postcss', 'copy']
             },
             scripts: {
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 
         // Lint LESS
         lesslint: {
-            src: ['.src/bootstrap-gisp/less/**/*.less'],
+            src: ['.src/less/**/*.less'],
             options: {
                 csslint: {
                     'box-model': false,
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         // LESS -> CSS
         less: {
             options: {
-                paths: ['bootstrap-gisp/less', 'node_modules'],
+                paths: ['less', 'node_modules'],
                 compress: true,
                 sourceMap: true,
                 sourceMapFileInline: true
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: './src/bootstrap-gisp/less',
+                    cwd: './src/less',
                     src: ['gisp-theme.less'],
                     dest: '<%= paths.assets %>/css/',
                     ext: '.min.css'
@@ -138,15 +138,6 @@ module.exports = function(grunt) {
             },
             dev: {
                 src: ['<%= paths.assets %>/js/main.js'],
-                dest: '<%= paths.assets %>/js/app.js'
-            },
-            production: {
-                options: {
-                    browserifyOptions: {
-                        debug: true
-                    }
-                },
-                src: '<%= browserify.dev.src %>',
                 dest: '<%= paths.assets %>/js/app.js'
             }
         },
