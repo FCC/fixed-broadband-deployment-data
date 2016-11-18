@@ -5,7 +5,9 @@ var utility = {
         return fieldName === null;
     },
     formatComma(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        var parts = num.toString().split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return parts.join('.');
     },
     formatPercent(num) {
         return (num * 100).toFixed(2) + '%';
