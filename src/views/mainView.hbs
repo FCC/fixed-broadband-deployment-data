@@ -1,0 +1,16 @@
+<main class="container">
+    <a id="main-content" tabindex="-1"></a>
+    <div class="row">
+        <div class="col-sm-12">
+            {{> page-titleBlock}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {{> map}}
+        </div>
+        <div class="map-sidebar col-md-4">
+            {{> (lookup . 'partialName') }}
+        </div>
+    </div>
+</main>
