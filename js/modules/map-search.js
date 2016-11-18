@@ -1,6 +1,6 @@
     'use strict';
 
-    var Map = require('./map.js');
+    var BPRMap = require('./map.js');
 
     var MapSearch = {
         init: function() {
@@ -8,7 +8,7 @@
             $('#btn-coordSearch').on('click', 'button', MapSearch.search_decimal);
             $('#btn-geoLocation').on('click', MapSearch.geoLocation);
             $("#btn-nationLocation").on('click', function() {
-                Map.map.setView([50, -105], 3);
+                BPRMap.map.setView([50, -105], 3);
             });
 
             $("#input-search-switch").on('click', 'a', MapSearch.search_switch);
@@ -17,7 +17,7 @@
                 .autocomplete({
                     source: function(request, response) {
                         var location = request.term;
-                        Map.geocoder.query(location, processAddress);
+                        BPRMap.geocoder.query(location, processAddress);
 
                         function processAddress(err, data) {
                             var f = data.results.features;
@@ -57,37 +57,39 @@
             });
         },
         locChange: function() {
-            var loc = $("#location-search").val();
-            Map.geocoder.query(loc, codeMap);
+            var loc = $('#location-search').val();
 
-            function codeMap(err, data) {
+            BPRMap.geocoder.query(loc, codeMap);
 
+            function codeMap(err, data) {                
                 if (data.results.features.length === 0) {
                     alert("The address provided could not be found. Please enter a new address.");
                     return;
                 }
-                var lat = data.latlng[0];
-                var lon = data.latlng[1];
+                BPRMap.lat = data.latlng[0];
+                BPRMap.lon = data.latlng[1];
 
-                Map.map.setView([lat, lon], 14);
+                BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
+                setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
 
             }
         },
         search_decimal: function() {
-            var lat = $('#latitude').val().replace(/ +/g, '');
-            var lon = $('#longitude').val().replace(/ +/g, '');
+            BPRMap.lat = $('#latitude').val().replace(/ +/g, '');
+            BPRMap.lon = $('#longitude').val().replace(/ +/g, '');
 
-            if (lat === '' || lon === '') {
+            if (BPRMap.lat === '' || BPRMap.lon === '') {
                 alert('Please enter lat/lon');
                 return;
             }
 
-            if (Math.abs(lat) > 90 || Math.abs(lon) > 180) {
+            if (Math.abs(BPRMap.lat) > 90 || Math.abs(BPRMap.lon) > 180) {
                 alert('Lat/Lon values out of range');
                 return;
             }
 
-            Map.map.setView([lat, lon], 14);
+            BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
+            setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
         },
         geoLocation: function() {
             if (navigator.geolocation) {
@@ -96,10 +98,11 @@
                     var geo_lon = position.coords.longitude;
                     var geo_acc = position.coords.accuracy;
 
-                    geo_lat = Math.round(geo_lat * 1000000) / 1000000.0;
-                    geo_lon = Math.round(geo_lon * 1000000) / 1000000.0;
+                    BPRMap.lat = Math.round(geo_lat * 1000000) / 1000000.0;
+                    BPRMap.lon = Math.round(geo_lon * 1000000) / 1000000.0;
 
-                    Map.map.setView([geo_lat, geo_lon], 14);
+                    BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
+                    setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
 
                 }, function(error) {
                     alert('Sorry, your current location could not be determined. \nPlease use the search box to enter your location.');

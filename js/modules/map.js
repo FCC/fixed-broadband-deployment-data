@@ -25,8 +25,6 @@ var layers = {
     }
 };
 
-var locationLat;
-var locationLon;
 var locationMarker;
 var clickedCountyLayer;
 var clickedCountyStyle = { color: '#00f', opacity: 0.5, fillOpacity: 0.1, fillColor: '#fff', weight: 3 };
@@ -141,25 +139,18 @@ var BPRMap = {
         lastTimestamp = timestamp;
         clickX = cursorX;
         clickY = cursorY;*/
-        var lat = Math.round(1000000 * e.latlng.lat) / 1000000.0;
-        var lon = Math.round(1000000 * e.latlng.lng) / 1000000.0;
-        locationLat = lat;
-        locationLon = lon;
+        BPRMap.lat = Math.round(1000000 * e.latlng.lat) / 1000000.0;
+        BPRMap.lon = Math.round(1000000 * e.latlng.lng) / 1000000.0;
 
         // removeBlockCountyLayers();
 
-        BPRMap.getCounty(lat, lon);
-        setTimeout(function() { BPRMap.getBlock(lat, lon); }, 200);
-
-        if ($('#tabInstructs').is(':visible')) {
-            $('#tabInstructs').addClass('hide');
-            $('#fixed, #provider, #demographics').removeClass('hide');
-        }        
+        BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
+        setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
 
     }, //end update
     getCounty: function(lat, lon) {
         var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
-        
+
         $.ajax({
             type: 'GET',
             url: geoURL,
@@ -171,8 +162,13 @@ var BPRMap = {
 
         if (data.features.length === 0) {
             var county_text = 'No county data found at your searched/clicked location.';
-            $('#display-county').html(county_text);
+            // $('#display-county').html(county_text);
             return;
+        } else {
+            if ($('#tabInstructs').is(':visible')) {
+                $('#tabInstructs').addClass('hide');
+                $('#fixed, #provider, #demographics').removeClass('hide');
+            }
         }
 
         var id = data.features[0].id.replace(/\..*$/, '');
@@ -201,7 +197,7 @@ var BPRMap = {
         tableDemog.create(countyData);
         chartDemog.create(countyData);
         chartFixed.create(countyData);
-        
+
     }, //end showCounty
     getBlock: function(lat, lon) {
         var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
@@ -223,10 +219,10 @@ var BPRMap = {
 
         clickedBlockLayer = L.mapbox.featureLayer(clickedBlockLayerData).setStyle(clickedBlockStyle).addTo(BPRMap.map);
 
-        BPRMap.setLocationMarker(locationLat, locationLon);
+        BPRMap.setLocationMarker(BPRMap.lat, BPRMap.lon);
 
         $('[data-fips]').text(blockData.block_fips);
-        $('[data-rural]').text(blockData.urban_rural === 'R' ? 'Rural':'Urban');
+        $('[data-rural]').text(blockData.urban_rural === 'R' ? 'Rural' : 'Urban');
 
         //update Providers table
         tableProviders.getData(blockData.block_fips);
