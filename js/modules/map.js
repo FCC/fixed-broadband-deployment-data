@@ -1,6 +1,5 @@
 'use strict';
 
-var tablePopulation = require('./table-population.js');
 var tableProviders = require('./table-providers.js');
 var tableDemog = require('./table-demographics.js');
 var chartDemog = require('./chart-demographics.js');
@@ -193,7 +192,7 @@ var BPRMap = {
 
         countyLayerData = data;
 
-        tablePopulation.create(countyData);
+        tableDemog.create(countyData);
         tableDemog.create(countyData);
         chartDemog.create(countyData);
         chartFixed.create(countyData);

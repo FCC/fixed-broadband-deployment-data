@@ -22,10 +22,10 @@ var tableDemog = {
 		}
 
         //populate Census Block table
-        // $('[data-county]').text(popData.county_name);
-        // $('[data-state]').text(popData.state_abbr);
-        // $('[data-totalPop]').text(utility.formatComma(popData.pop2015));
-        // $('[data-popDensity]').text(popData.popdensity);
+        $('[data-county]').text(popData.county_name);
+        $('[data-state]').text(popData.state_abbr);
+        $('[data-totalPop]').text(utility.formatComma(popData.pop2015));
+        $('[data-popDensity]').text(utility.formatComma(popData.popdensity));
         $('[data-incomeCapita]').text(utility.formatComma(popData.percapinc));
         $('[data-totalPopNoAccess]').text(utility.formatComma(popData.unspop25_3));
         $('[data-urbanPop]').text(utility.formatPercent(popData.per_urbannofixed));
