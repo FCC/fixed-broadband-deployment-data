@@ -1,4 +1,4 @@
-<div id="tab-div-nav" class="tab-nav">
+<div class="tab-nav">
     <ul class="layer-switch nav nav-pills" role="navigation">
         <li class="active" role="presentation"><a href="#fixed" aria-controls="fixed" role="tab" data-toggle="tab">Fixed</a></li>
         <li role="presentation"><a href="#provider" aria-controls="provider" role="tab" data-toggle="tab">Providers</a></li>
@@ -6,7 +6,16 @@
     </ul>
 </div>
 <div class="tab-content">
-    <section id="fixed" class="tab-pane active" role="tabpanel">
+    <div id="tabInstructs">
+        <p>Click on the map or search for a location using an address or coordinates to display provider and demographic information.</p>
+        <p>Example Searches:</p>
+        <ul>
+            <li>148 Lafayette Street, New York, NY 10013</li>
+            <li>Lumberport, WV</li>
+            <li>Latitude: 40.566353, Longitude: -105.094573</li>
+        </ul>
+    </div>
+    <section id="fixed" class="active tab-pane hide" role="tabpanel">
         <section class="sect-census">
             <h3 class="h4">Census Block</h3>
             <dl class="dl-horizontal">
@@ -21,7 +30,7 @@
             <canvas id="chartFixed" width="300" height="220"></canvas>
         </section>
     </section>
-    <section id="provider" class="sect-provider tab-pane" role="tabpanel">
+    <section id="provider" class="sect-provider tab-pane hide" role="tabpanel">
         <section class="sect-census">
             <h3 class="h4">Census Block</h3>
             <dl class="dl-horizontal">
@@ -45,7 +54,7 @@
             </table>
         </section>
     </section>
-    <section id="demographics" class="sect-demog tab-pane" role="tabpanel">
+    <section id="demographics" class="sect-demog tab-pane hide" role="tabpanel">
         <h3 class="h4"><span data-county></span>, <span data-state></h3>
         <dl class="dl-horizontal">
             <dt>Total Population:</dt>

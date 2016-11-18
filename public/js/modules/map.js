@@ -151,6 +151,11 @@ var BPRMap = {
         BPRMap.getCounty(lat, lon);
         setTimeout(function() { BPRMap.getBlock(lat, lon); }, 200);
 
+        if ($('#tabInstructs').is(':visible')) {
+            $('#tabInstructs').addClass('hide');
+            $('#fixed, #provider, #demographics').removeClass('hide');
+        }        
+
     }, //end update
     getCounty: function(lat, lon) {
         var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
