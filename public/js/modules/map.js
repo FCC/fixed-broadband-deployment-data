@@ -38,11 +38,14 @@ var clickedBlockLayerData;
 var BPRMap = {
     init: function() {
 
-        BPRMap.createMap();
+        BPRMap.createMap();        
+
+        BPRMap.map.on('click', BPRMap.update);        
 
         // toggle map container width
-        $('#map-container').on('click', '.control-full a', function(e) {
+        $('.control-full').on('click', 'a', function(e) {
             e.preventDefault();
+            e.stopPropagation();
 
             $('header .container, header .container-fluid, main')
                 .toggleClass('container container-fluid')
@@ -51,8 +54,6 @@ var BPRMap = {
                         BPRMap.map.invalidateSize();
                     });
         });
-
-        BPRMap.map.on('click', BPRMap.update);        
 
     },
     createMap: function() {
