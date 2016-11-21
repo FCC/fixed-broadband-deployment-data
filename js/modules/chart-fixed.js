@@ -30,6 +30,7 @@ var chartFixed = {
                 type: 'bar',
                 data: chartData,
                 options: {
+                    responsive: false,
                     scales: {
                         xAxes: [{
                             stacked: true
