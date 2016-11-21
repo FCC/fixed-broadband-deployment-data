@@ -8,7 +8,8 @@ layersTech['FTTP'] = {
     transparent: true,
     layers: 'bpr_dec2016_tech_fiber',
     styles: 'bpr_dec2016_tech',
-    color: '#ffffcc'
+    color: '#ffffcc',
+    zIndex: 11
 };
 
 layersTech['Cable modem'] = {
@@ -16,7 +17,8 @@ layersTech['Cable modem'] = {
     transparent: true,
     layers: 'bpr_dec2016_tech_cable',
     styles: 'bpr_dec2016_tech',
-    color: '#6e016b'
+    color: '#6e016b',
+    zIndex: 12
 };
 
 layersTech['DSL (inc. FTTN), other copper'] = {
@@ -24,7 +26,8 @@ layersTech['DSL (inc. FTTN), other copper'] = {
     transparent: true,
     layers: 'bpr_dec2016_tech_adsl',
     styles: 'bpr_dec2016_tech',
-    color: '#6e016b'
+    color: '#6e016b',
+    zIndex: 13
 };
 
 layersTech['Fixed wireless'] = {
@@ -32,7 +35,8 @@ layersTech['Fixed wireless'] = {
     transparent: true,
     layers: 'bpr_dec2016_tech_fw',
     styles: 'bpr_dec2016_tech',
-    color: '#6e016b'
+    color: '#6e016b',
+    zIndex: 14
 };
 
 layersTech['Other'] = {
@@ -40,7 +44,8 @@ layersTech['Other'] = {
     transparent: true,
     layers: 'bpr_dec2016_tech_other',
     styles: 'bpr_dec2016_tech',
-    color: '#6e016b'
+    color: '#6e016b',
+    zIndex: 15
 };
 
 module.exports = layersTech;

@@ -39,7 +39,9 @@ var BPRMap = {
         BPRMap.createMap();
 
         // toggle map container width
-        $('#map-container').on('click', '.control-full a', function() {
+        $('#map-container').on('click', '.control-full a', function(e) {
+            e.preventDefault();
+            
             $('header .container, header .container-fluid, main')
                 .toggleClass('container container-fluid')
                 .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
@@ -48,22 +50,7 @@ var BPRMap = {
                     });
         });
 
-        BPRMap.map.on('click', BPRMap.update);
-
-        //legend
-        /*if (!mapOpts.legend) {
-            $('.map-legend, .legend__icon').toggleClass('hide');
-        }
-
-        $('#btn-closeLegend').on('click', function(e) {
-            e.preventDefault();
-            $('.map-legend').hide('fast');
-        });
-
-        $('#btn-openLegend').on('click', function(e) {
-            e.preventDefault();
-            $('.map-legend').show('fast');
-        });*/
+        BPRMap.map.on('click', BPRMap.update);        
 
     },
     createMap: function() {
@@ -78,7 +65,8 @@ var BPRMap = {
         var baseLayer = {};
         var layerControl;
         var layerPath = window.location.pathname.split('/')[1];
-        var mapLayer = {};
+        
+        BPRMap.mapLayer = {};
 
         BPRMap.geoURL = '/gwc/service/wms?tiled=true';
         BPRMap.geo_space = 'fcc';
@@ -101,16 +89,16 @@ var BPRMap = {
 
         //get tile layers based on location pathname
         for (var layer in layers[layerPath]) {
-            mapLayer[layer] = L.tileLayer.wms(BPRMap.geoURL, layers[layerPath][layer]).setZIndex(11).addTo(BPRMap.map);
+            BPRMap.mapLayer[layer] = L.tileLayer.wms(BPRMap.geoURL, layers[layerPath][layer]).setZIndex(layers[layerPath][layer].zIndex).addTo(BPRMap.map);
         }
 
         //add Tribal and Urban layers
-        mapLayer['Tribal'] = L.tileLayer.wms(BPRMap.geoURL, layers.tribal);
-        mapLayer['Urban'] = L.tileLayer.wms(BPRMap.geoURL, layers.urban);
+        BPRMap.mapLayer['Tribal'] = L.tileLayer.wms(BPRMap.geoURL, layers.tribal);
+        BPRMap.mapLayer['Urban'] = L.tileLayer.wms(BPRMap.geoURL, layers.urban);
 
         //layer control
         layerControl = L.control.layers(
-            baseLayer, mapLayer, {
+            baseLayer, {}, {
                 position: 'topleft'
             }
         ).addTo(BPRMap.map);
@@ -119,7 +107,37 @@ var BPRMap = {
 
         BPRMap.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
+        BPRMap.createLegend(layerPath);
+
     }, //end createMap
+    createLegend: function(layerPath) {
+        var td = '';
+        var tr = '';
+        var count = 0;
+
+        for(var key in layers[layerPath]) {            
+            td += '<td><input id="chk' + count + '" type="checkbox" data-layer="' + key + '" checked></td>';
+            td += '<td><div class="key-symbol" style="background-color:' + layers[layerPath][key].color + '"></div></td>';
+            td += '<td><label for="chk' + count + '">' + key + '</label></td>';
+            tr += '<tr>' + td + '</tr>';
+            td = '';
+            count++;
+        }
+
+        $('.map-legend')
+            .find('tbody').append(tr)
+            .end()
+            .on('click', '[type=checkbox]', function() {
+                var layerName = $(this).attr('data-layer');
+
+                if (this.checked) {
+                    BPRMap.mapLayer[layerName].addTo(BPRMap.map);
+                } else {
+                    BPRMap.map.removeLayer(BPRMap.mapLayer[layerName]);
+                }
+                
+            });       
+    },
     update: function(e) {
         /* var cursorX;
         var cursorY;
