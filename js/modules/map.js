@@ -14,13 +14,15 @@ var layers = {
         format: 'image/png',
         transparent: true,
         layers: 'bpr_tribal',
-        styles: 'bpr_tribal'
+        styles: 'bpr_tribal',
+        zIndex: 19
     },
     urban: {
         format: 'image/png',
         transparent: true,
         layers: 'fcc:bpr_county_layer_urban_only',
-        styles: 'bpr_layer_urban'
+        styles: 'bpr_layer_urban',
+        zIndex: 20
     }
 };
 
@@ -41,7 +43,7 @@ var BPRMap = {
         // toggle map container width
         $('#map-container').on('click', '.control-full a', function(e) {
             e.preventDefault();
-            
+
             $('header .container, header .container-fluid, main')
                 .toggleClass('container container-fluid')
                 .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
@@ -93,8 +95,8 @@ var BPRMap = {
         }
 
         //add Tribal and Urban layers
-        BPRMap.mapLayer['Tribal'] = L.tileLayer.wms(BPRMap.geoURL, layers.tribal);
-        BPRMap.mapLayer['Urban'] = L.tileLayer.wms(BPRMap.geoURL, layers.urban);
+        BPRMap.mapLayer['Tribal'] = L.tileLayer.wms(BPRMap.geoURL, layers.tribal).setZIndex(layers.tribal.zIndex);
+        BPRMap.mapLayer['Urban'] = L.tileLayer.wms(BPRMap.geoURL, layers.urban).setZIndex(layers.urban.zIndex);
 
         //layer control
         layerControl = L.control.layers(
@@ -125,12 +127,12 @@ var BPRMap = {
         }
 
         $('.map-legend')
-            .find('tbody').append(tr)
+            .find('tbody').prepend(tr)
             .end()
             .on('click', '[type=checkbox]', function() {
                 var layerName = $(this).attr('data-layer');
 
-                if (this.checked) {
+                if (this.checked) { 
                     BPRMap.mapLayer[layerName].addTo(BPRMap.map);
                 } else {
                     BPRMap.map.removeLayer(BPRMap.mapLayer[layerName]);
