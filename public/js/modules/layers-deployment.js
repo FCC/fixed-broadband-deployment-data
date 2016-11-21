@@ -8,7 +8,8 @@ layersDeployment['Fixed broadband 25/3 (Mbps)'] = {
     transparent: true,
     layers: 'bpr_dec2016_county_layer_fixed',
     styles: 'bpr_layer_fixed_0',
-    color: '#FFE773'
+    color: '#FFE773',
+    zIndex: 11
 };
 
 layersDeployment['No fixed broadband 25/3 (Mbps)'] = {
@@ -16,7 +17,8 @@ layersDeployment['No fixed broadband 25/3 (Mbps)'] = {
     transparent: true,
     layers: 'bpr_dec2016_county_layer_nonfixed',
     styles: 'bpr_layer_fixed_1',
-    color: '#6CBCD5'
+    color: '#6CBCD5',
+    zIndex: 12
 };
 
 module.exports = layersDeployment;

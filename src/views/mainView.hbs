@@ -5,12 +5,13 @@
             {{> page-titleBlock}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row-grid">
+        <div class="col-grid">
             {{> map}}
         </div>
-        <div class="map-sidebar col-md-4">
+        <div class="map-sidebar col-grid">
             {{> (lookup . 'partialName') }}
+            {{> map-legend}}
         </div>
     </div>
 </main>

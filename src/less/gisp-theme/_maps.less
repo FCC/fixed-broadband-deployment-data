@@ -105,40 +105,28 @@
 
 /* Legend */
 
-.btn-legend {
-    width: 28px;
-    height: 28px;
-    line-height: 1.8;
-    padding: 0;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    & > span {
-        color: rgba(0, 0, 0, .75);
-        display: block;
-        border-bottom: 1px solid #ddd;
-        border-bottom-color: rgba(0, 0, 0, .1);
-        //opacity: 0.75;
-    }
-}
-
 .map-legend {
-    background-color: #fff;
-    border: solid 1px #999999;
-    bottom: 10px;
-    left: 10px;
-    min-width: 150px;
-    padding: 5px;
+    bottom: 20px;
     position: absolute;
-    z-index: 2;
     .icon-list {
         font-size: 13px;
     }
     table {
         width: 100%;
     }
-    tbody td:first-child {
-        height: 28px;
-        width: 28px;
+    th {
+
+    }
+    td {
+        padding: 0 3px;
+        vertical-align: top;
+    }
+    label {
+        font-size: 12px;
+        font-weight: normal;
+    }
+    [type="checkbox"], .key-symbol {
+        vertical-align: middle;
     }
 }
 
@@ -159,6 +147,7 @@
 
 .key-symbol {
     border: solid 1px #999;
+    display: inline-block;
     height: 20px;
     opacity: 1.0;
     width: 20px;

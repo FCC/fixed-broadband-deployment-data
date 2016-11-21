@@ -50,32 +50,8 @@
         </div>
     </div>
     <div id="map-container" class="map-wrapper">
-        {{#if legends}}
-        <div class="map-legend">
-            <table>
-                <thead>
-                    <tr>
-                        <td colspan="3"><span class="icon icon-list"></span> <span class="map-legend-name">Map Legend</span>
-                            <button id="btn-closeLegend" class="btn btn-xs pull-right"><span class="icon icon-close"></span> <span class="sr-only">Hide legend</span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#legends}}
-                    <tr>
-                        <td>
-                            <div class="key-symbol" style="{{legendType text color}}"></div>
-                        </td>
-                        <td>{{text}}</td>
-                    </tr>
-                    {{/legends}}
-                </tbody>
-            </table>
-        </div>
-        <button id="btn-openLegend" class="btn legend__icon" title="Map Legend"><span class="icon icon-list"></span></button>
-        {{/if}}
         <div class="control-full leaflet-control-layers leaflet-control">
-        <a href="#" class="mapbox-icon"><span class="icon icon-external-link-square"></span></a>
+            <a href="#" class="mapbox-icon"><span class="icon icon-external-link-square"></span></a>
         </div>        
     </div>
 </section>
