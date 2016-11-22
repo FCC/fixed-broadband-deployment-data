@@ -1,7 +1,7 @@
 'use strict';
 
 var chartFixed = {
-    create: function(county_fips) {
+    create: function(county_fips) {        
         var urbanURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_urban_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + county_fips;
         var ruralURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_rural_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + county_fips;
 
@@ -31,6 +31,10 @@ var chartFixed = {
             }
         };
 
+        if (county_fips === chartFixed.FIPS) {
+            return;
+        }
+
         //replace chart if it already exists
         $('.sect-fixed')
             .find('canvas').remove().end()
@@ -41,22 +45,6 @@ var chartFixed = {
         //create new chart
         ctxFixed = $('#chartFixed');
 
-        fixedChart = new Chart(ctxFixed, {
-            type: 'bar',
-            data: chartData,
-            options: {
-                responsive: false,
-                scales: {
-                    xAxes: [{
-                        stacked: true
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
-            }
-        });
-        
         $.ajax({
             type: 'GET',
             url: urbanURL,
@@ -93,6 +81,8 @@ var chartFixed = {
                         var ruralFixed = chartData.datasets[0].data;
                         var ruralNoFixed = chartData.datasets[1].data;
 
+                        chartFixed.FIPS = county_fips;
+
                         for (var i = 0; i < ruralData.features.length; i++) {
                             switch (ruralData.features[i].properties.has_fixed) {
                                 case 0:
@@ -104,7 +94,21 @@ var chartFixed = {
                             }
                         }
 
-                        fixedChart.update();
+                        fixedChart = new Chart(ctxFixed, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                responsive: false,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
+                            }
+                        });
 
                     }
                 });
