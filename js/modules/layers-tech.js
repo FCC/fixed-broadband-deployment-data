@@ -8,7 +8,7 @@ layersTech['FTTP'] = {
     transparent: true,
     layers: 'bpr_dec2016_tech_fiber',
     styles: 'bpr_dec2016_tech',
-    color: '#ffffcc',
+    color: '#6e016b',
     zIndex: 11
 };
 
