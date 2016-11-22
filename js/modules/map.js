@@ -216,7 +216,7 @@ var BPRMap = {
         tableDemog.create(countyData);
         tableDemog.create(countyData);
         chartDemog.create(countyData);
-        chartFixed.create(countyData.county_fips);
+        chartFixed.init(countyData.county_fips);
 
     }, //end showCounty
     getBlock: function(lat, lon) {
