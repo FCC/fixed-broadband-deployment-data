@@ -1,10 +1,10 @@
 'use strict';
 
-var chartFixed = {
-    init: function(county_fips) {
+var chartNWFixed = {
+    init: function() {
         // var ctxFixed, fixedChart;
 
-        chartFixed.data = {
+        chartNWFixed.data = {
             labels: ['All', 'Urban', 'Rural'],
             datasets: [{
                 label: 'Fixed',
@@ -18,53 +18,53 @@ var chartFixed = {
         };
 
         //if county FIPS is the same don't regenerate chart
-        if (county_fips === chartFixed.FIPS) {
+        /*if (county_fips === chartNWFixed.FIPS) {
             return;
         } else {
-            chartFixed.FIPS = county_fips;
-        }
+            chartNWFixed.FIPS = county_fips;
+        }*/
 
-        chartFixed.getCountyData(county_fips);
+        chartNWFixed.getNWData();
     },    
-    getCountyData: function() {
-        var allCntyURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + chartFixed.FIPS;
+    getNWData: function() { 
+        var nwURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_nw_fnf&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',
-            url: allCntyURL,
+            url: nwURL,
             success: function(data) {
-                chartFixed.update(data);
-                chartFixed.getUrbanData();
+                chartNWFixed.update(data);
+                chartNWFixed.getUrbanData();
             }
         });
     },
     getUrbanData: function() {
-        var urbanURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_urban_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + chartFixed.FIPS;
+        var urbanURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_nw_urban_rural_fnf&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',
             url: urbanURL,
             success: function(data) {
-                chartFixed.update(data);
-                chartFixed.getRuralData();
+                chartNWFixed.update(data);
+                chartNWFixed.display();
             }
         });
     },
-    getRuralData: function() {
-        var ruralURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_rural_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + chartFixed.FIPS;
+    /*getRuralData: function() {
+        var ruralURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_rural_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + chartNWFixed.FIPS;
 
         $.ajax({
             type: 'GET',
             url: ruralURL,
             success: function(data) {
-                chartFixed.update(data);
-                chartFixed.display();
+                chartNWFixed.update(data);
+                chartNWFixed.display();
             }
         });
-    },
+    },*/
     update: function(data) { 
-        var fixedData = chartFixed.data.datasets[0].data;
-        var noFixedData = chartFixed.data.datasets[1].data;
+        var fixedData = chartNWFixed.data.datasets[0].data;
+        var noFixedData = chartNWFixed.data.datasets[1].data;
 
         if (data.features.length === 0) {
             fixedData.push(0);
@@ -96,17 +96,12 @@ var chartFixed = {
         
     },
     display: function() {
-        var ctxFixed;
-
-        //replace chart canvas if it already exists
-        $('#chartFixed').replaceWith('<canvas id="chartFixed" width="300" height="220"></canvas>');
-        $('.chartjs-hidden-iframe').remove();
-
+        var  ctxNWFixed = $('#chartNWFixed');
+        
         //create new chart
-        ctxFixed = $('#chartFixed');
-        chartFixed.chart = new Chart(ctxFixed, {
+        chartNWFixed.chart = new Chart(ctxNWFixed, {
             type: 'bar',
-            data: chartFixed.data,
+            data: chartNWFixed.data,
             options: {
                 responsive: false,
                 scales: {
@@ -122,4 +117,4 @@ var chartFixed = {
     }
 };
 
-module.exports = chartFixed;
+module.exports = chartNWFixed;
