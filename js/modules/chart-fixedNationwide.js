@@ -76,7 +76,7 @@ var chartNWFixed = {
         for (var i = 0; i < data.features.length; i++) {
             switch (data.features[i].properties.has_fixed) {
                 case 0:
-                    noFixedData.push(data.features[i].properties.type_pop_pct);
+                    noFixedData.push(data.features[i].properties.type_pop_pct.toFixed(2));
                     
                     if (data.features[i].properties.type_pop_pct === 100) {
                         fixedData.push(0);
@@ -84,7 +84,7 @@ var chartNWFixed = {
 
                     break;
                 case 1:
-                    fixedData.push(data.features[i].properties.type_pop_pct);
+                    fixedData.push(data.features[i].properties.type_pop_pct.toFixed(2));
                     
                     if (data.features[i].properties.type_pop_pct === 100) {
                         noFixedData.push(0);
@@ -111,6 +111,15 @@ var chartNWFixed = {
                     yAxes: [{
                         stacked: true
                     }]
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        label: function(tooltipItems, data) {
+                            return tooltipItems.yLabel + '%';
+                        }
+                    }
                 }
             }
         });
