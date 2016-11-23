@@ -25,7 +25,7 @@ var chartFixed = {
         }
 
         chartFixed.getCountyData(county_fips);
-    },    
+    },
     getCountyData: function() {
         var allCntyURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county_fnf&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=' + chartFixed.FIPS;
 
@@ -62,7 +62,7 @@ var chartFixed = {
             }
         });
     },
-    update: function(data) { 
+    update: function(data) {
         var fixedData = chartFixed.data.datasets[0].data;
         var noFixedData = chartFixed.data.datasets[1].data;
 
@@ -76,24 +76,24 @@ var chartFixed = {
         for (var i = 0; i < data.features.length; i++) {
             switch (data.features[i].properties.has_fixed) {
                 case 0:
-                    noFixedData.push(data.features[i].properties.type_pop_pct);
-                    
+                    noFixedData.push(data.features[i].properties.type_pop_pct.toFixed(2));
+
                     if (data.features[i].properties.type_pop_pct === 100) {
                         fixedData.push(0);
                     }
 
                     break;
                 case 1:
-                    fixedData.push(data.features[i].properties.type_pop_pct);
-                    
+                    fixedData.push(data.features[i].properties.type_pop_pct.toFixed(2));
+
                     if (data.features[i].properties.type_pop_pct === 100) {
                         noFixedData.push(0);
                     }
 
                     break;
             }
-        }       
-        
+        }
+
     },
     display: function() {
         var ctxFixed;
@@ -116,6 +116,15 @@ var chartFixed = {
                     yAxes: [{
                         stacked: true
                     }]
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'single',
+                    callbacks: {
+                        label: function(tooltipItems, data) {
+                            return tooltipItems.yLabel + '%';
+                        }
+                    }
                 }
             }
         });
