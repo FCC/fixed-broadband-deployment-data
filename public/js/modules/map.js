@@ -4,6 +4,7 @@ var tableProviders = require('./table-providers.js');
 var tableDemog = require('./table-demographics.js');
 var chartDemog = require('./chart-demographics.js');
 var chartFixed = require('./chart-fixed.js');
+var chartNWFixed = require('./chart-fixedNationwide.js');
 
 var layers = {
     deployment: require('./layers-deployment.js'),
@@ -112,6 +113,8 @@ var BPRMap = {
 
         BPRMap.createLegend(layerPath);
 
+        chartNWFixed.init();
+
     }, //end createMap
     createLegend: function(layerPath) {
         var td = '';
@@ -186,7 +189,7 @@ var BPRMap = {
             return;
         } else {
             if ($('#tabInstructs').is(':visible')) {
-                $('#tabInstructs').addClass('hide');
+                $('#tabInstructs, #nwFixed').addClass('hide');
                 $('#fixed, #provider, #demographics').removeClass('hide');
             }
         }
