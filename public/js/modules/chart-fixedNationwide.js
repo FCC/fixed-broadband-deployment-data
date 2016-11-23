@@ -106,18 +106,24 @@ var chartNWFixed = {
                 responsive: false,
                 scales: {
                     xAxes: [{
-                        stacked: true
+                        stacked: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Area'
+                        }
                     }],
                     yAxes: [{
-                        stacked: true
+                        stacked: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Population'
+                        }
                     }]
                 },
                 tooltips: {
-                    enabled: true,
-                    mode: 'single',
                     callbacks: {
                         label: function(tooltipItems, data) {
-                            return tooltipItems.yLabel + '%';
+                            return data.datasets[tooltipItems.datasetIndex].label + ': ' + tooltipItems.yLabel + '%';
                         }
                     }
                 }

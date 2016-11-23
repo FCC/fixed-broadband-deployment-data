@@ -31,6 +31,7 @@ var chartDemog = {
                 type: 'doughnut',
                 data: chartOpts,
                 options: {
+                    responsive: false,
                     legend: {
                         position: 'bottom'
                     }
