@@ -21,20 +21,22 @@ var tableProviders = {
                 [0, 'asc']
             ],
             'paging': false,
-            'searching': false
+            'searching': false,
+            'scrollY': '280px',
+            'scrollCollapse': true,
         });
     },
     create: function(data) {
         var providerData = data.features;
         var tempData = [];
-        
+
         for (var i = 0; i < providerData.length; i++) {
             tempData.push({
-            	'providerName': providerData[i].properties.dbaname,
-            	'tech': providerData[i].properties.technology,
-            	'speedDown': providerData[i].properties.download_speed,
-            	'speedUp': providerData[i].properties.upload_speed
-            });            
+                'providerName': providerData[i].properties.dbaname,
+                'tech': providerData[i].properties.technology,
+                'speedDown': providerData[i].properties.download_speed,
+                'speedUp': providerData[i].properties.upload_speed
+            });
         }
 
         return tempData;
@@ -42,4 +44,3 @@ var tableProviders = {
 };
 
 module.exports = tableProviders;
-
