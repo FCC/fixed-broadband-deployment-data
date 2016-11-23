@@ -113,7 +113,10 @@ var BPRMap = {
 
         BPRMap.createLegend(layerPath);
 
-        chartNWFixed.init();
+        //show Nationwide chart if it exists on the page
+        if ($('#chartNWFixed').length > 0) {
+            chartNWFixed.init();    
+        }       
 
     }, //end createMap
     createLegend: function(layerPath) {
