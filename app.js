@@ -108,7 +108,11 @@ app.use('/', function(req, res, next) {
     }
 });
 
-app.get(['/', '/deployment'], function(req, res) {
+app.get('/', function(req, res) {
+  res.redirect('/deployment');
+});
+
+app.get(['/deployment'], function(req, res) {
     res.render('mainView', {
         title: 'Deployment',
         activeDeploy: 'active',
