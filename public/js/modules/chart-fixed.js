@@ -9,23 +9,12 @@ var chartFixed = {
             datasets: [{
                 label: 'Fixed',
                 data: [],
-                backgroundColor: 'rgba(54, 162, 235, 0.4)'
+                backgroundColor: '#FFE773'
             }, {
                 label: 'No Fixed',
                 data: [],
-                backgroundColor: 'rgba(255, 206, 86, 0.4)'
-            }],
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            max: 5,
-                            min: 0,
-                            stepSize: 0.5
-                        }
-                    }]
-                }
-            }
+                backgroundColor: '#6CBCD5'
+            }]
         };
 
         //if county FIPS is the same don't regenerate chart
@@ -73,25 +62,32 @@ var chartFixed = {
             }
         });
     },
-    update: function(urbanData) { 
-        var urbanFixed = chartFixed.data.datasets[0].data;
-        var urbanNoFixed = chartFixed.data.datasets[1].data;
+    update: function(data) { 
+        var fixedData = chartFixed.data.datasets[0].data;
+        var noFixedData = chartFixed.data.datasets[1].data;
 
-        for (var i = 0; i < urbanData.features.length; i++) {
-            switch (urbanData.features[i].properties.has_fixed) {
+        if (data.features.length === 0) {
+            fixedData.push(0);
+            noFixedData.push(0);
+
+            return;
+        }
+
+        for (var i = 0; i < data.features.length; i++) {
+            switch (data.features[i].properties.has_fixed) {
                 case 0:
-                    urbanNoFixed.push(urbanData.features[i].properties.type_pop_pct);
+                    noFixedData.push(data.features[i].properties.type_pop_pct);
                     
-                    if (urbanData.features[i].properties.type_pop_pct === 100) {
-                        urbanFixed.push(0);
+                    if (data.features[i].properties.type_pop_pct === 100) {
+                        fixedData.push(0);
                     }
 
                     break;
                 case 1:
-                    urbanFixed.push(urbanData.features[i].properties.type_pop_pct);
+                    fixedData.push(data.features[i].properties.type_pop_pct);
                     
-                    if (urbanData.features[i].properties.type_pop_pct === 100) {
-                        urbanNoFixed.push(0);
+                    if (data.features[i].properties.type_pop_pct === 100) {
+                        noFixedData.push(0);
                     }
 
                     break;
