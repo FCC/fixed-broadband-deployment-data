@@ -2,8 +2,11 @@
     'use strict';
 
     var BPRMap = require('./modules/map.js');
-    var MapSearch = require('./modules/map-search.js');
+    var MapSearch = require('./modules/map-search.js');    
 
-    BPRMap.init();
-    MapSearch.init();
+    if ($('#map').length > 0) {
+        BPRMap.init();
+        MapSearch.init();
+    }
+
 }());

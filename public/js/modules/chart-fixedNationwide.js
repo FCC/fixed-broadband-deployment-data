@@ -40,7 +40,7 @@ var chartNWFixed = {
             type: 'GET',
             url: urbanURL,
             success: function(data) {
-                chartNWFixed.update(data);
+                chartNWFixed.processURData(data);
                 chartNWFixed.getTribal(data);
             }
         });
@@ -56,6 +56,31 @@ var chartNWFixed = {
                 chartNWFixed.display();
             }
         });
+    },
+    processURData: function(data) {
+        var i = 0;
+        var dataLen = data.features.length;
+
+        var urbanData = {};
+        var ruralData = {};
+
+        urbanData.features = [];       
+        ruralData.features = [];
+
+        for (i; i < dataLen; i++) {
+            switch (data.features[i].properties.urban_rural) {
+                case 'U':
+                    urbanData.features.push(data.features[i]);
+                    break;
+                case 'R':
+                    ruralData.features.push(data.features[i]);
+                    break;
+            }
+        }
+
+        chartNWFixed.update(urbanData);
+        chartNWFixed.update(ruralData);
+        
     },
     update: function(data) {
         var fixedData = chartNWFixed.data.datasets[0].data;
