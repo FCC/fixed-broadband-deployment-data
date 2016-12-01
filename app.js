@@ -144,6 +144,12 @@ app.get(['/providers'], function(req, res) {
     });
 });
 
+app.get(['/nationwide'], function(req, res) {
+    res.render('nationwide', {
+        activeNation: 'active',
+        partialName: 'nationwide'
+    });
+});
 
 
 // **********************************************************
