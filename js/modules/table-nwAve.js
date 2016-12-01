@@ -36,15 +36,25 @@ var tableNWAve = {
         function addCols() { 
             $('#table-nwAve').find('tbody>tr').each(function(index, elm) {
                 if ($(elm).hasClass('odd')) {
-                	$(elm).prepend('<th>Without Access</th>');
+                	$(elm).prepend('<th class="rowHeading">Without Access</th>');
                 } else {
-                	$(elm).prepend('<th>With Access</th>');
+                	$(elm).prepend('<th class="rowHeading">With Access</th>');
                 }
                 
             });
 
-			// $('#table-nwAve').find('tbody>tr').eq(0).before('<tr><th colspan="5">United States (All Areas)</th></tr>');
-            // $('#table-nwAve').find('tbody>tr').eq(9).after('<tr><th colspan="5">Tribal Lands</th></tr>');
+            $('#table-nwAve').find('tbody>tr').prepend('<th></th>');
+			$('#table-nwAve').find('tbody>tr').eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(2).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(5).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+
+            $('#table-nwAve').find('tbody>tr').eq(8).after('<tr><th colspan="7">Tribal Lands</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(11).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(14).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+
+            $('#table-nwAve').find('tbody>tr').eq(17).after('<tr><th colspan="7">U.S. Territories</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(20).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(23).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
         }
 
     },
