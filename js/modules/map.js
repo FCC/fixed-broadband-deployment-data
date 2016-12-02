@@ -5,6 +5,7 @@ var tableDemog = require('./table-demographics.js');
 var chartDemog = require('./chart-demographics.js');
 var chartFixed = require('./chart-fixed.js');
 var chartNWFixed = require('./chart-fixedNationwide.js');
+var chartTech = require('./chart-tech.js');
 
 var layers = {
     deployment: require('./layers-deployment.js'),
@@ -113,10 +114,7 @@ var BPRMap = {
 
         BPRMap.createLegend(layerPath);
 
-        //show Nationwide chart if it exists on the page
-        if ($('#chartNWFixed').length > 0) {
-            chartNWFixed.init();    
-        }       
+        chartNWFixed.init();
 
     }, //end createMap
     createLegend: function(layerPath) {
@@ -220,9 +218,9 @@ var BPRMap = {
         countyLayerData = data;
 
         tableDemog.create(countyData);
-        tableDemog.create(countyData);
         chartDemog.create(countyData);
         chartFixed.init(countyData.county_fips);
+        chartTech.init(countyData.county_fips);
 
     }, //end showCounty
     getBlock: function(lat, lon) {
