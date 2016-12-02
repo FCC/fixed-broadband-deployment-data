@@ -42,11 +42,11 @@ var chartTech = {
         chartTech.getTech();
     },
     getTech: function() {
-        var speed10URL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartTech.FIPS + '%27';
+        var techURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartTech.FIPS + '%27';
 
         $.ajax({
             type: 'GET',
-            url: speed10URL,
+            url: techURL,
             success: function(data) {
                 chartTech.update(data);
                 chartTech.display();
@@ -63,7 +63,7 @@ var chartTech = {
         var j = 0;
 
         function getVals(arr) {
-            for (j = 0; j < arr.length - 1; j++) {
+            for (j = 0; j < chartTech.data.labels.length; j++) { 
                 propName = 'tech_' + techTypes[i] + '_' + j;
                 datasets[i].data.push((100 * techData[propName]).toFixed(2));
             }
@@ -96,12 +96,14 @@ var chartTech = {
                 scales: {
                     xAxes: [{
                         scaleLabel: {
+                            stacked: true,
                             display: true,
                             labelString: '# of Providers'
                         }
                     }],
                     yAxes: [{
                         scaleLabel: {
+                            stacked: true,
                             display: true,
                             labelString: '% Population'
                         }
