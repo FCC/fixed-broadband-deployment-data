@@ -1,11 +1,13 @@
 'use strict';
 
+var utility = require('./utility.js');
+
 var columns = [
-    { 'data': 'avepop' },
-    { 'data': 'avedensity' },
-    { 'data': 'percapita' },
-    { 'data': 'household' },
-    { 'data': 'poverty' }
+    { 'data': 'avepop', 'width': '20%' },
+    { 'data': 'avedensity', 'width': '20%' },
+    { 'data': 'percapita', 'width': '20%' },
+    { 'data': 'household', 'width': '20%' },
+    { 'data': 'poverty', 'width': '20%' }
 ];
 
 var rowTitles = ['Without Access', 'With Access'];
@@ -62,6 +64,7 @@ var tableNWAve = {
         var popData = data.features[0].properties;
         var tempData = [];
         var tempObj = {};
+        var i = 0;
         
         var groupPrefix = ['us_avg', 'us_rural_avg', 'us_urban_avg', 'tribal_avg', 'tribal_rural_avg', 'tribal_urban_avg', 'terr_avg', 'terr_rural_avg', 'terr_urban_avg'];
 
@@ -78,7 +81,7 @@ var tableNWAve = {
             }
         }
 
-        for (var i = 0; i < groupPrefix.length; i++) {
+        for (i; i < groupPrefix.length; i++) {
             getVals(groupWo);
             tempData.push(tempObj);
             getVals(groupW);
