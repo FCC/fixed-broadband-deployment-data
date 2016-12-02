@@ -34,12 +34,10 @@ var chartFixed = {
 
         $.ajax({
             type: 'GET',
-            url: allCntyURL,
-            success: function(data) {
-                chartFixed.update(data);
-                chartFixed.getURData();
-                
-            }
+            url: allCntyURL
+        }).done(function(data) {
+            chartFixed.update(data);
+            chartFixed.getURData();
         });
     },
     getURData: function() {
@@ -47,11 +45,10 @@ var chartFixed = {
 
         $.ajax({
             type: 'GET',
-            url: urURL,
-            success: function(data) {
-                chartFixed.processURData(data);
-                chartFixed.getTribalData();
-             }
+            url: urURL
+        }).done(function(data) {
+            chartFixed.processURData(data);
+            chartFixed.getTribalData();
         });
     },
     getTribalData: function() {
@@ -59,11 +56,10 @@ var chartFixed = {
 
         $.ajax({
             type: 'GET',
-            url: tribalURL,
-            success: function(data) { 
-                chartFixed.update(data);
-                chartFixed.display();
-             }
+            url: tribalURL
+        }).done(function(data) {
+            chartFixed.update(data);
+            chartFixed.display();
         });
     },
     processURData: function(data) {
@@ -73,7 +69,7 @@ var chartFixed = {
         var urbanData = {};
         var ruralData = {};
 
-        urbanData.features = [];       
+        urbanData.features = [];
         ruralData.features = [];
 
         for (i; i < dataLen; i++) {
@@ -89,8 +85,8 @@ var chartFixed = {
 
         chartFixed.update(urbanData);
         chartFixed.update(ruralData);
-        
-    },    
+
+    },
     update: function(data) {
         var i = 0;
         var fixedData = chartFixed.data.datasets[0].data;
@@ -122,13 +118,13 @@ var chartFixed = {
 
                     break;
             }
-        }        
+        }
     },
     display: function() {
         var ctxFixed;
-
+        
         //replace chart canvas if it already exists
-        $('#chartFixed').replaceWith('<canvas id="chartFixed" width="300" height="220"></canvas>');
+        $('#chartFixed').replaceWith('<canvas id="chartFixed" width="350" height="220"></canvas>');
         $('.chartjs-hidden-iframe').remove();
 
         //create new chart
