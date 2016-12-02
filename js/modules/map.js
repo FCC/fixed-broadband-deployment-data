@@ -116,6 +116,7 @@ var BPRMap = {
         BPRMap.createLegend(layerPath);
 
         chartNWFixed.init();
+        chartSpeed.init('nw');
 
     }, //end createMap
     createLegend: function(layerPath) {
