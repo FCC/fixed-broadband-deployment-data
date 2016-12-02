@@ -35,18 +35,18 @@ var tableNWAve = {
             // 'scrollCollapse': true,
         });
 
-        function addCols() { 
+        function addCols() {
             $('#table-nwAve').find('tbody>tr').each(function(index, elm) {
                 if ($(elm).hasClass('odd')) {
-                	$(elm).prepend('<th class="rowHeading">Without Access</th>');
+                    $(elm).prepend('<th class="rowHeading">Without Access</th>');
                 } else {
-                	$(elm).prepend('<th class="rowHeading">With Access</th>');
+                    $(elm).prepend('<th class="rowHeading">With Access</th>');
                 }
-                
+
             });
 
             $('#table-nwAve').find('tbody>tr').prepend('<th></th>');
-			$('#table-nwAve').find('tbody>tr').eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
+            $('#table-nwAve').find('tbody>tr').eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
             $('#table-nwAve').find('tbody>tr').eq(2).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
             $('#table-nwAve').find('tbody>tr').eq(5).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
 
@@ -65,7 +65,8 @@ var tableNWAve = {
         var tempData = [];
         var tempObj = {};
         var i = 0;
-        
+        var j = 0;
+
         var groupPrefix = ['us_avg', 'us_rural_avg', 'us_urban_avg', 'tribal_avg', 'tribal_rural_avg', 'tribal_urban_avg', 'terr_avg', 'terr_rural_avg', 'terr_urban_avg'];
 
         var groupW = ['pop_w', 'popden_w', 'percap_w', 'hinc_w', 'povrat_w'];
@@ -73,7 +74,7 @@ var tableNWAve = {
 
         function getVals(arr) {
             tempObj = {};
-            for (var j = 0; j < arr.length; j++) {
+            for (j = 0; j < arr.length; j++) {
                 var propName = groupPrefix[i] + '_' + arr[j];
                 var colName = columns[j].data;
 
@@ -81,13 +82,13 @@ var tableNWAve = {
             }
         }
 
-        for (i; i < groupPrefix.length; i++) {
+        for (i = 0; i < groupPrefix.length; i++) {
             getVals(groupWo);
             tempData.push(tempObj);
             getVals(groupW);
             tempData.push(tempObj);
         }
-        
+
         return tempData;
     }
 };
