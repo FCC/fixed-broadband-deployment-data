@@ -39,10 +39,11 @@ var chartSpeed = {
     },
     getTech: function() {
         var speedURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartSpeed.FIPS + '%27';
+        var speedNWURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_nation&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',
-            url: speedURL,
+            url: chartSpeed.FIPS === 'nw' ? speedNWURL : speedURL,
             success: function(data) {
                 chartSpeed.update(data);
                 chartSpeed.display();
@@ -59,7 +60,7 @@ var chartSpeed = {
         var j = 0;
 
         function getVals(arr) { 
-            for (j = 0; j < chartSpeed.data.datasets.length; j++) { console.log(propName); console.log(datasets[i]);
+            for (j = 0; j < chartSpeed.data.datasets.length; j++) { 
                 propName = 'speed_' + techTypes[i] + '_' + j;
                 datasets[j].data.push((100 * techData[propName]).toFixed(2));
             }
@@ -76,6 +77,14 @@ var chartSpeed = {
         //replace chart canvas if it already exists
         $('#chartSpeed').replaceWith('<canvas id="chartSpeed" width="350" height="220"></canvas>');
         $('.chartjs-hidden-iframe').remove();
+
+        if (chartSpeed.FIPS === 'nw') {
+            $('#hd-speed').addClass('hide');
+            $('#hd-nwSpeed').removeClass('hide');
+        } else {
+            $('#hd-nwSpeed').addClass('hide');
+            $('#hd-speed').removeClass('hide');
+        }
         
         //create new chart
         ctxTech = $('#chartSpeed');
