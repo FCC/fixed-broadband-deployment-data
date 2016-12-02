@@ -6,6 +6,7 @@ var chartDemog = require('./chart-demographics.js');
 var chartFixed = require('./chart-fixed.js');
 var chartNWFixed = require('./chart-fixedNationwide.js');
 var chartTech = require('./chart-tech.js');
+var chartSpeed = require('./chart-speed.js');
 
 var layers = {
     deployment: require('./layers-deployment.js'),
@@ -221,6 +222,7 @@ var BPRMap = {
         chartDemog.create(countyData);
         chartFixed.init(countyData.county_fips);
         chartTech.init(countyData.county_fips);
+        chartSpeed.init(countyData.county_fips);
 
     }, //end showCounty
     getBlock: function(lat, lon) {
