@@ -1,5 +1,7 @@
 'use strict';
 
+var Hash = require('./hash.js');
+
 var tableProviders = require('./table-providers.js');
 var tableDemog = require('./table-demographics.js');
 var chartDemog = require('./chart-demographics.js');
@@ -41,9 +43,22 @@ var clickedBlockLayerData;
 var BPRMap = {
     init: function() {
 
-        BPRMap.createMap();        
+        // default map settings
+        BPRMap.mapLayer = {};
+        BPRMap.lat = 38.82;
+        BPRMap.lon = -94.96;
+        BPRMap.zoom = 4;
 
-        BPRMap.map.on('click', BPRMap.update);        
+        // trigger hashchange and get map settings
+        $(window).on('hashchange', Hash.change);
+        Hash.change(BPRMap);
+        BPRMap.createMap();
+
+        BPRMap.map.on('click', BPRMap.update);
+
+        if (Hash.hasHash()) { 
+            BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
+        }
 
         // toggle map container width
         $('.control-full').on('click', 'a', function(e) {
@@ -60,23 +75,17 @@ var BPRMap = {
 
     },
     createMap: function() {
-        //var map;
-        var hash;
-        // var mapData = Map.data;
-        var initialzoom = 4;
         var maxzoom = 15;
         var minzoom = 3;
-        var center_lat = 38.82;
-        var center_lon = -94.96;
         var baseLayer = {};
         var layerControl;
         var layerPath = window.location.pathname.split('/')[1];
-        
+
         BPRMap.mapLayer = {};
 
         BPRMap.geoURL = '/gwc/service/wms?tiled=true';
         BPRMap.geo_space = 'fcc';
-
+        
         L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
         BPRMap.map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
                 attributionControl: true,
@@ -84,7 +93,7 @@ var BPRMap = {
                 minZoom: minzoom,
                 zoomControl: true
             })
-            .setView([center_lat, center_lon], initialzoom);
+            .setView([BPRMap.lat, BPRMap.lon], BPRMap.zoom);
 
         BPRMap.map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');
 
@@ -109,14 +118,17 @@ var BPRMap = {
             }
         ).addTo(BPRMap.map);
 
-        hash = L.hash(BPRMap.map);
+        // hash = L.hash(BPRMap.map);
 
         BPRMap.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
         BPRMap.createLegend(layerPath);
 
         chartNWFixed.init();
-        chartSpeed.init('nw');
+        
+        if (Hash.hasHash() === false) { 
+            chartSpeed.init('nw');
+        }        
 
     }, //end createMap
     createLegend: function(layerPath) {
@@ -124,7 +136,7 @@ var BPRMap = {
         var tr = '';
         var count = 0;
 
-        for(var key in layers[layerPath]) {            
+        for (var key in layers[layerPath]) {
             td += '<td><input id="chk' + count + '" type="checkbox" data-layer="' + key + '" checked></td>';
             td += '<td><div class="key-symbol" style="background-color:' + layers[layerPath][key].color + '"></div></td>';
             td += '<td><label for="chk' + count + '">' + key + '</label></td>';
@@ -139,39 +151,19 @@ var BPRMap = {
             .on('click', '[type=checkbox]', function() {
                 var layerName = $(this).attr('data-layer');
 
-                if (this.checked) { 
+                if (this.checked) {
                     BPRMap.mapLayer[layerName].addTo(BPRMap.map);
                 } else {
                     BPRMap.map.removeLayer(BPRMap.mapLayer[layerName]);
                 }
-                
-            });       
+
+            });
     },
-    update: function(e) {
-        /* var cursorX;
-        var cursorY;
-        var clickX = 0;
-        var clickY = 0;
-
-        var lastTimestamp = 0;
-
-       var timestamp = Date.now();
-
-        if (lastTimestamp > 0 && timestamp - lastTimestamp < 1000) {
-            lastTimestamp = timestamp;
-            return;
-        }
-
-        lastTimestamp = timestamp;
-        clickX = cursorX;
-        clickY = cursorY;*/
+    update: function(e) {       
         BPRMap.lat = Math.round(1000000 * e.latlng.lat) / 1000000.0;
         BPRMap.lon = Math.round(1000000 * e.latlng.lng) / 1000000.0;
-
-        // removeBlockCountyLayers();
-
-        BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
-        setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
+        
+        BPRMap.getCounty(BPRMap.lat, BPRMap.lon);        
 
     }, //end update
     getCounty: function(lat, lon) {
@@ -219,6 +211,8 @@ var BPRMap = {
 
         countyLayerData = data;
 
+        BPRMap.getBlock(BPRMap.lat, BPRMap.lon);
+
         tableDemog.create(countyData);
         chartDemog.create(countyData);
         chartFixed.init(countyData.county_fips);
@@ -253,6 +247,8 @@ var BPRMap = {
 
         //update Providers table
         tableProviders.getData(blockData.block_fips);
+
+        Hash.update(BPRMap);
     },
     setLocationMarker: function(lat, lon) {
         if (BPRMap.map.hasLayer(locationMarker)) {
