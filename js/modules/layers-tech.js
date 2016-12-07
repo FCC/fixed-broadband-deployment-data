@@ -2,7 +2,16 @@
 
 var layersTech = {};
 
-//Providers map layers
+//Technology map layers
+layersTech['Zero fixed 25 Mbps/3 Mbps providers'] = {
+    format: 'image/png',
+    transparent: true,
+    layers: 'bpr_dec2016_numprov_0',
+    styles: 'bpr_dec2016_numprov_0',
+    color: '#ffffcc',
+    zIndex: 11
+};
+
 layersTech['FTTP'] = {
     format: 'image/png',
     transparent: true,
