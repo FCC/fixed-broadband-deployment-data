@@ -3,7 +3,7 @@
 var layersProviders = {};
 
 //Providers map layers
-layersProviders['Zero fixed 25 Mbps/3 Mbps providers'] = {
+layersProviders['No fixed 25 Mbps/3 Mbps providers'] = {
     format: 'image/png',
     transparent: true,
     layers: 'bpr_dec2016_numprov_0',
