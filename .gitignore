@@ -20,6 +20,7 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
+.tmp
 
 # node-waf configuration
 .lock-wscript
@@ -33,14 +34,6 @@ node_modules
 
 # Bower components
 bower_components
-
-# data folder
-data/globe30
-data/gtopo30
-data/ned_1
-data/ned_13
-data/ned_2
-
 
 # DevOps
 .ebextensions

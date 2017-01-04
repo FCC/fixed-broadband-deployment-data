@@ -49,6 +49,6 @@
     <div id="map-container" class="map-wrapper">
         <div class="control-full leaflet-control-layers leaflet-control">
             <a href="#" class="mapbox-icon"><span class="icon icon-external-link-square"></span></a>
-        </div>        
+        </div>
     </div>
 </section>

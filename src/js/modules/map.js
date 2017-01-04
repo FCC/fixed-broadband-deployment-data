@@ -68,9 +68,10 @@ var BPRMap = {
             $('header .container, header .container-fluid, main')
                 .toggleClass('container container-fluid')
                 .one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
-                    function(e) {
+                    function() {
                         BPRMap.map.invalidateSize();
-                    });
+                        $('#table-providers').DataTable().columns.adjust().draw();
+                    });            
         });
 
     },
@@ -79,12 +80,11 @@ var BPRMap = {
         var minzoom = 3;
         var baseLayer = {};
         var layerControl;
-        var layerPath = window.location.pathname.split('/')[1];
+        var layerPath = window.page;
 
         BPRMap.mapLayer = {};
 
-        BPRMap.geoURL = '/gwc/service/wms?tiled=true';
-        BPRMap.geo_space = 'fcc';
+        BPRMap.geoURL = window.GEOHOST + '/gwc/service/wms?tiled=true';
         
         L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
         BPRMap.map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
@@ -103,7 +103,7 @@ var BPRMap = {
         baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
 
         //get tile layers based on location pathname
-        for (var layer in layers[layerPath]) {
+        for (var layer in layers[layerPath]) { 
             BPRMap.mapLayer[layer] = L.tileLayer.wms(BPRMap.geoURL, layers[layerPath][layer]).setZIndex(layers[layerPath][layer].zIndex).addTo(BPRMap.map);
         }
 
@@ -158,6 +158,22 @@ var BPRMap = {
                 }
 
             });
+
+        // Technology Map show legend
+        $('#btn-closeLegend').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            $('.map-legend').hide('fast');
+        });
+
+        // Technology Map hide legend
+        $('#btn-openLegend').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            $('.map-legend').show('fast');
+        });
     },
     update: function(e) {       
         BPRMap.lat = Math.round(1000000 * e.latlng.lat) / 1000000.0;
@@ -167,7 +183,7 @@ var BPRMap = {
 
     }, //end update
     getCounty: function(lat, lon) {
-        var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',
@@ -221,7 +237,7 @@ var BPRMap = {
 
     }, //end showCounty
     getBlock: function(lat, lon) {
-        var geoURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',

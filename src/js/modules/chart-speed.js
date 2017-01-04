@@ -6,19 +6,19 @@ var chartSpeed = {
             labels: ['.200', '10', '25', '50', '100'],
             datasets: [{
                 label: '0',
-                backgroundColor: 'rgba(255, 99, 132, 0.9)',
+                backgroundColor: '#ffffcc',
                 data: []
             }, {
                 label: '1',
-                backgroundColor: 'rgba(54, 162, 235, 0.9)',
+                backgroundColor: '#fdcc8a',
                 data: []
             }, {
                 label: '2',
-                backgroundColor: 'rgba(255, 206, 86, 0.9)',
+                backgroundColor: '#fc8d59',
                 data: []
             }, {
                 label: '3',
-                backgroundColor: 'rgba(75, 192, 192, 0.9)',
+                backgroundColor: '#d7301f',
                 data: []
             }]
         };
@@ -38,8 +38,8 @@ var chartSpeed = {
         chartSpeed.getTech();
     },
     getTech: function() {
-        var speedURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartSpeed.FIPS + '%27';
-        var speedNWURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_nation&maxFeatures=100&outputFormat=application/json';
+        var speedURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartSpeed.FIPS + '%27';
+        var speedNWURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_nation&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',
@@ -49,7 +49,7 @@ var chartSpeed = {
                 chartSpeed.display();
             }
         });
-    },    
+    },
     update: function(data) {
         var techData = data.features[0].properties;
         var techTypes = ['200', '10', '25', '50', '100'];
@@ -59,8 +59,8 @@ var chartSpeed = {
         var i = 0;
         var j = 0;
 
-        function getVals(arr) { 
-            for (j = 0; j < chartSpeed.data.datasets.length; j++) { 
+        function getVals(arr) {
+            for (j = 0; j < chartSpeed.data.datasets.length; j++) {
                 propName = 'speed_' + techTypes[i] + '_' + j;
                 datasets[j].data.push((100 * techData[propName]).toFixed(2));
             }
@@ -85,7 +85,7 @@ var chartSpeed = {
             $('#hd-nwSpeed').addClass('hide');
             $('#hd-speed').removeClass('hide');
         }
-        
+
         //create new chart
         ctxTech = $('#chartSpeed');
         chartSpeed.chart = new Chart(ctxTech, {
@@ -111,12 +111,17 @@ var chartSpeed = {
                         scaleLabel: {
                             display: true,
                             labelString: '% Population'
+                        },
+                        ticks: {
+                            max: 100,
+                            min: 0,
+                            stepSize: 20
                         }
                     }]
                 },
                 tooltips: {
                     callbacks: {
-                        title: function(tooltipItem, data) { 
+                        title: function(tooltipItem, data) {
                             return 'Speed: ' + tooltipItem[0].xLabel + 'Mbps/1 Mbps';
                         },
                         label: function(tooltipItem, data) {

@@ -82,15 +82,20 @@
     }
 }
 
+
 /* Map */
+
 .map-col {
     width: 66.66666667%;
 }
 
-.map-wrapper {
-    height: 620px;
+.map-wrapper {    
     margin-bottom: 20px;
     position: relative;
+}
+
+#map-container {
+    height: 620px;
 }
 
 .control-full {
@@ -99,9 +104,11 @@
     top: 113px;
     a {
         background: none;
-        &, &:hover, &:active {
+        &,
+        &:hover,
+        &:active {
             color: #000;
-        }        
+        }
     }
     .icon {
         padding: 8px;
@@ -114,15 +121,23 @@
 .map-legend {
     bottom: 0;
     position: absolute;
+    .map-wrapper & {
+        background-color: #fff;
+        border: solid 1px #999999;
+        bottom: 10px;
+        left: 10px;
+        min-width: 150px;
+        padding: 5px;
+        position: absolute;
+        z-index: 2;
+    }
     .icon-list {
         font-size: 13px;
     }
     table {
         width: 100%;
     }
-    th {
-
-    }
+    th {}
     td {
         padding: 0 3px;
         vertical-align: top;
@@ -131,7 +146,8 @@
         font-size: 12px;
         font-weight: normal;
     }
-    [type="checkbox"], .key-symbol {
+    [type="checkbox"],
+    .key-symbol {
         vertical-align: middle;
     }
 }

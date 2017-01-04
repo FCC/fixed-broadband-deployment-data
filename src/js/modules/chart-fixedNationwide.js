@@ -22,7 +22,7 @@ var chartNWFixed = {
         chartNWFixed.getNWData();
     },
     getNWData: function() {
-        var nwURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_nw_fnf&maxFeatures=100&outputFormat=application/json';
+        var nwURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_nw_fnf&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',
@@ -34,7 +34,7 @@ var chartNWFixed = {
         });
     },
     getUrbanData: function() {
-        var urbanURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_nw_ur_fnf&maxFeatures=100&outputFormat=application/json';
+        var urbanURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_nw_ur_fnf&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',
@@ -46,7 +46,7 @@ var chartNWFixed = {
         });
     },
     getTribal: function() {
-        var tribalURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_nw_tribal_fnf&maxFeatures=100&outputFormat=application/json';
+        var tribalURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_nw_tribal_fnf&maxFeatures=100&outputFormat=application/json';
 
         $.ajax({
             type: 'GET',

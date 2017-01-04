@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://maps.fcc.gov/" />
     <meta property="og:title" content="Federal Communications Commission GIS Program">
     <meta property="og:description" content="The United States of America">
-    <title>{{title}} - Broadband Progress Report (Dec. 2016) - FCC GIS</title>
+    <title>Speed - Broadband Progress Report (Dec. 2016) - FCC GIS</title>
     <meta name="description" content="FCC GIS Program">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="https://www.fcc.gov/sites/all/themes/fcc/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -56,26 +56,47 @@
     <div id="skip-link"> <a href="#main-content" class="sr-only focusable">Jump to main content</a></div>
     <div class="outer-container">
         <div class="inner-container">
-            {{> header}} 
-            {{{ body }}} 
-            {{> footer}}
+            <!--#include file="_header.shtml" -->
+            <main class="container">
+                <a id="main-content" tabindex="-1"></a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="pg-header">
+                            <div class="nav-breadcrumb">
+                                <ol>
+                                    <li><a href="https://www.fcc.gov/" title="Home">Home</a> / </li>
+                                    <li><a href="https://www.fcc.gov/reports-research" title="Reports &amp; Research">Reports &amp; Research</a> / </li>
+                                    <li><a href="../" title="Maps">Maps</a> / </li>
+                                </ol>
+                            </div>
+                            <h1>Speed <span class="subtitle">Fixed Broadband (25 Mbps/3 Mbps)</span></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-grid">
+                    <div class="map-col col-grid">
+                        <!--#include file="_map.shtml" -->
+                    </div>
+                    <div class="map-sidebar col-grid">
+                        <!--#include file="_speed.shtml" -->
+                        <!--#include file="_map-legend.shtml" -->
+                    </div>
+                </div>
+            </main>
+            <!--#include file="_footer.shtml" -->
         </div>
     </div>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
     </script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script>
-    window.jQuery.ui || document.write('<script src="js/vendor/jquery-ui.min.js"><\/script>')
-    </script>
+    <script src="js/vendor/jquery-ui-ac.min.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.js"></script>
     <script src="js/vendor/Chart.min.js"></script>
-    <script src="js/vendor/handlebars.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/jquery.dataTables.min.js"></script>
     <script src="js/pg-common.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js"></script>    
 </body>
 
 </html>

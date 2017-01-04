@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     // Configurable paths
     var paths = {
         tmp: '.tmp',
+        src: './src',
         assets: './public'
     };
 
@@ -20,12 +21,16 @@ module.exports = function(grunt) {
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
+            html: {
+                files: ['./src/_includes/**/*.shtml', './src/views/**/*.html'],
+                tasks: ['ssi']
+            },
             less: {
                 files: ['./src/less/**/*.less'],
                 tasks: ['less', 'usebanner', 'postcss', 'copy']
             },
             scripts: {
-                files: ['<%= paths.assets %>/js/main.js', '<%= paths.assets %>/js/modules/**/*.js'],
+                files: ['<%= paths.src %>/js/main.js', '<%= paths.src %>/js/modules/**/*.js'],
                 tasks: ['jshint', 'concat', 'browserify:dev']
             }
         },
@@ -95,6 +100,23 @@ module.exports = function(grunt) {
             }
         },
 
+        // Process include files
+        ssi: {
+            options: {
+                cache: 'all',
+                ext: '.shtml',
+                baseDir: './src/_includes'
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: './src/views/',
+                    src: ['**/*.html'],
+                    dest: './public'
+                }]
+            }
+        },
+
         // Bundle Bootstrap plugins
         concat: {
             pluginsjs: {
@@ -137,38 +159,81 @@ module.exports = function(grunt) {
                 }
             },
             dev: {
-                src: ['<%= paths.assets %>/js/main.js'],
+                src: ['<%= paths.src %>/js/main.js'],
                 dest: '<%= paths.assets %>/js/app.js'
+            }
+        },
+
+        uglify: {
+            options: {
+                mangle: {
+                    except: ['jQuery', 'Handlebars']
+                },
+                sourceMap: false
+            },
+            my_target: {
+
+                files: {
+                    '<%= paths.assets %>/js/app.min.js': ['<%= paths.assets %>/js/app.js']
+                }
+            }
+        },
+
+        'string-replace': {
+            prod: {
+                src: '<%= paths.assets %>/**/*.html',
+                dest: '<%= paths.assets %>/',
+                options: {
+                    replacements: [{
+                        pattern: 'app.js',
+                        replacement: 'app.min.js'
+                    }]
+                }
             }
         },
 
         // Copies remaining files to places other tasks can use
         copy: {
             dist: {
-                files: [
-
-                    { // fonts 
-                        dot: true,
-                        expand: true,
-                        cwd: 'node_modules/font-awesome/fonts',
-                        src: '**',
-                        dest: '<%= paths.assets %>/fonts'
-                    }
-                ]
+                files: [{ // fonts 
+                    dot: true,
+                    expand: true,
+                    cwd: 'node_modules/font-awesome/fonts',
+                    src: '**',
+                    dest: '<%= paths.assets %>/fonts'
+                }]
             }
-        }
+        },
+
+        clean: {
+            release: ['<%= paths.assets %>/js/app.js', '<%= paths.assets %>/css/*.map']
+        },
     });
 
-    grunt.registerTask('build', [
+    grunt.registerTask('build:dev', [
         'jshint',
         'less',
         'usebanner',
         'postcss',
+        'ssi',
         'concat',
         'browserify:dev'
     ]);
 
+    grunt.registerTask('build:release', [
+        'jshint',
+        'less',
+        'usebanner',
+        'postcss',
+        'ssi',
+        'concat',
+        'browserify:dev',
+        'uglify',
+        'string-replace',
+        'clean'
+    ]);
+
     grunt.registerTask('default', [
-        'build'
+        'build:dev'
     ]);
 };
