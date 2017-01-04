@@ -93,16 +93,16 @@
                                         <a href="speed.html"><span class="link-title">Speed</a></span>
                                     </li>
                                     <li>
+                                        <a href="providers.html"><span class="link-title">Provider Count</span></a>
+                                    </li>
+                                    <li>
                                         <a href="technology.html"><span class="link-title">Technology</span></a>
+                                    </li>                                    
+                                    <li>
+                                        <a href="nationwide.html"><span class="link-title">Nationwide Statistics</span></a>
                                     </li>
                                     <li>
-                                        <a href="providers.html"><span class="link-title">Providers</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="nationwide.html"><span class="link-title">Nationwide</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span class="link-title">About</span></a>
+                                        <a href="about.html"><span class="link-title">About</span></a>
                                     </li>
                                 </ul>
                                 <!--.nav-tabs -->
@@ -128,8 +128,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row-grid">
-                    <div class="map-col col-grid">
+                <div class="row">
+                    <div class="col-sm-7 col-lg-8">
                         <section id="map">
     <div id="search-field-holder">
         <div class="search-field input-group">
@@ -186,14 +186,24 @@
 </section>
 
                     </div>
-                    <div class="map-sidebar col-grid">
+                    <div class="map-sidebar col-sm-5 col-lg-4">
                         <section class="sect-fixed">
     <h3 class="h4"><span id="hd-nwSpeed">Nationwide</span> <span class="hide" id="hd-speed"><span data-county></span>, <span data-state></span></span></h3>
-    <canvas id="chartSpeed" width="350" height="220"></canvas>
+    <canvas id="chartSpeed" width="250" height="255"></canvas>
+    <div class="speed chart-legend">
+        <span class="h6"># of providers:</span>
+        <ul class="list-unstyled">
+            <li><span class="key-symbol" style="background-color: #ffffcc"></span> 0</li>
+            <li><span class="key-symbol" style="background-color: #fdcc8a"></span> 1</li>
+            <li><span class="key-symbol" style="background-color: #fc8d59"></span> 2</li>
+            <li><span class="key-symbol" style="background-color: #d7301f"></span> 3 or more</li>
+        </ul>
+    </div>
 </section>
-                        <div class="map-legend">
+
+                        <section class="map-legend">
     <table>
-        <caption>Legend</caption>
+        <caption>Map Layers</caption>
         <thead class="hide">
             <tr>
                 <th>Show/Hide Layer</th>
@@ -227,7 +237,7 @@
             
         </tbody>
     </table>
-</div>
+</section>
 
                     </div>
                 </div>
@@ -315,7 +325,7 @@
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/jquery.dataTables.min.js"></script>
     <script src="js/pg-common.js"></script>
-    <script src="js/app.js"></script>    
+    <script src="js/app.min.js"></script>    
 </body>
 
 </html>
