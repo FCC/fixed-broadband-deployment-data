@@ -35,16 +35,16 @@
                                         <a href="speed.html"><span class="link-title">Speed</a></span>
                                     </li>
                                     <li>
+                                        <a href="providers.html"><span class="link-title">Provider Count</span></a>
+                                    </li>
+                                    <li>
                                         <a href="technology.html"><span class="link-title">Technology</span></a>
+                                    </li>                                    
+                                    <li>
+                                        <a href="nationwide.html"><span class="link-title">Nationwide Statistics</span></a>
                                     </li>
                                     <li>
-                                        <a href="providers.html"><span class="link-title">Providers</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="nationwide.html"><span class="link-title">Nationwide</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span class="link-title">About</span></a>
+                                        <a href="about.html"><span class="link-title">About</span></a>
                                     </li>
                                 </ul>
                                 <!--.nav-tabs -->
