@@ -1,6 +1,6 @@
-<div class="map-legend">
+<section class="map-legend">
     <table>
-        <caption>Legend</caption>
+        <caption>Map Layers</caption>
         <thead class="hide">
             <tr>
                 <th>Show/Hide Layer</th>
@@ -34,4 +34,4 @@
             
         </tbody>
     </table>
-</div>
+</section>

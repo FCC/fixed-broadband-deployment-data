@@ -3,7 +3,7 @@
 var chartSpeed = {
     init: function(county_fips) {
         chartSpeed.data = {
-            labels: ['.200', '10', '25', '50', '100'],
+            labels: ['.2', '10/1', '25/3', '50/5', '100/10'],
             datasets: [{
                 label: '0',
                 backgroundColor: '#ffffcc',
@@ -75,7 +75,7 @@ var chartSpeed = {
         var ctxTech;
 
         //replace chart canvas if it already exists
-        $('#chartSpeed').replaceWith('<canvas id="chartSpeed" width="350" height="220"></canvas>');
+        $('#chartSpeed').replaceWith('<canvas id="chartSpeed" width="350" height="255"></canvas>');
         $('.chartjs-hidden-iframe').remove();
 
         if (chartSpeed.FIPS === 'nw') {
@@ -93,17 +93,16 @@ var chartSpeed = {
             data: chartSpeed.data,
             options: {
                 legend: {
-                    labels: {
-                        boxWidth: 20
-                    }
+                    display: false
                 },
-                responsive: false,
-                scales: {
+                maintainAspectRatio: true,
+                responsive: true,
+                scales: {                    
                     xAxes: [{
                         stacked: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Speed (Mbps/1 Mbps)'
+                            labelString: 'Speed (Mbps downstream/upstream)'
                         }
                     }],
                     yAxes: [{
