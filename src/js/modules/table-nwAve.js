@@ -36,7 +36,9 @@ var tableNWAve = {
         });
 
         function addCols() {
-            $('#table-nwAve').find('tbody>tr').each(function(index, elm) {
+            var tableRows = $('#table-nwAve').find('tbody>tr');
+
+            tableRows.each(function(index, elm) {
                 if ($(elm).hasClass('odd')) {
                     $(elm).prepend('<th class="rowHeading">Without Access</th>');
                 } else {
@@ -45,18 +47,17 @@ var tableNWAve = {
 
             });
 
-            $('#table-nwAve').find('tbody>tr').prepend('<th></th>');
-            $('#table-nwAve').find('tbody>tr').eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
-            $('#table-nwAve').find('tbody>tr').eq(2).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
-            $('#table-nwAve').find('tbody>tr').eq(5).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+            tableRows.eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
+            tableRows.eq(1).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
+            tableRows.eq(3).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
 
-            $('#table-nwAve').find('tbody>tr').eq(8).after('<tr><th colspan="7">Tribal Lands</th></tr>');
-            $('#table-nwAve').find('tbody>tr').eq(11).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
-            $('#table-nwAve').find('tbody>tr').eq(14).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+            tableRows.eq(5).after('<tr><th colspan="7">Tribal Lands</th></tr>');
+            tableRows.eq(7).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
+            tableRows.eq(9).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
 
-            $('#table-nwAve').find('tbody>tr').eq(17).after('<tr><th colspan="7">U.S. Territories</th></tr>');
-            $('#table-nwAve').find('tbody>tr').eq(20).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
-            $('#table-nwAve').find('tbody>tr').eq(23).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+            tableRows.eq(11).after('<tr><th colspan="7">U.S. Territories</th></tr>');
+            tableRows.eq(13).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
+            tableRows.eq(15).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
         }
 
     },
@@ -78,7 +79,12 @@ var tableNWAve = {
                 var propName = groupPrefix[i] + '_' + arr[j];
                 var colName = columns[j].data;
 
-                tempObj[colName] = popData[propName];
+                if (arr[j] === 'percap_w' || arr[j] === 'percap_wo' || arr[j] === 'hinc_w' || arr[j] === 'hinc_wo') {
+                    tempObj[colName] = '$' + utility.formatComma(popData[propName].toFixed(2));
+                } else {
+                    tempObj[colName] = utility.formatComma(popData[propName].toFixed(2));
+                }
+
             }
         }
 
