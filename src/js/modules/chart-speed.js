@@ -23,17 +23,26 @@ var chartSpeed = {
             }]
         };
 
-        //only show chart if it exists on the page
+        // only show chart if it exists on the page
         if ($('#chartSpeed').length === 0) {
             return;
         }
 
-        //if county FIPS is the same don't regenerate chart
+        // if county FIPS is the same don't regenerate chart
         if (county_fips === chartSpeed.FIPS) {
             return;
         } else {
             chartSpeed.FIPS = county_fips;
         }
+
+        // show Nationwide chart
+        $('.sect-speed').on('click', '.link-nw', function() {
+            console.log(chartSpeed.FIPS);
+            chartSpeed.init('nw');
+            $('.sect-speed').addClass('hide');
+            $('.sect-speedNW').removeClass('hide');
+            $('#btn-nationLocation').click();
+        });
 
         chartSpeed.getTech();
     },
@@ -73,21 +82,26 @@ var chartSpeed = {
     },
     display: function() {
         var ctxTech;
-
-        //replace chart canvas if it already exists
-        $('#chartSpeed').replaceWith('<canvas id="chartSpeed" width="350" height="255"></canvas>');
-        $('.chartjs-hidden-iframe').remove();
+        var chartID;
 
         if (chartSpeed.FIPS === 'nw') {
-            $('#hd-speed').addClass('hide');
-            $('#hd-nwSpeed').removeClass('hide');
+            chartID = 'chartSpeedNW';
+
+            $('.sect-speed').addClass('hide');
+            $('.sect-speedNW').removeClass('hide');
         } else {
-            $('#hd-nwSpeed').addClass('hide');
-            $('#hd-speed').removeClass('hide');
+            chartID = 'chartSpeed';
+
+            $('.sect-speed').removeClass('hide');
+            $('.sect-speedNW').addClass('hide');
         }
 
-        //create new chart
-        ctxTech = $('#chartSpeed');
+        //replace chart canvas if it already exists
+        $('#' + chartID).replaceWith('<canvas id="' + chartID + '" width="350" height="255"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
+
+        //create new charts
+        ctxTech = $('#' + chartID);
         chartSpeed.chart = new Chart(ctxTech, {
             type: 'bar',
             data: chartSpeed.data,
@@ -97,7 +111,7 @@ var chartSpeed = {
                 },
                 maintainAspectRatio: true,
                 responsive: true,
-                scales: {                    
+                scales: {
                     xAxes: [{
                         stacked: true,
                         scaleLabel: {

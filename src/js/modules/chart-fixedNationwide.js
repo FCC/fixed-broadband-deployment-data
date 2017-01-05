@@ -19,6 +19,20 @@ var chartNWFixed = {
             return;
         }
 
+        $('.sect-fixed').on('click', '.link-nw', function(e) {            
+            e.preventDefault();
+
+            $('#tabInstructs, #nwFixed').removeClass('hide');
+            $('#fixed, #provider, #demographics').addClass('hide');
+            $('#btn-nationLocation').click();
+
+            $('.search-field').find('input').val('');
+
+            chartNWFixed.data.datasets[0].data = [];
+            chartNWFixed.data.datasets[1].data = [];
+            chartNWFixed.getNWData();
+        });
+
         chartNWFixed.getNWData();
     },
     getNWData: function() {
@@ -27,7 +41,7 @@ var chartNWFixed = {
         $.ajax({
             type: 'GET',
             url: nwURL,
-            success: function(data) { 
+            success: function(data) {
                 chartNWFixed.update(data);
                 chartNWFixed.getUrbanData();
             }
@@ -64,7 +78,7 @@ var chartNWFixed = {
         var urbanData = {};
         var ruralData = {};
 
-        urbanData.features = [];       
+        urbanData.features = [];
         ruralData.features = [];
 
         for (i; i < dataLen; i++) {
@@ -80,7 +94,7 @@ var chartNWFixed = {
 
         chartNWFixed.update(urbanData);
         chartNWFixed.update(ruralData);
-        
+
     },
     update: function(data) {
         var fixedData = chartNWFixed.data.datasets[0].data;
@@ -93,7 +107,7 @@ var chartNWFixed = {
             return;
         }
 
-        for (var i = 0; i < data.features.length; i++) { 
+        for (var i = 0; i < data.features.length; i++) {
             switch (data.features[i].properties.has_fixed) {
                 case 0:
                     noFixedData.push(data.features[i].properties.pop_pct.toFixed(2));
@@ -103,7 +117,7 @@ var chartNWFixed = {
                     }
 
                     break;
-                case 1:                
+                case 1:
                     fixedData.push(data.features[i].properties.pop_pct.toFixed(2));
 
                     if (data.features[i].properties.type_pop_pct === 100) {
@@ -114,11 +128,17 @@ var chartNWFixed = {
             }
         }
 
+
     },
     display: function() {
-        var ctxNWFixed = $('#chartNWFixed');
+        var ctxNWFixed;
+
+        //replace chart canvas if it already exists
+        $('#chartNWFixed').replaceWith('<canvas id="chartNWFixed" width="350" height="255"></canvas>');
+        $('.chartjs-hidden-iframe').remove();
 
         //create new chart
+        ctxNWFixed = $('#chartNWFixed');
         chartNWFixed.chart = new Chart(ctxNWFixed, {
             type: 'bar',
             data: chartNWFixed.data,

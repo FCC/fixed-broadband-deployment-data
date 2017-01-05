@@ -1,6 +1,6 @@
 <section class="map-legend">
     <h3 class="h4">Map Layers</h3>
-    <p class="help-block">(areas without population are shown without color)</p>
+    <p class="help-block">Areas without population are shown without color.</p>
     <table>
         <thead class="hide">
             <tr>
