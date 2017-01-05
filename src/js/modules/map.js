@@ -56,7 +56,7 @@ var BPRMap = {
 
         BPRMap.map.on('click', BPRMap.update);
 
-        if (Hash.hasHash()) { 
+        if (Hash.hasHash()) {
             BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
         }
 
@@ -71,7 +71,7 @@ var BPRMap = {
                     function() {
                         BPRMap.map.invalidateSize();
                         $('#table-providers').DataTable().columns.adjust().draw();
-                    });            
+                    });
         });
 
     },
@@ -85,7 +85,7 @@ var BPRMap = {
         BPRMap.mapLayer = {};
 
         BPRMap.geoURL = window.GEOHOST + '/gwc/service/wms?tiled=true';
-        
+
         L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
         BPRMap.map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
                 attributionControl: true,
@@ -103,7 +103,7 @@ var BPRMap = {
         baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
 
         //get tile layers based on location pathname
-        for (var layer in layers[layerPath]) { 
+        for (var layer in layers[layerPath]) {
             BPRMap.mapLayer[layer] = L.tileLayer.wms(BPRMap.geoURL, layers[layerPath][layer]).setZIndex(layers[layerPath][layer].zIndex).addTo(BPRMap.map);
         }
 
@@ -125,10 +125,10 @@ var BPRMap = {
         BPRMap.createLegend(layerPath);
 
         chartNWFixed.init();
-        
-        if (Hash.hasHash() === false) { 
+
+        if (Hash.hasHash() === false) {
             chartSpeed.init('nw');
-        }        
+        }
 
     }, //end createMap
     createLegend: function(layerPath) {
@@ -163,7 +163,7 @@ var BPRMap = {
         $('#btn-closeLegend').on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             $('.map-legend').hide('fast');
         });
 
@@ -171,15 +171,15 @@ var BPRMap = {
         $('#btn-openLegend').on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             $('.map-legend').show('fast');
         });
     },
-    update: function(e) {       
+    update: function(e) {
         BPRMap.lat = Math.round(1000000 * e.latlng.lat) / 1000000.0;
         BPRMap.lon = Math.round(1000000 * e.latlng.lng) / 1000000.0;
-        
-        BPRMap.getCounty(BPRMap.lat, BPRMap.lon);        
+
+        BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
 
     }, //end update
     getCounty: function(lat, lon) {
@@ -192,13 +192,15 @@ var BPRMap = {
         });
     }, //end getCounty
     showCounty: function(data) {
-        var countyData = data.features[0].properties;
+        var countyData;
 
         if (data.features.length === 0) {
-            var county_text = 'No county data found at your searched/clicked location.';
-            // $('#display-county').html(county_text);
+            alert('No county data found at the seleted location. Please select a new location.');
+
             return;
         } else {
+            countyData = data.features[0].properties;
+
             if ($('#tabInstructs').is(':visible')) {
                 $('#tabInstructs, #nwFixed').addClass('hide');
                 $('#fixed, #provider, #demographics').removeClass('hide');
