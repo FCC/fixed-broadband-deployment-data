@@ -41,7 +41,7 @@
         </section>
         <section class="sect-fixed">
             <h3 class="h4"><span data-county></span>, <span data-state></h3>
-            <p class="help-inline">(empty columns indicate data is not available)</p>
+            <p class="help-block">(empty columns indicate data is not available)</p>
             <div class="speed chart-legend">
                 <ul class="list-unstyled">
                     <li><span class="key-symbol" style="background-color: #FFE773"></span> Fixed broadband</li>
