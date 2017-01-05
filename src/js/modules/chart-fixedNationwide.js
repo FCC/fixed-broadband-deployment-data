@@ -123,7 +123,11 @@ var chartNWFixed = {
             type: 'bar',
             data: chartNWFixed.data,
             options: {
-                responsive: false,
+                legend: {
+                    display: false
+                },
+                maintainAspectRatio: true,
+                responsive: true,
                 scales: {
                     xAxes: [{
                         stacked: true,

@@ -1,6 +1,5 @@
 <section class="sect-fixed">
     <h3 class="h4"><span id="hd-nwSpeed">Nationwide</span> <span class="hide" id="hd-speed"><span data-county></span>, <span data-state></span></span></h3>
-    <canvas id="chartSpeed" width="250" height="255"></canvas>
     <div class="speed chart-legend">
         <span class="h6"># of providers:</span>
         <ul class="list-unstyled">
@@ -10,4 +9,5 @@
             <li><span class="key-symbol" style="background-color: #d7301f"></span> 3 or more</li>
         </ul>
     </div>
+    <canvas id="chartSpeed" width="250" height="255"></canvas>    
 </section>

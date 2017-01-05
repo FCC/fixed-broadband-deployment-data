@@ -169,7 +169,7 @@ var chartNWDemog = {
             type: 'bar',
             data: chartNWDemog.data,
             options: {
-                responsive: false,
+                responsive: true,
                 scales: {
                     xAxes: [{
                         stacked: true,

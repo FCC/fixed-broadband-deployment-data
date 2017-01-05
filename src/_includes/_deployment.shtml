@@ -6,20 +6,30 @@
     </ul>
 </div>
 <div class="tab-content">
-    <section id="tabInstructs">
-        <p>Click on the map or search for a location using an address or coordinates to display provider and demographic information.</p>
-        <p>Example Searches:</p>
-        <ul>
-            <li>148 Lafayette Street, New York, NY 10013</li>
-            <li>Lumberport, WV</li>
-            <li>Latitude: 40.566353, Longitude: -105.094573</li>
-        </ul>
-    </section>
-    <section id="nwFixed">
-        <h3 class="h4">Nationwide</h3>
-        <canvas id="chartNWFixed" width="300" height="220"></canvas>
-    </section>
-    <section id="fixed" class="active tab-pane hide" role="tabpanel">
+    <div id="tabInstructs">
+        <section>
+            <p>Click on the map or search for a location using an address or coordinates to display provider and demographic information.</p>
+            <p>Example Searches:</p>
+            <ul>
+                <li>148 Lafayette Street, New York, NY 10013</li>
+                <li>Lumberport, WV</li>
+                <li>Latitude: 40.566353, Longitude: -105.094573</li>
+            </ul>
+        </section>
+    </div>
+    <div id="nwFixed">
+        <section>
+            <h3 class="h4">Nationwide</h3>
+            <div class="speed chart-legend">
+                <ul class="list-unstyled">
+                    <li><span class="key-symbol" style="background-color: #FFE773"></span> Fixed broadband</li>
+                    <li><span class="key-symbol" style="background-color: #6CBCD5"></span> No fixed broadband</li>                    
+                </ul>
+            </div>
+            <canvas id="chartNWFixed" width="300" height="220"></canvas>            
+        </section>
+    </div>
+    <div id="fixed" class="active tab-pane hide" role="tabpanel">
         <section class="sect-census">
             <h3 class="h4">Census Block</h3>
             <dl class="dl-horizontal">
@@ -31,10 +41,18 @@
         </section>
         <section class="sect-fixed">
             <h3 class="h4"><span data-county></span>, <span data-state></h3>
+            <p class="help-inline">(empty columns indicate data is not available)</p>
+            <div class="speed chart-legend">
+                <ul class="list-unstyled">
+                    <li><span class="key-symbol" style="background-color: #FFE773"></span> Fixed broadband</li>
+                    <li><span class="key-symbol" style="background-color: #6CBCD5"></span> No fixed broadband</li>                    
+                </ul>
+            </div>
             <canvas id="chartFixed" width="300" height="220"></canvas>
+            
         </section>
-    </section>
-    <section id="provider" class="sect-provider tab-pane hide" role="tabpanel">
+    </div>
+    <div id="provider" class="sect-provider tab-pane hide" role="tabpanel">
         <section class="sect-census">
             <h3 class="h4">Census Block</h3>
             <dl class="dl-horizontal">
@@ -57,23 +75,25 @@
                 </thead>
             </table>
         </section>
-    </section>
-    <section id="demographics" class="sect-demog tab-pane hide" role="tabpanel">
-        <h3 class="h4"><span data-county></span>, <span data-state></h3>
-        <dl class="dl-horizontal">
-            <dt>Total Population:</dt>
-            <dd data-totalPop></dd>
-            <dt>Pop Density (pop/mi<sup>2</sup>):</dt>
-            <dd data-popDensity></dd>
-            <dt>Per Capita Income:</dt>
-            <dd>$<span data-incomeCapita></span></dd>
-            <dt>Total Pop w/o Access:</dt>
-            <dd data-totalPopNoAccess></dd>
-            <dt>% Urban Pop w/o Access:</dt>
-            <dd data-urbanPop></dd>
-            <dt>% Rural Pop w/o Access:</dt>
-            <dd data-ruralPop></dd>
-        </dl>
-        <canvas id="chartDemog" width="300" height="220"></canvas>
-    </section>
+    </div>
+    <div id="demographics" class="sect-demog tab-pane hide" role="tabpanel">
+        <section>
+            <h3 class="h4"><span data-county></span>, <span data-state></h3>
+            <dl class="dl-horizontal">
+                <dt>Total Population:</dt>
+                <dd data-totalPop></dd>
+                <dt>Pop Density (pop/mi<sup>2</sup>):</dt>
+                <dd data-popDensity></dd>
+                <dt>Per Capita Income:</dt>
+                <dd>$<span data-incomeCapita></span></dd>
+                <dt>Total Pop w/o Access:</dt>
+                <dd data-totalPopNoAccess></dd>
+                <dt>% Urban Pop w/o Access:</dt>
+                <dd data-urbanPop></dd>
+                <dt>% Rural Pop w/o Access:</dt>
+                <dd data-ruralPop></dd>
+            </dl>
+            <canvas id="chartDemog" width="300" height="220"></canvas>
+        </section>
+    </div>
 </div>

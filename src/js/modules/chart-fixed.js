@@ -124,7 +124,7 @@ var chartFixed = {
         var ctxFixed;
         
         //replace chart canvas if it already exists
-        $('#chartFixed').replaceWith('<canvas id="chartFixed" width="350" height="220"></canvas>');
+        $('#chartFixed').replaceWith('<canvas id="chartFixed" width="350" height="255"></canvas>');
         $('.chartjs-hidden-iframe').remove();
 
         //create new chart
@@ -133,7 +133,11 @@ var chartFixed = {
             type: 'bar',
             data: chartFixed.data,
             options: {
-                responsive: false,
+                legend: {
+                    display: false
+                },
+                maintainAspectRatio: true,
+                responsive: true,
                 scales: {
                     xAxes: [{
                         stacked: true,
