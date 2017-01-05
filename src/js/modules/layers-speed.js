@@ -39,7 +39,7 @@ layersSpeed['Residential broadband of at least 50 Mbps/5 Mbps'] = {
     zIndex: 14
 };
 
-layersSpeed['Residential broadband of at least 100 Mbps/5 Mbps'] = {
+layersSpeed['Residential broadband of at least 100 Mbps/10 Mbps'] = {
     format: 'image/png',
     transparent: true,
     layers: 'bpr_dec2016_speed100',
