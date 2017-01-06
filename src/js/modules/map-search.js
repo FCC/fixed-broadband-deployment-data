@@ -79,7 +79,6 @@
             BPRMap.lon = $('#longitude').val().replace(/ +/g, '');
 
             if (BPRMap.lat === '' || BPRMap.lon === '') {
-                alert('Please enter lat/lon');
                 return;
             }
 
@@ -119,18 +118,18 @@
             e.preventDefault();
 
             if (search === 'loc') {
-                $('#coord-search').addClass('hide');
-                $('#btn-coordSearch').addClass('hide');
+                $('#coord-search, #btn-coordSearch').addClass('hide');
+                $('#location-search, #btn-locSearch').removeClass('hide');                
 
-                $('#location-search').removeClass('hide');
-                $('#btn-locSearch').removeClass('hide');
+                $('#latitude, #longitude').val('');
+
                 $('#btn-label').text('Address');
             } else if (search === 'latlon-decimal') {
-                $('#coord-search').removeClass('hide');
-                $('#btn-coordSearch').removeClass('hide');
+                $('#coord-search, #btn-coordSearch').removeClass('hide');
 
-                $('#location-search').addClass('hide');
-                $('#btn-locSearch').addClass('hide');
+                $('#location-search, #btn-locSearch').addClass('hide');
+                $('#location-search').val('');
+                
                 $('#btn-label').text('Coordinates');
             }
         }

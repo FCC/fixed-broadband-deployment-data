@@ -39,7 +39,6 @@ var tableNWAve = {
                 } else {
                     $(elm).prepend('<th class="rowHeading">With Access</th>');
                 }
-
             });
 
             tableRows.eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
