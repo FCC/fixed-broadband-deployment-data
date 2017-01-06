@@ -26,13 +26,8 @@ var tableNWAve = {
             'columns': columns,
             'destroy': true,
             'info': false,
-            // 'order': [
-            //     [0, 'asc']
-            // ],
             'paging': false,
-            'searching': false,
-            // 'scrollY': '280px',
-            // 'scrollCollapse': true,
+            'searching': false
         });
 
         function addCols() {
@@ -75,16 +70,20 @@ var tableNWAve = {
 
         function getVals(arr) {
             tempObj = {};
+
             for (j = 0; j < arr.length; j++) {
                 var propName = groupPrefix[i] + '_' + arr[j];
                 var colName = columns[j].data;
 
+                // format values
                 if (arr[j] === 'percap_w' || arr[j] === 'percap_wo' || arr[j] === 'hinc_w' || arr[j] === 'hinc_wo') {
                     tempObj[colName] = '$' + utility.formatComma(popData[propName].toFixed(2));
-                } else {
+                } else if (arr[j] === 'povrat_w' || arr[j] === 'povrat_wo') {
+                    tempObj[colName] = utility.formatComma(popData[propName].toFixed(2)) + '%';
+                }
+                else {
                     tempObj[colName] = utility.formatComma(popData[propName].toFixed(2));
                 }
-
             }
         }
 

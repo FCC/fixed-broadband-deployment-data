@@ -19,6 +19,7 @@ var chartNWFixed = {
             return;
         }
 
+        // View Nationwide link
         $('.sect-fixed').on('click', '.link-nw', function(e) {            
             e.preventDefault();
 
