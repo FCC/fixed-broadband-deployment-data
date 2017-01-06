@@ -4,15 +4,12 @@
             <thead>
                 <tr>
                     <th><span class="sr-only">Description</span></th>
-                    <th>Ave.
-                        <br>Population</th>
-                    <th>Ave. Population
-                        <br>Density</th>
+                    <th>Ave.<br>Population</th>
+                    <th>Ave. Population<br>Density</th>
                     <th>Ave. Per Capita
-                        <br>Income ($2014)</th>
+                    <br>Income ($2014)</th>
                     <th>Ave. Median Household Income ($2014)</th>
-                    <th>Ave. Poverty
-                        <br> Rate</th>
+                    <th>Ave. Poverty<br>Rate</th>
                 </tr>
             </thead>
         </table>
