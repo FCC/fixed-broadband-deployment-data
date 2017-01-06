@@ -3,7 +3,7 @@
 var chartSpeed = {
     init: function(county_fips) {
         chartSpeed.data = {
-            labels: ['.2', '10/1', '25/3', '50/5', '100/10'],
+            labels: ['0.2', '10/1', '25/3', '50/5', '100/10'],
             datasets: [{
                 label: '0',
                 backgroundColor: '#ffffcc',
