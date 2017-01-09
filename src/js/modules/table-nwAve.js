@@ -41,17 +41,17 @@ var tableNWAve = {
                 }
             });
 
-            tableRows.eq(0).before('<tr><th colspan="7">United States (All Areas)</th></tr>');
-            tableRows.eq(1).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
-            tableRows.eq(3).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+            tableRows.eq(0).before('<tr><th colspan="7" scope="col">United States (All Areas)</th></tr>');
+            tableRows.eq(1).after('<tr><th class="subHeading" colspan="7" scope="row">Rural Areas</th></tr>');
+            tableRows.eq(3).after('<tr><th class="subHeading" colspan="7" scope="row">Urban Areas</th></tr>');
 
-            tableRows.eq(5).after('<tr><th colspan="7">Tribal Lands</th></tr>');
-            tableRows.eq(7).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
-            tableRows.eq(9).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+            tableRows.eq(5).after('<tr><th colspan="7" scope="col">Tribal Lands</th></tr>');
+            tableRows.eq(7).after('<tr><th class="subHeading" colspan="7" scope="row">Rural Areas</th></tr>');
+            tableRows.eq(9).after('<tr><th class="subHeading" colspan="7" scope="row">Urban Areas</th></tr>');
 
-            tableRows.eq(11).after('<tr><th colspan="7">U.S. Territories</th></tr>');
-            tableRows.eq(13).after('<tr><th class="subHeading" colspan="7">Rural Areas</th></tr>');
-            tableRows.eq(15).after('<tr><th class="subHeading" colspan="7">Urban Areas</th></tr>');
+            tableRows.eq(11).after('<tr><th colspan="7" scope="col">U.S. Territories</th></tr>');
+            tableRows.eq(13).after('<tr><th class="subHeading" colspan="7" scope="row">Rural Areas</th></tr>');
+            tableRows.eq(15).after('<tr><th class="subHeading" colspan="7" scope="row">Urban Areas</th></tr>');
         }
 
     },
