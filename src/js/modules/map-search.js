@@ -59,9 +59,14 @@
         locChange: function() {
             var loc = $('#location-search').val();
 
+            if (loc === '') {
+                alert('Please enter a valid address.');
+                return;
+            }
+
             BPRMap.geocoder.query(loc, codeMap);
 
-            function codeMap(err, data) {                
+            function codeMap(err, data) {
                 if (data.results.features.length === 0) {
                     alert("The address provided could not be found. Please enter a new address.");
                     return;
@@ -79,11 +84,16 @@
             BPRMap.lon = $('#longitude').val().replace(/ +/g, '');
 
             if (BPRMap.lat === '' || BPRMap.lon === '') {
+                alert('Please enter a valid latitude and longitude.');
                 return;
             }
 
+            if (!BPRMap.lat.match(/^-?\d+\.?\d*$/) || !BPRMap.lon.match(/^-?\d+\.?\d*$/)) {
+                alert('Invalid latitude or longitude value.');
+                return;
+            }
             if (Math.abs(BPRMap.lat) > 90 || Math.abs(BPRMap.lon) > 180) {
-                alert('Lat/Lon values out of range');
+                alert('Latitude or longitude value is out of range.');
                 return;
             }
 
@@ -119,7 +129,7 @@
 
             if (search === 'loc') {
                 $('#coord-search, #btn-coordSearch').addClass('hide');
-                $('#location-search, #btn-locSearch').removeClass('hide');                
+                $('#location-search, #btn-locSearch').removeClass('hide');
 
                 $('#latitude, #longitude').val('');
 
@@ -129,7 +139,7 @@
 
                 $('#location-search, #btn-locSearch').addClass('hide');
                 $('#location-search').val('');
-                
+
                 $('#btn-label').text('Coordinates');
             }
         }
