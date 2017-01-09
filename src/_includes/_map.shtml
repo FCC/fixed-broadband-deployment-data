@@ -48,7 +48,7 @@
     </div>
     <div id="map-container" class="map-wrapper">
         <div class="control-full leaflet-control-layers leaflet-control">
-            <a href="#" class="mapbox-icon" title="View full width map"><span class="icon icon-external-link-square"></span></a>
+            <a href="#" class="mapbox-icon" title="View full width map" role="button"><span class="icon icon-external-link-square"></span><span class="sr-only">View full width map</span></a>
         </div>
     </div>
 </section>
