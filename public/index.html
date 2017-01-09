@@ -70,7 +70,7 @@
                             <ul aria-hidden="true" id="menu-primary" class="nav navbar-nav nav-offcanvas-right">
                                 <li class="active">
                                     <a aria-controls="browse-by-category" href="#browseCategory">
-                                        <strong class="title-emphasis">Fixed-Broadband Deployment Data</strong>
+                                        <strong class="title-emphasis">Fixed Broadband Deployment Data</strong>
                                     </a>
                                 </li>
                             </ul>
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-7 col-lg-8">
+                    <div class="col-sm-12 col-lg-8">
                         <section id="map">
     <div id="search-field-holder">
         <div class="search-field input-group">
@@ -139,20 +139,20 @@
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span id="btn-label">Address</span> <span class="caret"></span></button>
                             <ul id="input-search-switch" role="menu" class="dropdown-menu">
                                 <li><a href="#" data-value="loc">Address</a></li>
-                                <li><a href="#" data-value="latlon-decimal">Coordinates</a></li>
+                                <li><a href="#" data-value="latlon-decimal">Coord<span class="hidden-xs hidden-sm hidden-md">inates</span></a></li>
                             </ul>
                         </div>
                         <input id="location-search" class="form-control ui-autocomplete-input ui-corner-all" type="search" placeholder="Enter Address" style="display: block" autocomplete="off" aria-label="Enter Address">
-                        <div id="coord-search" class="form-control hide" type="search" placeholder="Enter Latlon decimal">
+                        <div id="coord-search" class="form-control hide">
                             <table id="table-latlon-decimal" class="table-srchCoords">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <label for="latitude">Latitude:</label>
+                                            <label for="latitude">Lat<span class="hidden-xs hidden-sm hidden-md">itude</span>:</label>
                                             <input id="latitude" class="form-control" placeholder="41.234567">
                                         </td>
                                         <td>
-                                            <label for="longitude">Longitude:</label>
+                                            <label for="longitude">Lon<span class="hidden-xs hidden-sm hidden-md">gitude</span>:</label>
                                             <input id="longitude" class="form-control" placeholder="-91.234567">
                                         </td>
                                     </tr>
@@ -183,22 +183,22 @@
         </div>
     </div>
 </section>
- 
-                        <section>
+
+                        <section class="hidden-xs hidden-sm hidden-md">
                             <h2 class="h4">About</h2>
                             <p>This map shows where fixed residential broadband services of at least 25 Mbps download and 3 Mbps upload is deployed and where it is not deployed. The graph on the right side shows the fraction of population with or without access to such broadband.</p>
                             <p>Enter an address or click on the map to see the list of providers that offer residential services in the census block area on the Providers tab, each provider’s maximum advertised residential speed, and demographic data for the county associated with the census block on the Demographics tab. Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend. Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.</p>
                         </section>
-                        <section>
+                        <section class="hidden-xs hidden-sm hidden-md">
                             <h3 class="h5"><b>Form 477</b></h3>
                             <p>For more information about the data underlying this map and how it is collected, please visit:</p>
                             <ul>
                                 <li><a href="https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477">Fixed Broadband Deployment Data from FCC Form 477</a></li>
                                 <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
                             </ul>
-                        </section>                       
+                        </section>
                     </div>
-                    <div class="map-sidebar col-sm-5 col-lg-4">
+                    <div class="map-sidebar col-lg-4">
                         <div class="tab-nav">
     <ul class="layer-switch nav nav-pills" role="navigation">
         <li class="active" role="presentation"><a href="#fixed" aria-controls="fixed" role="tab" data-toggle="tab">Fixed</a></li>
@@ -323,11 +323,26 @@
 </section>
 
                     </div>
+                    <div class="col-sm-12 visible-xs-block visible-sm-block visible-md-block">
+                        <hr>
+                        <section>
+                            <h2 class="h4">About</h2>
+                            <p>This map shows where fixed residential broadband services of at least 25 Mbps download and 3 Mbps upload is deployed and where it is not deployed. The graph on the right side shows the fraction of population with or without access to such broadband.</p>
+                            <p>Enter an address or click on the map to see the list of providers that offer residential services in the census block area on the Providers tab, each provider’s maximum advertised residential speed, and demographic data for the county associated with the census block on the Demographics tab. Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend. Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.</p>
+                        </section>
+                        <section>
+                            <h3 class="h5"><b>Form 477</b></h3>
+                            <p>For more information about the data underlying this map and how it is collected, please visit:</p>
+                            <ul>
+                                <li><a href="https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477">Fixed Broadband Deployment Data from FCC Form 477</a></li>
+                                <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
+                            </ul>
+                        </section>
+                    </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-sm-8">
-                        
                     </div>
                 </div>
             </main>

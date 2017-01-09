@@ -83,6 +83,18 @@
 }
 
 
+.search__input .open > .dropdown-menu {
+    display: none;
+     @media (min-width: @screen-xs-min) and (orientation: portrait) { 
+        display: block;
+    } 
+
+    @media (orientation: landscape) { 
+        display: block;
+    }
+     
+}
+
 /* Map */
 
 .map-col {
