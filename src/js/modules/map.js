@@ -132,21 +132,21 @@ var BPRMap = {
 
     }, //end createMap
     createLegend: function(layerPath) {
-        var td = '';
-        var tr = '';
+        var li = '';
         var count = 0;
 
         for (var key in layers[layerPath]) {
-            td += '<td><input id="chk' + count + '" type="checkbox" data-layer="' + key + '" checked></td>';
-            td += '<td><div class="key-symbol" style="background-color:' + layers[layerPath][key].color + '"></div></td>';
-            td += '<td><label for="chk' + count + '">' + key + '</label></td>';
-            tr += '<tr>' + td + '</tr>';
-            td = '';
+            li += '<li>';
+            li += '<input id="chk' + count + '" type="checkbox" data-layer="' + key + '" checked> ';
+            li += '<div class="key-symbol" style="background-color:' + layers[layerPath][key].color + '"></div> ';
+            li += '<label for="chk' + count + '">' + key + '</label>';
+            li += '</li>'; 
+
             count++;
         }
 
         $('.map-legend')
-            .find('tbody').prepend(tr)
+            .find('ul').prepend(li)
             .end()
             .on('click', '[type=checkbox]', function() {
                 var layerName = $(this).attr('data-layer');
