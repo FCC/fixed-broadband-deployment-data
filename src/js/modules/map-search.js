@@ -140,7 +140,12 @@
                 $('#location-search, #btn-locSearch').addClass('hide');
                 $('#location-search').val('');
 
-                $('#btn-label').text('Coordinates');
+                if ($('[data-value="latlon-decimal"]').find('.hidden-sm').is(':visible')) {
+                    $('#btn-label').text('Coordinates');    
+                } else {
+                    $('#btn-label').text('Coord.');
+                }
+                
             }
         }
     };
