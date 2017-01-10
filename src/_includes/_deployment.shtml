@@ -41,11 +41,11 @@
         </section>
         <section class="sect-fixed">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-xs-8">
                     <h3 class="h4"><span data-county></span>, <span data-state></h3>
                     <p class="help-block">Empty columns indicate data not available.</p>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4">
                     <a class="link-nw pull-right" href="#">View Nationwide</a>
                 </div>
             </div>
