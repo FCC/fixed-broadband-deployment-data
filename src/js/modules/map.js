@@ -55,9 +55,15 @@ var BPRMap = {
         BPRMap.createMap();
 
         BPRMap.map.on('click', BPRMap.update);
+        BPRMap.map.on('zoomend', function(){
+            Hash.update(BPRMap);
+        });
 
         if (Hash.hasHash()) {
             BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
+            
+            // use zoom value from hash only on initial page load
+            BPRMap.hashZoom = true;
         }
 
         // toggle map container width
@@ -117,9 +123,7 @@ var BPRMap = {
                 position: 'topleft'
             }
         ).addTo(BPRMap.map);
-
-        // hash = L.hash(BPRMap.map);
-
+        
         BPRMap.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
         BPRMap.createLegend(layerPath);
@@ -129,6 +133,10 @@ var BPRMap = {
         if (Hash.hasHash() === false) {
             chartSpeed.init('nw');
         }
+
+        $('.leaflet-control-zoom-in, .leaflet-control-zoom-out').click(function() {
+            Hash.update(BPRMap);
+        });
 
     }, //end createMap
     createLegend: function(layerPath) {
@@ -140,7 +148,7 @@ var BPRMap = {
             li += '<input id="chk' + count + '" type="checkbox" data-layer="' + key + '" checked> ';
             li += '<div class="key-symbol" style="background-color:' + layers[layerPath][key].color + '"></div> ';
             li += '<label for="chk' + count + '">' + key + '</label>';
-            li += '</li>'; 
+            li += '</li>';
 
             count++;
         }
@@ -219,7 +227,11 @@ var BPRMap = {
 
         clickedCountyLayer = L.mapbox.featureLayer(data).setStyle(clickedCountyStyle).addTo(BPRMap.map);
 
-        if (countyLayerData.features.length === 0 || countyLayerData.features[0].properties.county_fips !== data.features[0].properties.county_fips) {
+        // use zoom value from hash only on initial page load
+        if (BPRMap.hashZoom) {
+            BPRMap.map.setView([BPRMap.lat, BPRMap.lon], BPRMap.zoom);
+            BPRMap.hashZoom = false;
+        } else if (countyLayerData.features.length === 0 || countyLayerData.features[0].properties.county_fips !== data.features[0].properties.county_fips) {
             BPRMap.map.fitBounds(clickedCountyLayer.getBounds());
         }
 
