@@ -3,6 +3,16 @@
 var layersSpeed = {};
 
 //Speed map layers
+
+layersSpeed['No residential services at 200 kbps or above'] = {
+    format: 'image/png',
+    transparent: true,
+    layers: 'bpr_dec2016_speedlt200',
+    styles: 'bpr_dec2016_speedlt200',
+    color: '#ffffcc',
+    zIndex: 10
+};
+
 layersSpeed['Residential services of at least 200 kbps'] = {
     format: 'image/png',
     transparent: true,
