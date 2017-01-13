@@ -1,5 +1,7 @@
 'use strict';
 
+var Validate = require('./validate.js');
+
 var Hash = {
     params: {},
     hasHash: function() {
@@ -13,10 +15,15 @@ var Hash = {
         var lonHash = hash.match(/lon=([^&]+)/i);
         var zoomHash = hash.match(/zoom=([^&]+)/i);
 
-        BPRMap.lat = latHash === null ? BPRMap.lat : latHash[1].replace(/\+/g, '%20');
-        BPRMap.lon = lonHash === null ? BPRMap.lon : lonHash[1].replace(/\+/g, '%20');
-        BPRMap.zoom = zoomHash === null ? BPRMap.zoom : zoomHash[1].replace(/\+/g, '%20');
-
+        if (latHash === null || lonHash === null || zoomHash === null || !Validate.coord(latHash[1], lonHash[1], zoomHash[1])) {
+            BPRMap.lat = BPRMap.lat;
+            BPRMap.lon = BPRMap.lon;
+            BPRMap.zoom = BPRMap.zoom;
+        } else {
+            BPRMap.lat = latHash[1].replace(/\+/g, '%20');
+            BPRMap.lon = lonHash[1].replace(/\+/g, '%20');
+            BPRMap.zoom = zoomHash[1].replace(/\+/g, '%20');
+        }        
     },
     update: function(BPRMap) {
 
