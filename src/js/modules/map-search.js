@@ -74,9 +74,7 @@
                 BPRMap.lat = data.latlng[0];
                 BPRMap.lon = data.latlng[1];
 
-                BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
-                setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
-
+                BPRMap.getCounty(BPRMap.lat, BPRMap.lon);                
             }
         },
         search_decimal: function() {
@@ -97,8 +95,7 @@
                 return;
             }
 
-            BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
-            setTimeout(function() { BPRMap.getBlock(BPRMap.lat, BPRMap.lon); }, 200);
+            BPRMap.getCounty(BPRMap.lat, BPRMap.lon);            
         },
         geoLocation: function() {
             if (navigator.geolocation) {

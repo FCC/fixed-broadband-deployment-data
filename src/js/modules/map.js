@@ -250,7 +250,7 @@ var BPRMap = {
         chartSpeed.init(countyData.county_fips);
 
     }, //end showCounty
-    getBlock: function(lat, lon) {
+    getBlock: function(lat, lon) { 
         var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
