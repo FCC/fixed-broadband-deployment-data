@@ -7,8 +7,8 @@ var layersSpeed = {};
 layersSpeed['No residential services at 200 kbps or above'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_dec2016_speedlt200',
-    styles: 'bpr_dec2016_speedlt200',
+    layers: 'bpr_dec2016_speed_lt_200',
+    styles: 'bpr_dec2016_speed_lt_200',
     color: '#ffffcc',
     zIndex: 10
 };
