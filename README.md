@@ -15,8 +15,14 @@
    ```
    
 4. Build the docs (HTML, LESS/CSS, JS).  
+   
+   Development
    ```
    grunt
+   ```
+   Production
+   ```
+   grunt build:release
    ```
    
 4. Run the app.  
