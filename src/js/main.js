@@ -6,7 +6,7 @@
     var tableNWAve = require('./modules/table-nwAve.js');
     var pathname = window.location.pathname.split('\\').pop().split('/').pop().split('.')[0];
 
-    window.GEOHOST = 'http://gisp-geosrv-tc-test.us-west-2.elasticbeanstalk.com/fcc'; 
+    window.GEOHOST = 'https://geo-at.fcc.gov/fcc'; 
     
     if (pathname === '' || pathname === 'index') {
         window.page = 'deployment';
