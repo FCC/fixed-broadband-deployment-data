@@ -244,7 +244,7 @@ var BPRMap = {
         BPRMap.getBlock(BPRMap.lat, BPRMap.lon);
 
         tableDemog.create(countyData);
-        chartDemog.create(countyData);
+        chartDemog.init(countyData.county_fips, countyData);
         chartFixed.init(countyData.county_fips);
         chartTech.init(countyData.county_fips);
         chartSpeed.init(countyData.county_fips);
