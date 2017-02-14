@@ -8,6 +8,21 @@ header .container-fluid {
     width: 100%;
 }
 
+a {
+    &:focus {
+        outline: thin dotted;
+    }
+    &[href]:after {
+        @media print {
+            content: none !important;
+        }
+    }
+}
+
+section {
+    border: 1px solid transparent;
+}
+
 .dl-inline {
     dt,
     dd {
@@ -33,15 +48,4 @@ header .container-fluid {
     clip: auto;
     overflow: visible;
     height: auto;
-}
-
-a {
-    &:focus {
-        outline: thin dotted;
-    }
-    &[href]:after {
-        @media print {
-            content: none !important;
-        }
-    }
 }
