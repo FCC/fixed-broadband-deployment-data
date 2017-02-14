@@ -46,11 +46,12 @@ var chartTech = {
 
         $.ajax({
             type: 'GET',
-            url: techURL,
-            success: function(data) {
-                chartTech.update(data);
-                chartTech.display();
-            }
+            url: techURL            
+        }).done(function(data) {
+            chartTech.update(data);
+            chartTech.display();
+        }).fail(function(){
+            alert('Unable to access chart data.');
         });
     },    
     update: function(data) {

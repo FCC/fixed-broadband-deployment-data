@@ -52,11 +52,12 @@ var chartSpeed = {
 
         $.ajax({
             type: 'GET',
-            url: chartSpeed.FIPS === 'nw' ? speedNWURL : speedURL,
-            success: function(data) {
-                chartSpeed.update(data);
-                chartSpeed.display();
-            }
+            url: chartSpeed.FIPS === 'nw' ? speedNWURL : speedURL
+        }).done(function(data) {
+            chartSpeed.update(data);
+            chartSpeed.display();
+        }).fail(function(){
+            alert('Unable to access chart data.');
         });
     },
     update: function(data) {

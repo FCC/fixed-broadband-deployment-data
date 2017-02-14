@@ -38,6 +38,8 @@ var chartFixed = {
         }).done(function(data) {
             chartFixed.update(data);
             chartFixed.getURData();
+        }).fail(function(){
+            alert('Unable to access county data.');
         });
     },
     getURData: function() {
@@ -49,6 +51,8 @@ var chartFixed = {
         }).done(function(data) {
             chartFixed.processURData(data);
             chartFixed.getTribalData();
+        }).fail(function(){
+            alert('Unable to access urban and rural data.');
         });
     },
     getTribalData: function() {
@@ -60,6 +64,8 @@ var chartFixed = {
         }).done(function(data) {
             chartFixed.update(data);
             chartFixed.display();
+        }).fail(function(){
+            alert('Unable to access tribal data.');
         });
     },
     processURData: function(data) {

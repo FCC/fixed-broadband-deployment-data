@@ -7,7 +7,6 @@ var tableDemog = require('./table-demographics.js');
 var chartDemog = require('./chart-demographics.js');
 var chartFixed = require('./chart-fixed.js');
 var chartNWFixed = require('./chart-fixedNationwide.js');
-var chartTech = require('./chart-tech.js');
 var chartSpeed = require('./chart-speed.js');
 
 var layers = {
@@ -55,13 +54,13 @@ var BPRMap = {
         BPRMap.createMap();
 
         BPRMap.map.on('click', BPRMap.update);
-        BPRMap.map.on('zoomend', function(){
+        BPRMap.map.on('zoomend', function() {
             Hash.update(BPRMap);
         });
 
         if (Hash.hasHash()) {
             BPRMap.getCounty(BPRMap.lat, BPRMap.lon);
-            
+
             // use zoom value from hash only on initial page load
             BPRMap.hashZoom = true;
         }
@@ -123,7 +122,7 @@ var BPRMap = {
                 position: 'topleft'
             }
         ).addTo(BPRMap.map);
-        
+
         BPRMap.geocoder = L.mapbox.geocoder('mapbox.places-v1');
 
         BPRMap.createLegend(layerPath);
@@ -195,8 +194,11 @@ var BPRMap = {
 
         $.ajax({
             type: 'GET',
-            url: geoURL,
-            success: BPRMap.showCounty
+            url: geoURL
+        }).done(function(data) {
+            BPRMap.showCounty(data);            
+        }).fail(function(){
+            alert('Unable to access county data.');
         });
     }, //end getCounty
     showCounty: function(data) {
@@ -246,17 +248,19 @@ var BPRMap = {
         tableDemog.create(countyData);
         chartDemog.init(countyData.county_fips, countyData);
         chartFixed.init(countyData.county_fips);
-        chartTech.init(countyData.county_fips);
         chartSpeed.init(countyData.county_fips);
 
     }, //end showCounty
-    getBlock: function(lat, lon) { 
+    getBlock: function(lat, lon) {
         var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',
-            url: geoURL,
-            success: BPRMap.showBlock
+            url: geoURL
+        }).done(function(data) {
+            BPRMap.showBlock(data);            
+        }).fail(function(){
+            alert('Unable to access block data.');
         });
     },
     showBlock: function(data) {
