@@ -37,7 +37,6 @@ var chartSpeed = {
 
         // show Nationwide chart
         $('.sect-speed').on('click', '.link-nw', function() {
-            console.log(chartSpeed.FIPS);
             chartSpeed.init('nw');
             $('.sect-speed').addClass('hide');
             $('.sect-speedNW').removeClass('hide');

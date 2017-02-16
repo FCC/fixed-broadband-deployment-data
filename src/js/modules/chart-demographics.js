@@ -16,6 +16,11 @@ var chartOpts = {
 
 var chartDemog = {
     init: function(county_fips, data) {
+        //show chart if it exists on the page
+        if ($('#chartDemog').length === 0) {
+            return;
+        }
+
         //if county FIPS is the same don't regenerate chart
         if (county_fips === chartDemog.FIPS) {
             return;
