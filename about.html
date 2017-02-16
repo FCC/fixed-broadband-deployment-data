@@ -1,17 +1,50 @@
 <!doctype html>
+<!--
+    __________________   __  ___                
+   / ____/ ____/ ____/  /  |/  /___ _____  _____
+  / /_  / /   / /      / /|_/ / __ `/ __ \/ ___/
+ / __/ / /___/ /___   / /  / / /_/ / /_/ (__  ) 
+/_/    \____/\____/  /_/  /_/\__,_/ .___/____/  
+                                 /_/            
+-->
 <html class="no-js" lang="en">
 
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>404 Page not found - FCC Maps</title>
+    <link rel="canonical" href="https://www.fcc.gov/">
+    <link rel="shortlink" href="https://www.fcc.gov/">
+    <meta property="og:site_name" content="Federal Communications Commission GIS Program">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maps.fcc.gov/" />
+    <meta property="og:title" content="Federal Communications Commission GIS Program">
+    <meta property="og:description" content="The United States of America">
+    <title>About - Broadband Progress Report (Dec. 2016) - FCC GIS</title>
+    <meta name="description" content="FCC GIS Program">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="https://www.fcc.gov/sites/all/themes/fcc/favicon.ico" type="image/vnd.microsoft.icon" />
     <meta name="MobileOptimized" content="width">
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="cleartype" content="on">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet" />
-    <link href="//api.tiles.mapbox.com/mapbox.js/v2.3.0/mapbox.css" rel="stylesheet" />
-    <link href="./css/gisp-theme.min.css" rel="stylesheet" />    
+    <link href="css/gisp-theme.min.css" rel="stylesheet">
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-16888309-1', 'auto');
+    ga('send', 'pageview');
+    </script>
 </head>
 
 <body class="docs-collapsed-nav js-ready">
@@ -35,14 +68,7 @@
                             <ul aria-hidden="true" id="menu-primary" class="nav navbar-nav nav-offcanvas-right">
                                 <li class="active">
                                     <a aria-controls="browse-by-category" href="#browseCategory">
-                                        <div class="text-prefix">Browse by</div>
-                                        <strong class="title-emphasis">Category</strong>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="" href="#browseBureau">
-                                        <div class="text-prefix">Browse by</div>
-                                        <strong class="title-emphasis">Bureaus &amp; Offices</strong>
+                                        <strong class="title-emphasis">Fixed Broadband Deployment Data</strong>
                                     </a>
                                 </li>
                             </ul>
@@ -58,48 +84,19 @@
                             <div class="container tab-pane active" id="browse-by-category">
                                 <ul id="browseCategory" class="nav nav-tabs menu-secondary js-browseBy" role="navigation">
                                     <li>
-                                        <a href="https://www.fcc.gov/about/overview"><span class="link-title">About the FCC</span></a>
+                                        <a href="index.html"><span class="link-title">Deployment</span></a>
                                     </li>
                                     <li>
-                                        <a href="https://www.fcc.gov/proceedings-actions">Proceedings &amp; Actions</a>
+                                        <a href="speed.html"><span class="link-title">Speed</a></span>
                                     </li>
                                     <li>
-                                        <a href="https://www.fcc.gov/licensing">Licensing &amp; Databases</a>
+                                        <a href="providers.html"><span class="link-title">Provider Count</span></a>
                                     </li>
                                     <li>
-                                        <a href="https://www.fcc.gov/reports-research">Reports &amp; Research</a>
-                                    </li>
+                                        <a href="technology.html"><span class="link-title">Technology</span></a>
+                                    </li>                                                                        
                                     <li>
-                                        <a href="https://www.fcc.gov/news-events">News &amp; Events</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/consumers">For Consumers</a>
-                                    </li>
-                                </ul>
-                                <ul id="browseBureau" class="nav nav-tabs menu-secondary js-browseBy hide" role="navigation">
-                                    <li>
-                                        <a href="https://www.fcc.gov/consumer-governmental-affairs#block-menu-block-4"><span class="link-title">Consumer</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/enforcement#block-menu-block-4">Enforcement</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/international#block-menu-block-4">International</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/media#block-menu-block-4">Media</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/public-safety-and-homeland-security#block-menu-block-4">Public Safety</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/wireless-telecommunications#block-menu-block-4">Wireless</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/wireline-competition#block-menu-block-4">Wireline</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.fcc.gov/offices-bureaus#block-menu-block-4">Offices</a>
+                                        <a href="about.html"><span class="link-title">About</span></a>
                                     </li>
                                 </ul>
                                 <!--.nav-tabs -->
@@ -110,22 +107,61 @@
                 </nav>
             </header>
             <main class="container">
-            <a id="main-content" tabindex="-1"></a>
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="nav-breadcrumb">
-							<ol>
-								<li><a href="https://www.fcc.gov/" title="Home">Home</a> / </li>
-								<li><a href="https://www.fcc.gov/reports-research" title="Reports &amp; Research">Reports &amp; Research</a> / </li>
-								<li><a href="./" title="Maps">Maps</a> / </li>
-							</ol>
-						</div>
-                        <h1>Page not found</h1>
-                        The requested page "<span id="path"></span>" could not be found.
+                        <div class="pg-header">
+                            <div class="nav-breadcrumb">
+                                <ol>
+                                    <li><a href="https://www.fcc.gov/" title="Home">Home</a> / </li>
+                                    <li><a href="https://www.fcc.gov/reports-research" title="Reports &amp; Research">Reports &amp; Research</a> / </li>
+                                    <li><a href="https://www.fcc.gov/maps/" title="Maps">Maps</a> / </li>
+                                </ol>
+                            </div>
+                            <a id="main-content" tabindex="-1"></a>
+                            <h1>About</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>These maps and graphs are being published to help the public visualize fixed-broadband deployment data. The data represent broadband deployment as of December, 2015, as reported to the Commission by facilities-based broadband providers on FCC Form 477. While the underlying data are fully public, each release of data includes millions of records, making it difficult to manage or to discern patterns. These maps and graphs are meant to provide easier access.</p>
+                        <p>The Commission also publishes an <a href="https://www.fcc.gov/reports-research/reports/broadband-progress-reports/2016-broadband-progress-report"><b>annual Broadband Progress Report</b></a>.</p>
+                        <section>
+                            <h2 class="h4">Form 477 Data Collection</h2>
+                            <p>For more information about the Form 477 data collection, please visit:</p>
+                            <ul>
+                                <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
+                                <li> <a href="https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477">Download Fixed-broadband Deployment Data</a></li>
+                                <li><a href="https://www.fcc.gov/mobile-deployment-form-477-data">Mobile Deployment Form 477 Data</a></li>
+                            </ul>
+                        </section>                        
+                        <section>
+                            <h2 class="h4">Broadband Subscription Data</h2>
+                            <p>The Wireline Competition Bureau also releases information about broadband subscription data twice each year, available at:</p>
+                            <ul>
+                                <li><a href="https://www.fcc.gov/reports-research/reports/internet-access-services-reports/internet-access-services-reports">Internet Access Services Reports</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-sm-4">
+                        <br class="visible-xs-block">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Additional Maps</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>Mobile-broadband data visualizations:</p>
+                                <ul>
+                                    <li><a href="https://www.fcc.gov/maps/nationwide-lte-coverage-july-2015/">Nationwide LTE Coverage</a></li>
+                                    <li><a href="https://www.fcc.gov/maps/nationwide-mobile-wireless-coverage-july-2015/">Nationwide Mobile Wireless Coverage</a></li>
+                                    <li><a href="https://www.fcc.gov/maps/terrestrial-mobile-wireless-digital-coverage-july-2015/">Terrestrial Mobile Wireless Digital Coverage</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
-            <footer class="container">
+            <footer id="footer" class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="nav-footer">
@@ -200,13 +236,12 @@
     </div>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script>
-    window.jQuery || document.write('<script src="./js/vendor/jquery-1.11.2.min.js"><\/script>')
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
     </script>
-    <script src="./js/pg-common.js"></script>
-    <script>
-    var path = window.location.hash.substring(1);
-	$('#path').text(path);
-    </script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/jquery.dataTables.min.js"></script>
+    <script src="js/pg-common.js"></script>
+    <script src="js/app.min.js"></script>
 </body>
 
 </html>
