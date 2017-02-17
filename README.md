@@ -8,7 +8,6 @@ The Commission also publishes an [annual Broadband Progress Report](https://www.
 
 For more information about the Form 477 data collection, please visit:
 
-Form 477 Resources
 * [Form 477 Resources](https://www.fcc.gov/general/form-477-resources-filers)
 * [Download Fixed-broadband Deployment Data](https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477)
 * [Mobile Deployment Form 477 Data](https://www.fcc.gov/mobile-deployment-form-477-data)
