@@ -102,6 +102,9 @@ var BPRMap = {
 
         BPRMap.map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');
 
+        //move Mapbox logo to top right
+        $('#map-container').find('.leaflet-bottom.leaflet-left').toggleClass('leaflet-bottom leaflet-left leaflet-top leaflet-right');
+
         //base layers
         baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(BPRMap.map);
         baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
@@ -190,7 +193,7 @@ var BPRMap = {
 
     }, //end update
     getCounty: function(lat, lon) {
-        var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_dec2016_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=fcc:bpr_apr2017_county&maxFeatures=1&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',
@@ -219,7 +222,7 @@ var BPRMap = {
 
         var id = data.features[0].id.replace(/\..*$/, '');
 
-        if (id !== 'bpr_dec2016_county') {
+        if (id !== 'bpr_apr2017_county') {
             return;
         }
 
@@ -252,7 +255,7 @@ var BPRMap = {
 
     }, //end showCounty
     getBlock: function(lat, lon) {
-        var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
+        var geoURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_apr2017&maxFeatures=100&outputFormat=application/json&cql_filter=contains(geom,%20POINT(' + lon + '%20' + lat + '))';
 
         $.ajax({
             type: 'GET',
