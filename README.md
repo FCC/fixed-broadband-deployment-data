@@ -4,7 +4,7 @@ These maps and graphs are being published to help the public visualize fixed-bro
 
 The Commission also publishes an [annual Broadband Progress Report](https://www.fcc.gov/reports-research/reports/broadband-progress-reports/2016-broadband-progress-report).
 
-##Form 477 Data Collection
+## Form 477 Data Collection
 
 For more information about the Form 477 data collection, please visit:
 
@@ -12,7 +12,7 @@ For more information about the Form 477 data collection, please visit:
 * [Download Fixed-broadband Deployment Data](https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477)
 * [Mobile Deployment Form 477 Data](https://www.fcc.gov/mobile-deployment-form-477-data)
 
-##Broadband Subscription Data
+## Broadband Subscription Data
 
 The Wireline Competition Bureau also releases information about broadband subscription data twice each year, available at:
 
