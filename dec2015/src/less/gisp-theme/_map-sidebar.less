@@ -1,0 +1,93 @@
+/* Map sidebar */
+.map-sidebar {
+	position: relative;
+	// width: 33.33%;
+	.h4 {
+		margin-bottom: 20px;
+	}
+	section:not(.map-legend) {
+		border-bottom: 4px solid #D0D0D0;
+		margin: 0 0 20px;
+		padding-bottom: 20px;
+	}
+	.table {
+		margin-bottom: 0px;
+	}
+}
+
+.tab-nav {
+    border-bottom: 6px solid #ffcc44;
+    margin-bottom: 15px;
+}
+
+.layer-switch li {
+    font-weight: bold;
+}
+
+.nav-pills>li>a {
+	border-radius: 4px 4px 0 0;
+	padding: 10px;
+}
+
+.sect-fixed, .map-legend {
+	.h4 {
+		margin-bottom: 0;
+	}
+	.help-block {
+		margin-bottom: 20px;
+	}
+}
+
+.sect-census, .sect-demog {
+	dl {
+		margin: 10px 0 0;
+	}
+	dt {
+		text-align: left;		
+	}	
+}
+
+.sect-census {
+	dt {
+		width: 100px;
+	}
+	dd {
+		margin: 0 0 10px;
+		@media (min-width: @screen-sm-min) {
+			margin: 0 0 0 105px;
+		}
+	}
+}
+
+ .sect-demog {	
+ 	dl {
+ 		margin-bottom: 40px;
+ 	}
+ 	dt {
+		width: 200px;
+	}
+	dd {
+		margin: 0 0 10px;
+		@media (min-width: @screen-sm-min) {
+			margin: 0 0 0 205px;
+		}
+	}
+}
+
+.sect-provider {
+	th {
+		white-space: nowrap;
+	}
+	
+	th, td {
+		&:nth-child(3), &:last-child {
+			text-align: right;
+		}
+	}
+}
+
+.link-nw {
+	font-size: 12px;
+	margin-top: 15px;
+	white-space: nowrap;
+}

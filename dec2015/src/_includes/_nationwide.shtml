@@ -1,0 +1,17 @@
+<section>
+    <div class="table-responsive">
+        <table id="table-nwAve" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col"><span class="sr-only">Description</span></th>
+                    <th scope="col">Ave.<br>Population</th>
+                    <th scope="col">Ave. Population<br>Density</th>
+                    <th scope="col">Ave. Per Capita
+                    <br>Income ($2014)</th>
+                    <th scope="col">Ave. Median Household Income ($2014)</th>
+                    <th scope="col">Ave. Poverty<br>Rate</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</section>
