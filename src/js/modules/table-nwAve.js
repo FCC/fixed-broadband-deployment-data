@@ -14,7 +14,7 @@ var rowTitles = ['Without Access', 'With Access'];
 
 var tableNWAve = {
     getData: function(blockFips) {
-        var nwAveURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_apr2017_nw_average&maxFeatures=100&outputFormat=application/json';
+        var nwAveURL = window.GEOHOST + '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_nw_average&maxFeatures=100&outputFormat=application/json';
 
         $('#table-nwAve').DataTable({
             'ajax': {
