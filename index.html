@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://maps.fcc.gov/" />
     <meta property="og:title" content="Federal Communications Commission GIS Program">
     <meta property="og:description" content="The United States of America">
-    <title>Technology - Broadband Progress Report (Dec. 2016) - FCC GIS</title>
+    <title>Deployment - Broadband Progress Report (Dec. 2016) - FCC GIS</title>
     <meta name="description" content="FCC GIS Program">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="https://www.fcc.gov/sites/all/themes/fcc/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -108,7 +108,7 @@
                     </div>
                 </nav>
             </header>
-            <main class="container">
+            <main class="container">                
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="pg-header">
@@ -120,12 +120,12 @@
                                 </ol>
                             </div>
                             <a id="main-content" tabindex="-1"></a>
-                            <h1>Technology <span class="subtitle">Fixed Broadband (25 Mbps/3 Mbps) as of Dec. 2015</span></h1>
+                            <h1>Deployment <span class="subtitle">Fixed Broadband (25 Mbps/3 Mbps)</span></h1>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-md-8">
                         <section id="map">
     <div id="search-field-holder">
         <div class="search-field input-group">
@@ -136,20 +136,20 @@
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span id="btn-label">Address</span> <span class="caret"></span></button>
                             <ul id="input-search-switch" role="menu" class="dropdown-menu">
                                 <li><a href="#" data-value="loc">Address</a></li>
-                                <li><a href="#" data-value="latlon-decimal">Coordinates</a></li>
+                                <li><a href="#" data-value="latlon-decimal">Coord<span class="visible-xs-inline visible-sm-inline visible-md-inline">.</span><span class="hidden-xs hidden-sm hidden-md">inates</span></a></li>
                             </ul>
                         </div>
                         <input id="location-search" class="form-control ui-autocomplete-input ui-corner-all" type="search" placeholder="Enter Address" style="display: block" autocomplete="off" aria-label="Enter Address">
-                        <div id="coord-search" class="form-control hide" type="search" placeholder="Enter Latlon decimal">
+                        <div id="coord-search" class="form-control hide">
                             <table id="table-latlon-decimal" class="table-srchCoords">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <label for="latitude">Latitude:</label>
+                                            <label for="latitude">Lat<span class="hidden-xs hidden-sm hidden-md">itude</span>:</label>
                                             <input id="latitude" class="form-control" placeholder="41.234567">
                                         </td>
                                         <td>
-                                            <label for="longitude">Longitude:</label>
+                                            <label for="longitude">Lon<span class="hidden-xs hidden-sm hidden-md">gitude</span>:</label>
                                             <input id="longitude" class="form-control" placeholder="-91.234567">
                                         </td>
                                     </tr>
@@ -174,41 +174,159 @@
             </div>
         </div>
     </div>
-    <div class="map-wrapper">
-        <div id="map-container"></div>
+    <div id="map-container" class="map-wrapper">
         <div class="control-full leaflet-control-layers leaflet-control">
-            <a href="#" class="mapbox-icon"><span class="icon icon-external-link-square"></span></a>
+            <a href="#" class="mapbox-icon" title="View full width map" role="button"><span class="icon icon-external-link-square"></span><span class="sr-only">View full width map</span></a>
         </div>
-        <div class="map-legend">
-            <div class="hd">
-                <span class="icon icon-list"></span> <span class="map-legend-name">Map Legend</span>
-                <button id="btn-closeLegend" class="btn btn-xs pull-right"><span class="icon icon-close"></span> <span class="sr-only">Hide legend</span>
-            </div>
-            <ul class="list-unstyled">
-                <li>
-                    <input id="chk88" type="checkbox" data-layer="Tribal">
-                    <div class="key-symbol" style="background-image: url(./images/legend-thumb-slash.png)"></div>
-                    <label for="chk88">Tribal land</label>
-                </li>
-                <li>
-                    <input id="chk99" type="checkbox" data-layer="Urban">
-                    <div class="key-symbol" style="background-image: url(./images/legend-thumb-dot.png)"></div>
-                    <label for="chk99">Urban area</label>
-                </li>
-            </ul>
-        </div>
-        <button id="btn-openLegend" class="btn legend__icon" title="Map Legend"><span class="icon icon-list"></span></button>
     </div>
 </section>
 
-                    </div>                   
+                        <section class="hidden-xs hidden-sm hidden-md">
+                            <h2 class="h4">About</h2>
+                            <p>This map shows where fixed residential broadband services of at least 25 Mbps download and 3 Mbps upload is deployed and where it is not deployed. The graph on the right side shows the fraction of population with or without access to such broadband.</p>
+                            <p>Enter an address or click on the map to see the list of providers that offer residential services in the census block area on the Providers tab, each provider’s maximum advertised residential speed, and demographic data for the county associated with the census block on the Demographics tab. Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend. Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.</p>
+                        </section>
+                        <section class="hidden-xs hidden-sm hidden-md">
+                            <h3 class="h5"><strong>Form 477</strong></h3>
+                            <p>For more information about the data underlying this map and how it is collected, please visit:</p>
+                            <ul>
+                                <li><a href="https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477">Fixed Broadband Deployment Data from FCC Form 477</a></li>
+                                <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="map-sidebar col-md-4">
+                        <div class="tab-nav">
+    <ul class="layer-switch nav nav-pills" role="navigation">
+        <li class="active" role="presentation"><a href="#fixed" aria-controls="fixed" role="tab" data-toggle="tab">Fixed</a></li>
+        <li role="presentation"><a href="#provider" aria-controls="provider" role="tab" data-toggle="tab">Providers</a></li>
+        <li role="presentation"><a href="#demographics" aria-controls="demographics" role="tab" data-toggle="tab">Demographics</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div id="tabInstructs">
+        <section>
+            <p>Click on the map or search for a location using an address or coordinates to display provider and demographic information.</p>
+            <p>Example Searches:</p>
+            <ul>
+                <li>148 Lafayette Street, New York, NY 10013</li>
+                <li>Lumberport, WV</li>
+                <li>Latitude: 40.566353, Longitude: -105.094573</li>
+            </ul>
+        </section>
+    </div>
+    <div id="nwFixed">
+        <section>
+            <h3 class="h4">Nationwide</h3>
+            <div class="speed chart-legend">
+                <ul class="list-unstyled">
+                    <li><span class="key-symbol" style="background-color: #FFE773"></span> Fixed broadband</li>
+                    <li><span class="key-symbol" style="background-color: #6CBCD5"></span> No fixed broadband</li>
+                </ul>
+            </div>
+            <canvas id="chartNWFixed" width="300" height="255"></canvas>
+        </section>
+    </div>
+    <div id="fixed" class="active tab-pane hide" role="tabpanel">
+        <section class="sect-census">
+            <h3 class="h4">Census Block</h3>
+            <dl class="dl-horizontal">
+                <dt>FIPS Code:</dt>
+                <dd data-fips></dd>
+                <dt>Designation:</dt>
+                <dd data-rural></dd>
+            </dl>
+        </section>
+        <section class="sect-fixed">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h3 class="h4"><span data-county></span>, <span data-state></h3>
+                    <p class="help-block">Empty columns indicate data not available.</p>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-8">
+                <div class="col-xs-4">
+                    <a class="link-nw pull-right" href="#">View Nationwide</a>
+                </div>
+            </div>
+            <div class="speed chart-legend">
+                <ul class="list-unstyled">
+                    <li><span class="key-symbol" style="background-color: #FFE773"></span> Fixed broadband</li>
+                    <li><span class="key-symbol" style="background-color: #6CBCD5"></span> No fixed broadband</li>
+                </ul>
+            </div>
+            <canvas id="chartFixed" width="300" height="255"></canvas>
+        </section>
+    </div>
+    <div id="provider" class="sect-provider tab-pane hide" role="tabpanel">
+        <section class="sect-census">
+            <h3 class="h4">Census Block</h3>
+            <dl class="dl-horizontal">
+                <dt>FIPS Code:</dt>
+                <dd data-fips></dd>
+                <dt>Designation:</dt>
+                <dd data-rural></dd>
+            </dl>
+        </section>
+        <section>
+            <h3 class="h4">Providers</h3>
+            <table id="table-providers" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Name <span class="icon icon-sorting"></span></th>
+                        <th>Tech <span class="icon icon-sorting"></span></th>
+                        <th>Down <span class="icon icon-sorting"></span></th>
+                        <th>Up <span class="icon icon-sorting"></span></th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+    </div>
+    <div id="demographics" class="sect-demog tab-pane hide" role="tabpanel">
+        <section>
+            <h3 class="h4"><span data-county></span>, <span data-state></h3>
+            <dl class="dl-horizontal">
+                <dt>Total Population:</dt>
+                <dd data-totalPop></dd>
+                <dt>Pop Density (pop/mi<sup>2</sup>):</dt>
+                <dd data-popDensity></dd>
+                <dt>Per Capita Income:</dt>
+                <dd>$<span data-incomeCapita></span></dd>
+                <dt>Total Pop w/o Access:</dt>
+                <dd data-totalPopNoAccess></dd>
+                <dt>% Urban Pop w/o Access:</dt>
+                <dd data-urbanPop></dd>
+                <dt>% Rural Pop w/o Access:</dt>
+                <dd data-ruralPop></dd>
+            </dl>
+            <h4 class="h5">County Population</h4>
+            <canvas id="chartDemog" width="300" height="220"></canvas>
+        </section>
+    </div>
+</div>
+
+                        <section class="map-legend">
+    <h3 class="h4">Map Layers</h3>
+    <p class="help-block">Areas without population are shown without color.</p>
+    <ul class="list-unstyled">
+        <li>
+            <input id="chk88" type="checkbox" data-layer="Tribal">
+            <div class="key-symbol" style="background-image: url(./images/legend-thumb-slash.png)"></div>
+            <label for="chk88">Tribal land</label>
+        </li>
+        <li>
+            <input id="chk99" type="checkbox" data-layer="Urban">
+            <div class="key-symbol" style="background-image: url(./images/legend-thumb-dot.png)"></div>
+            <label for="chk99">Urban area</label>
+        </li>
+    </ul>    
+</section>
+
+                    </div>
+                    <div class="col-sm-12 visible-xs-block visible-sm-block visible-md-block">
+                        <hr>
                         <section>
                             <h2 class="h4">About</h2>
-                            <p>This map shows whether there are providers of fixed residential services of at least 25 Mbps/3 Mbps using a specific technology in your area. </p>
-                            <p>Enter your address to see what technologies are available in your area.  Click each technology to see whether a specific technology is available in your area. Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend.  Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.  Areas without population are shown without color.  Yellow indicates areas without providers of fixed residential services of at least 25 Mbps/3 Mbps.  Zoom out to see which technologies are available in the areas surrounding your address.</p>
+                            <p>This map shows where fixed residential broadband services of at least 25 Mbps download and 3 Mbps upload is deployed and where it is not deployed. The graph on the right side shows the fraction of population with or without access to such broadband.</p>
+                            <p>Enter an address or click on the map to see the list of providers that offer residential services in the census block area on the Providers tab, each provider’s maximum advertised residential speed, and demographic data for the county associated with the census block on the Demographics tab. Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend. Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.</p>
                         </section>
                         <section>
                             <h3 class="h5"><strong>Form 477</strong></h3>
@@ -218,6 +336,11 @@
                                 <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
                             </ul>
                         </section>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8">
                     </div>
                 </div>
             </main>
@@ -304,7 +427,7 @@
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/jquery.dataTables.min.js"></script>
     <script src="js/pg-common.js"></script>
-    <script src="js/app.min.js"></script>    
+    <script src="js/app.min.js"></script>
 </body>
 
 </html>
