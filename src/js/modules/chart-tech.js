@@ -42,7 +42,7 @@ var chartTech = {
         chartTech.getTech();
     },
     getTech: function() {
-        var techURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_dec2016_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartTech.FIPS + '%27';
+        var techURL = '/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=bpr_apr2017_refresh_county&maxFeatures=100&outputFormat=application/json&cql_filter=county_fips=%27' + chartTech.FIPS + '%27';
 
         $.ajax({
             type: 'GET',
