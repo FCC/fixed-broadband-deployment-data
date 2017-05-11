@@ -19,9 +19,7 @@
     <meta property="og:url" content="https://maps.fcc.gov/" />
     <meta property="og:title" content="Federal Communications Commission GIS Program">
     <meta property="og:description" content="The United States of America">
-
-    <title>Speed - Broadband Progress Report (June 2016) - FCC GIS</title>
-
+    <title>Nationwide Statistics- Broadband Progress Report (June 2016) - FCC GIS</title>
     <meta name="description" content="FCC GIS Program">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="https://www.fcc.gov/sites/all/themes/fcc/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -29,9 +27,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="cleartype" content="on">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet" />
-    <link href="//api.tiles.mapbox.com/mapbox.js/v3.0.1/mapbox.css" rel="stylesheet">
-    <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet" />    
     <link href="css/gisp-theme.min.css" rel="stylesheet">
     <script>
     (function(i, s, o, g, r, a, m) {
@@ -110,7 +106,7 @@
                     </div>
                 </nav>
             </header>
-            <main class="container">                
+            <main class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="pg-header">
@@ -122,159 +118,30 @@
                                 </ol>
                             </div>
                             <a id="main-content" tabindex="-1"></a>
-
-                            <h1>Speed <span class="subtitle">Fixed Broadband as of June, 2016</span></h1>
-
+                            <h1>Nationwide Statistics <span class="subtitle">Comparison of Demographic Data for Census Tracts With and Without Access to Fixed Advanced Telecommunications Capability</span></h1>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-
-                    <div class="col-md-8">
-
-                        <section id="map">
-    <div id="search-field-holder">
-        <div class="search-field input-group">
-            <div class="search__group">
-                <div class="search__input">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span id="btn-label">Address</span> <span class="caret"></span></button>
-                            <ul id="input-search-switch" role="menu" class="dropdown-menu">
-                                <li><a href="#" data-value="loc">Address</a></li>
-                                <li><a href="#" data-value="latlon-decimal">Coord<span class="visible-xs-inline visible-sm-inline visible-md-inline">.</span><span class="hidden-xs hidden-sm hidden-md">inates</span></a></li>
-                            </ul>
-                        </div>
-                        <input id="location-search" class="form-control ui-autocomplete-input ui-corner-all" type="search" placeholder="Enter Address" style="display: block" autocomplete="off" aria-label="Enter Address">
-                        <div id="coord-search" class="form-control hide">
-                            <table id="table-latlon-decimal" class="table-srchCoords">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label for="latitude">Lat<span class="hidden-xs hidden-sm hidden-md">itude</span>:</label>
-                                            <input id="latitude" class="form-control" placeholder="41.234567">
-                                        </td>
-                                        <td>
-                                            <label for="longitude">Lon<span class="hidden-xs hidden-sm hidden-md">gitude</span>:</label>
-                                            <input id="longitude" class="form-control" placeholder="-91.234567">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <span class="input-group-btn" id="btn-locSearch">                        
-                                                            <button class="btn__search btn btn-default" type="submit" title="Location Search" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Location Search</span></button>
-                        </span>
-                        <span class="input-group-btn hide" id="btn-coordSearch">                        
-                                                            <button class="btn-search btn btn-default" title="Search by coordinates" data-toggle="tooltip" data-placement="top"><span class="icon icon-search"></span><span class="sr-only">Search by coordinates</span></button>
-                        </span>
-                    </div>
-                </div>
-                <div class="btn__groupLoc">
-                    <span class="input-group-btn">  
-                                                        <button class="btn__geoLocation btn btn-default st" title="Get Current Location" data-toggle="tooltip" data-placement="top" id="btn-geoLocation" type="button" data-original-title="Get Current Location">
-                                                        <span class="icon icon-location-arrow"></span><span class="sr-only">Get Current Location</span></button>
-                    <button class="btn__nationLocation btn btn-default st" title="Nationwide" data-toggle="tooltip" data-placement="top" id="btn-nationLocation" type="button" data-original-title="Nationwide"><span class="icon icon-globe"></span><span class="sr-only">Nationwide</span></button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="map-container" class="map-wrapper">
-        <div class="control-full leaflet-control-layers leaflet-control">
-            <a href="#" class="mapbox-icon" title="View full width map" role="button"><span class="icon icon-external-link-square"></span><span class="sr-only">View full width map</span></a>
-        </div>
-    </div>
-</section>
-
-                        <section class="hidden-xs hidden-sm hidden-md">
-                            <h2 class="h4">About</h2>
-                            <p>This map shows the availability of fixed residential broadband services by speed in an area.  Enter your address to find the speed of services in your area. The graph at right shows the fraction of population with different numbers of providers reporting service as a function of broadband speed. </p>
-                            <p>Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend.  Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.  Yellow indicates areas without residential services of at 200 kbps or above. Click each box to see the minimum top residential speed in your area.  Zoom out to see the speed of service in the neighboring areas.</p>
-                        </section>
-                        <section class="hidden-xs hidden-sm hidden-md">
-                            <h3 class="h5"><strong>Form 477</strong></h3>
-                            <p>For more information about the data underlying this map and how it is collected, please visit:</p>
-                            <ul>
-                                <li><a href="https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477">Fixed Broadband Deployment Data from FCC Form 477</a></li>
-                                <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
-                            </ul>
-                        </section>
-                    </div>
-
-                    <div class="map-sidebar col-md-4">
-
-                        <section class="sect-speedNW hide">
-    <div class="row">
-        <div class="col-sm-8">
-            <h3 class="h4"><span id="hd-nwSpeed">Nationwide</span> <span class="hide" id="hd-speed"><span data-county></span>, <span data-state></span></span></h3>
-        </div>        
-    </div>
-    <div class="speed chart-legend">
-        <span class="h6"># of providers:</span>
-        <ul class="list-unstyled">
-            <li><span class="key-symbol" style="background-color: #ffffcc"></span> 0</li>
-            <li><span class="key-symbol" style="background-color: #fdcc8a"></span> 1</li>
-            <li><span class="key-symbol" style="background-color: #fc8d59"></span> 2</li>
-            <li><span class="key-symbol" style="background-color: #d7301f"></span> 3 or more</li>
-        </ul>
-    </div>
-    <canvas id="chartSpeedNW" width="250" height="255"></canvas>
-</section>
-<section class="sect-speed hide">
-    <div class="row">
-        <div class="col-sm-8">
-            <h3 class="h4"><span id="hd-speed"><span data-county></span>, <span data-state></span></span></h3>
-        </div>
-        <div class="col-sm-4">
-            <a class="link-nw pull-right" href="#">View Nationwide</a>
-        </div>
-    </div>
-    <div class="speed chart-legend">
-        <span class="h6"># of providers:</span>
-        <ul class="list-unstyled">
-            <li><span class="key-symbol" style="background-color: #ffffcc"></span> 0</li>
-            <li><span class="key-symbol" style="background-color: #fdcc8a"></span> 1</li>
-            <li><span class="key-symbol" style="background-color: #fc8d59"></span> 2</li>
-            <li><span class="key-symbol" style="background-color: #d7301f"></span> 3 or more</li>
-        </ul>
-    </div>
-    <canvas id="chartSpeed" width="250" height="255"></canvas>
-</section>
-
-                        <section class="map-legend">
-    <h3 class="h4">Map Layers</h3>
-    <p class="help-block">Areas without population are shown without color.</p>
-    <ul class="list-unstyled">
-        <li>
-            <input id="chk88" type="checkbox" data-layer="Tribal">
-            <div class="key-symbol" style="background-image: url(./images/legend-thumb-slash.png)"></div>
-            <label for="chk88">Tribal land</label>
-        </li>
-        <li>
-            <input id="chk99" type="checkbox" data-layer="Urban">
-            <div class="key-symbol" style="background-image: url(./images/legend-thumb-dot.png)"></div>
-            <label for="chk99">Urban area</label>
-        </li>
-    </ul>    
-</section>
-
-                    </div>
-                    <div class="col-sm-12 visible-xs-block visible-sm-block visible-md-block">
-                        <hr>
+                    <div class="col-sm-12 col-md-10">
                         <section>
-                             <h2 class="h4">About</h2>
-                            <p>This map shows the availability of fixed residential broadband services by speed in an area.  Enter your address to find the speed of services in your area. The graph at right shows the fraction of population with different numbers of providers reporting service as a function of broadband speed. </p>
-                            <p>Tribal lands and urban areas can be displayed by clicking the appropriate box in the legend.  Click on the symbol in the upper left hand corner next to + and – to change the view from a street view to a satellite or a terrain view.  Yellow indicates areas without residential services of at 200 kbps or above. Click each box to see the minimum top residential speed in your area.  Zoom out to see the speed of service in the neighboring areas.</p>
-                        </section>
-                        <section>
-                            <h3 class="h5"><strong>Form 477</strong></h3>
-                            <p>For more information about the data underlying this map and how it is collected, please visit:</p>
-                            <ul>
-                                <li><a href="https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477">Fixed Broadband Deployment Data from FCC Form 477</a></li>
-                                <li><a href="https://www.fcc.gov/general/form-477-resources-filers">Form 477 Resources</a></li>
-                            </ul>
-                        </section>
+    <div class="table-responsive">
+        <table id="table-nwAve" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col"><span class="sr-only">Description</span></th>
+                    <th scope="col">Ave.<br>Population</th>
+                    <th scope="col">Ave. Population<br>Density</th>
+                    <th scope="col">Ave. Per Capita
+                    <br>Income ($2014)</th>
+                    <th scope="col">Ave. Median Household Income ($2014)</th>
+                    <th scope="col">Ave. Poverty<br>Rate</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</section>
+
                     </div>
                 </div>
             </main>
@@ -355,9 +222,6 @@
     <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
     </script>
-    <script src="js/vendor/jquery-ui-ac.min.js"></script>
-    <script src="//api.tiles.mapbox.com/mapbox.js/v3.0.1/mapbox.js"></script>
-    <script src="js/vendor/Chart.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/jquery.dataTables.min.js"></script>
     <script src="js/pg-common.js"></script>

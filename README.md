@@ -1,6 +1,7 @@
 # Fixed Broadband Deployment Data
 
-These maps and graphs are being published to help the public visualize fixed-broadband deployment data. The data represent broadband deployment as of December, 2015, as reported to the Commission by facilities-based broadband providers on FCC Form 477. While the underlying data are fully public, each release of data includes millions of records, making it difficult to manage or to discern patterns. These maps and graphs are meant to provide easier access.
+These maps and graphs are being published to help the public visualize fixed-broadband deployment data. The data represent broadband deployment as of June, 2016, as reported to the Commission by facilities-based broadband providers on FCC Form 477. While the underlying data are fully public, each release of data includes millions of records, making it difficult to manage or to discern patterns. These maps and graphs are meant to provide easier access.
+
 
 The Commission also publishes an [annual Broadband Progress Report](https://www.fcc.gov/reports-research/reports/broadband-progress-reports/2016-broadband-progress-report).
 
