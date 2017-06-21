@@ -6,7 +6,7 @@ var layersTech = {};
 layersTech['No fixed 25 Mbps/3 Mbps providers'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_numprov_0',
+    layers: 'bpr_apr2017_numprov_0_1',
     styles: 'bpr_dec2016_numprov_0',
     color: '#ffffcc',
     zIndex: 11
@@ -15,7 +15,7 @@ layersTech['No fixed 25 Mbps/3 Mbps providers'] = {
 layersTech['FTTP'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_tech_fiber',
+    layers: 'bpr_apr2017_tech_fiber_1',
     styles: 'bpr_dec2016_tech',
     color: '#6e016b',
     zIndex: 11
@@ -24,7 +24,7 @@ layersTech['FTTP'] = {
 layersTech['Cable modem'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_tech_cable',
+    layers: 'bpr_apr2017_tech_cable_1',
     styles: 'bpr_dec2016_tech',
     color: '#6e016b',
     zIndex: 12
@@ -33,7 +33,7 @@ layersTech['Cable modem'] = {
 layersTech['DSL (inc. FTTN), other copper'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_tech_adsl',
+    layers: 'bpr_apr2017_tech_adsl_1',
     styles: 'bpr_dec2016_tech',
     color: '#6e016b',
     zIndex: 13
@@ -42,7 +42,7 @@ layersTech['DSL (inc. FTTN), other copper'] = {
 layersTech['Fixed wireless'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_tech_fw',
+    layers: 'bpr_apr2017_tech_fw_1',
     styles: 'bpr_dec2016_tech',
     color: '#6e016b',
     zIndex: 14
@@ -51,7 +51,7 @@ layersTech['Fixed wireless'] = {
 layersTech['Satellite'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_tech_sat',
+    layers: 'bpr_apr2017_tech_sat_1',
     styles: 'bpr_dec2016_tech',
     color: '#6e016b',
     zIndex: 15
@@ -60,7 +60,7 @@ layersTech['Satellite'] = {
 layersTech['Other'] = {
     format: 'image/png',
     transparent: true,
-    layers: 'bpr_apr2017_tech_other',
+    layers: 'bpr_apr2017_tech_other_1',
     styles: 'bpr_dec2016_tech',
     color: '#6e016b',
     zIndex: 16
