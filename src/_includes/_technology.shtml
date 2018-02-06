@@ -1,0 +1,4 @@
+<section class="sect-fixed">
+    <h3 class="h4"><span data-county></span>, <span data-state></h3>
+    <canvas id="chartTech" width="350" height="220"></canvas>
+</section>
