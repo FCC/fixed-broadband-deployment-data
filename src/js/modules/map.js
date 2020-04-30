@@ -89,7 +89,7 @@ var BPRMap = {
 
         BPRMap.mapLayer = {};
 
-        BPRMap.geoURL = window.GEOHOST + '/gwc/service/wms?tiled=true';
+        BPRMap.geoURL = window.GEOHOST + '/wms?tiled=true';
 
         L.mapbox.accessToken = 'pk.eyJ1IjoiZmNjIiwiYSI6InBiaGMyLU0ifQ.LOmVYpUCFv2yWpbvxDdQNg';
         BPRMap.map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
