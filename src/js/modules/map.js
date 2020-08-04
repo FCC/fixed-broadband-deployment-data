@@ -92,13 +92,7 @@ var BPRMap = {
         BPRMap.geoURL = window.GEOHOST + '/wms?tiled=true';
 
         L.mapbox.accessToken = 'pk.eyJ1IjoiZmNjIiwiYSI6InBiaGMyLU0ifQ.LOmVYpUCFv2yWpbvxDdQNg';
-        BPRMap.map = L.mapbox.map('map-container', 'fcc.k74ed5ge', {
-                attributionControl: true,
-                maxZoom: maxzoom,
-                minZoom: minzoom,
-                zoomControl: true
-            })
-            .setView([BPRMap.lat, BPRMap.lon], BPRMap.zoom);
+        BPRMap.map = L.mapbox.map('map-container').setView([BPRMap.lat, BPRMap.lon], BPRMap.zoom);
 
         BPRMap.map.attributionControl.addAttribution('<a href="http://fcc.gov">FCC</a>');
 
@@ -106,9 +100,9 @@ var BPRMap = {
         $('#map-container').find('.leaflet-bottom.leaflet-left').toggleClass('leaflet-bottom leaflet-left leaflet-top leaflet-right');
 
         //base layers
-        baseLayer.Street = L.mapbox.tileLayer('fcc.k74ed5ge').addTo(BPRMap.map);
-        baseLayer.Satellite = L.mapbox.tileLayer('fcc.k74d7n0g');
-        baseLayer.Terrain = L.mapbox.tileLayer('fcc.k74cm3ol');
+        baseLayer.Street = L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10').addTo(BPRMap.map);
+        baseLayer.Satellite = L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-streets-v11');
+        baseLayer.Terrain = L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-v9');
 
         //get tile layers based on location pathname
         for (var layer in layers[layerPath]) {
