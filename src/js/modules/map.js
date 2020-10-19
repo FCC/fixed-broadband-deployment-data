@@ -102,7 +102,7 @@ var BPRMap = {
         //base layers
         baseLayer.Street = L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10').addTo(BPRMap.map);
         baseLayer.Satellite = L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-streets-v11');
-        baseLayer.Terrain = L.mapbox.styleLayer('mapbox://styles/mapbox/satellite-v9');
+        baseLayer.Terrain = L.mapbox.styleLayer('mapbox://styles/mapbox/outdoors-v11');
 
         //get tile layers based on location pathname
         for (var layer in layers[layerPath]) {
