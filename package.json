@@ -52,7 +52,7 @@
     "jshint-stylish": "^2.2.1",
     "load-grunt-tasks": "^3.5.2",
     "lodash": ">=4.17.21",
-    "mocha": "^8.1.0",
+    "mocha": "^8.4.0",
     "mocha-jsdom": "^1.1.0",
     "mochawesome": "^6.1.1",
     "node.extend": ">=1.1.7",
